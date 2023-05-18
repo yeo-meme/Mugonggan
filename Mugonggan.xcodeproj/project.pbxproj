@@ -15,6 +15,15 @@
 		FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF72F0952A15C65A004EDDB0 /* Mugonggan.xcdatamodeld */; };
 		FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F09E2A15F770004EDDB0 /* SignUpView.swift */; };
 		FF72F0A12A160B5C004EDDB0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F0A02A160B5C004EDDB0 /* LoginView.swift */; };
+		FF72F0A62A16670A004EDDB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */; };
+		FF72F1152A1670B8004EDDB0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1142A1670B8004EDDB0 /* FirebaseAnalytics */; };
+		FF72F1172A1670B8004EDDB0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1162A1670B8004EDDB0 /* FirebaseAuth */; };
+		FF72F1192A1670B8004EDDB0 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1182A1670B8004EDDB0 /* FirebaseDatabase */; };
+		FF72F11B2A1670B8004EDDB0 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11A2A1670B8004EDDB0 /* FirebaseDatabaseSwift */; };
+		FF72F11D2A1670B8004EDDB0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11C2A1670B8004EDDB0 /* FirebaseFirestore */; };
+		FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */; };
+		FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */; };
+		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +36,7 @@
 		FF72F0962A15C65A004EDDB0 /* Mugonggan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mugonggan.xcdatamodel; sourceTree = "<group>"; };
 		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		FF72F0A02A160B5C004EDDB0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +44,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF72F11B2A1670B8004EDDB0 /* FirebaseDatabaseSwift in Frameworks */,
+				FF72F1192A1670B8004EDDB0 /* FirebaseDatabase in Frameworks */,
+				FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */,
+				FF72F1152A1670B8004EDDB0 /* FirebaseAnalytics in Frameworks */,
+				FF72F11D2A1670B8004EDDB0 /* FirebaseFirestore in Frameworks */,
+				FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */,
+				FF72F1172A1670B8004EDDB0 /* FirebaseAuth in Frameworks */,
+				FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +77,7 @@
 		FF72F0892A15C659004EDDB0 /* Mugonggan */ = {
 			isa = PBXGroup;
 			children = (
+				FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */,
 				FF72F09D2A15F6FB004EDDB0 /* View */,
 				FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */,
 				FF72F08C2A15C659004EDDB0 /* ContentView.swift */,
@@ -103,6 +122,16 @@
 			dependencies = (
 			);
 			name = Mugonggan;
+			packageProductDependencies = (
+				FF72F1142A1670B8004EDDB0 /* FirebaseAnalytics */,
+				FF72F1162A1670B8004EDDB0 /* FirebaseAuth */,
+				FF72F1182A1670B8004EDDB0 /* FirebaseDatabase */,
+				FF72F11A2A1670B8004EDDB0 /* FirebaseDatabaseSwift */,
+				FF72F11C2A1670B8004EDDB0 /* FirebaseFirestore */,
+				FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */,
+				FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */,
+				FF72F1222A1670B8004EDDB0 /* FirebaseStorage */,
+			);
 			productName = Mugonggan;
 			productReference = FF72F0872A15C659004EDDB0 /* Mugonggan.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +160,9 @@
 				Base,
 			);
 			mainGroup = FF72F07E2A15C659004EDDB0;
+			packageReferences = (
+				FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = FF72F0882A15C659004EDDB0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -147,6 +179,7 @@
 			files = (
 				FF72F0922A15C65A004EDDB0 /* Preview Assets.xcassets in Resources */,
 				FF72F08F2A15C65A004EDDB0 /* Assets.xcassets in Resources */,
+				FF72F0A62A16670A004EDDB0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,8 +330,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,8 +358,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +394,60 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF72F1142A1670B8004EDDB0 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		FF72F1162A1670B8004EDDB0 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FF72F1182A1670B8004EDDB0 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		FF72F11A2A1670B8004EDDB0 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		FF72F11C2A1670B8004EDDB0 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		FF72F1222A1670B8004EDDB0 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FF72F0952A15C65A004EDDB0 /* Mugonggan.xcdatamodeld */ = {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
     
@@ -13,6 +14,7 @@ struct LoginView: View {
     
     @State private var email:String = ""
     @State private var password:String = ""
+    
     @State private var isEmailEditing: Bool = false
     @State private var isPwEditing: Bool = false
     
@@ -70,7 +72,15 @@ struct LoginView: View {
                     VStack(spacing: 20){
                         HStack(){
                             Button(action: {
-                            
+                                
+                                Auth.auth().signIn(withEmail: email, password: password) {
+                                    (authResult, error) in
+                                    if authResult != nil {
+                                        print("로그인성공")
+                                    } else {
+                                        print("로그인실패")
+                                    }
+                                }
                             }) {
                                 Text("로그인")
                             }
