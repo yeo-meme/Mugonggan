@@ -13,7 +13,8 @@
 		FF72F0922A15C65A004EDDB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF72F0912A15C65A004EDDB0 /* Preview Assets.xcassets */; };
 		FF72F0942A15C65A004EDDB0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F0932A15C65A004EDDB0 /* Persistence.swift */; };
 		FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF72F0952A15C65A004EDDB0 /* Mugonggan.xcdatamodeld */; };
-		FF72F09F2A15F770004EDDB0 /* LogingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F09E2A15F770004EDDB0 /* LogingView.swift */; };
+		FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F09E2A15F770004EDDB0 /* SignUpView.swift */; };
+		FF72F0A12A160B5C004EDDB0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F0A02A160B5C004EDDB0 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +25,8 @@
 		FF72F0912A15C65A004EDDB0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FF72F0932A15C65A004EDDB0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		FF72F0962A15C65A004EDDB0 /* Mugonggan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mugonggan.xcdatamodel; sourceTree = "<group>"; };
-		FF72F09E2A15F770004EDDB0 /* LogingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogingView.swift; sourceTree = "<group>"; };
+		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		FF72F0A02A160B5C004EDDB0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,8 @@
 		FF72F09D2A15F6FB004EDDB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FF72F09E2A15F770004EDDB0 /* LogingView.swift */,
+				FF72F09E2A15F770004EDDB0 /* SignUpView.swift */,
+				FF72F0A02A160B5C004EDDB0 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -154,9 +157,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF72F0A12A160B5C004EDDB0 /* LoginView.swift in Sources */,
 				FF72F0942A15C65A004EDDB0 /* Persistence.swift in Sources */,
 				FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */,
-				FF72F09F2A15F770004EDDB0 /* LogingView.swift in Sources */,
+				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
 				FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */,
 				FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */,
 			);
