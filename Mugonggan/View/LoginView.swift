@@ -9,10 +9,17 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @State private var email:String = ""
     @State private var password:String = ""
     @State private var isEmailEditing: Bool = false
     @State private var isPwEditing: Bool = false
+    
+    
+    @State private var showingSignUpView: Bool = false
+    
+    
     
     var body: some View {
         NavigationView {
@@ -60,15 +67,31 @@ struct LoginView: View {
                     .cornerRadius(9)
                     
                        
-                    VStack {
-                        HStack(spacing: 60){
-                            Text("로그인")
-                            Text("회원가입")
+                    VStack(spacing: 20){
+                        HStack(){
+                            Button(action: {
+                            
+                            }) {
+                                Text("로그인")
+                            }
+                            .frame(width: 100, height: 70)
+//                            .background(Color.red)
+
+                           
+                            
+                            Button(action: {
+                           self.showingSignUpView.toggle()
+                            }) {
+                                Text("회원가입")
+                            }
+                            .frame(width: 100, height: 70)
+//                            .background(Color.pink)
+                            
                         }
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.black)
                     }
-//                    .background(Color.pink)
+//                    .background(Color.green)
                     .cornerRadius(9)
                     
                     Spacer()
@@ -79,6 +102,9 @@ struct LoginView: View {
 //                .background(Color.green)
                 
                 Spacer()
+            }
+            .sheet(isPresented: $showingSignUpView) {
+                SignUpView().environment(\.managedObjectContext, self.managedObjectContext)
             }
 //            .navigationBarTitle("무공간", displayMode: .large)
 //            .toolbar {
