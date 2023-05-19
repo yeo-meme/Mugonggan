@@ -10,6 +10,9 @@ import FirebaseAuth
 
 struct LoginView: View {
     
+    
+    @State private var isSignInCompleteView = false
+    
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var email:String = ""
