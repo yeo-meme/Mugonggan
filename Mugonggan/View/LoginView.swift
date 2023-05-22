@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct LoginView: View {
     
-    
+        
     @State private var isSignInCompleteView = false
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -24,9 +24,10 @@ struct LoginView: View {
     
     @State private var showingSignUpView: Bool = false
     
-    
+    //swiftUI
     
     var body: some View {
+        
         NavigationView {
             VStack{
                 VStack(alignment: .leading, spacing: 30){

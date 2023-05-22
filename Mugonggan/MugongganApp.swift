@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 @main
 struct MugongganApp: App {
@@ -14,6 +16,7 @@ struct MugongganApp: App {
     
     init() {
         FirebaseApp.configure()
+        let db = Firestore.firestore()
     }
 
     

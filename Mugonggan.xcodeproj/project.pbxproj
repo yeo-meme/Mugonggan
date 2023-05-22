@@ -24,6 +24,7 @@
 		FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */; };
 		FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */; };
 		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
+		FFBD42382A1B4F010077E020 /* MulistVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42372A1B4F010077E020 /* MulistVIew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		FF72F0A02A160B5C004EDDB0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFBD42372A1B4F010077E020 /* MulistVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulistVIew.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				FF72F09E2A15F770004EDDB0 /* SignUpView.swift */,
 				FF72F0A02A160B5C004EDDB0 /* LoginView.swift */,
+				FFBD42372A1B4F010077E020 /* MulistVIew.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				FF72F0A12A160B5C004EDDB0 /* LoginView.swift in Sources */,
 				FF72F0942A15C65A004EDDB0 /* Persistence.swift in Sources */,
 				FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */,
+				FFBD42382A1B4F010077E020 /* MulistVIew.swift in Sources */,
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
 				FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */,
 				FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */,
