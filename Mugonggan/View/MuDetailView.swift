@@ -13,11 +13,13 @@ struct MuDetailView: View {
 
         VStack {
             HStack{
-                Image(systemName: "circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.purple)
+                NavigationLink(destination: UserHomeView(muListLinkActive: $muListLinkActive)) {
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.purple)
                     .frame(width: 70,height: 70, alignment: .center)
+                }
                 
                 VStack{
                     Text("먀먀먀용")
@@ -37,7 +39,6 @@ struct MuDetailView: View {
             .padding()
             
             HStack() {
-
                 Text("좋아요")
                     .foregroundColor(.white)
                 Text("즐겨찾기")

@@ -28,6 +28,7 @@
 		FFBD423A2A1B568C0077E020 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42392A1B568C0077E020 /* UserData.swift */; };
 		FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD423E2A1C8D4C0077E020 /* LoginView.swift */; };
 		FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42402A1CFCF80077E020 /* MuDetailView.swift */; };
+		FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42422A1D0CD10077E020 /* UserHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		FFBD42392A1B568C0077E020 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FFBD423E2A1C8D4C0077E020 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FFBD42402A1CFCF80077E020 /* MuDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuDetailView.swift; sourceTree = "<group>"; };
+		FFBD42422A1D0CD10077E020 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				FFBD42372A1B4F010077E020 /* MulistView.swift */,
 				FFBD423E2A1C8D4C0077E020 /* LoginView.swift */,
 				FFBD42402A1CFCF80077E020 /* MuDetailView.swift */,
+				FFBD42422A1D0CD10077E020 /* UserHomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */,
 				FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */,
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
+				FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */,
 				FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */,
 				FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */,
 				FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */,

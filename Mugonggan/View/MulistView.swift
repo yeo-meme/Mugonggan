@@ -30,6 +30,7 @@ struct MulistView: View {
                     ForEach(images, id: \.self) { imageName in
                        
                         NavigationLink(destination: MuDetailView(muListLinkActive : $muListLinkActive) , isActive: $muListLinkActive){
+                            
                             Image(imageName)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
