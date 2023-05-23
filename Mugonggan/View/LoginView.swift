@@ -11,6 +11,7 @@ import FirebaseAuth
 struct LoginView: View {
     
     
+    
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @EnvironmentObject private var userData: UserData
