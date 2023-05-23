@@ -13,7 +13,8 @@ import FirebaseFirestore
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    @StateObject private var userData = UserData()
+        @State private var showingSignUpView = false
     
     
     @FetchRequest(
@@ -24,8 +25,20 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            LoginView()
+            if showingSignUpView {
+                MulistView()
+            } else {
+                MainView()
+            }
         }
+        .onAppear{
+            print("where: contentView")}
+            .onReceive(userData.$isLoggedIn) { isLoggedIn in
+                if isLoggedIn {
+                    showingSignUpView = false
+                }
+            }
+           
     }
     
 }

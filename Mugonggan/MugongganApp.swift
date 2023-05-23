@@ -10,9 +10,18 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 
+
+class UserData: ObservableObject {
+    @Published var isLoggedIn: Bool = false
+}
+
 @main
 struct MugongganApp: App {
+    
     let persistenceController = PersistenceController.shared
+    
+    @StateObject private var userData = UserData()
+    @State private var showingSignUpView = false
     
     init() {
         FirebaseApp.configure()
@@ -22,8 +31,23 @@ struct MugongganApp: App {
     
     var body: some Scene {
         WindowGroup {
+//            if showingSignUpView {
+//                SignUpView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            } else {
+//                ContentView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            }
+//                .onReceive(userData.$isLoggedIn) { isLoggedIn in
+//                if isLoggedIn {
+//                    showingSignUpView = false
+//                }
+//            }
+            
+          
+
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(userData)
         }
+        
     }
 }

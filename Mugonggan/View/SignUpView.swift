@@ -29,10 +29,13 @@ struct User {
 
 struct SignUpView: View {
     
-
+    
     //View 컨텍스트에서 제공되는 환경 속성입니다. 이 속성은 현재 뷰가 표시되는 방식과 관련된 정보를 제공
     // 프로퍼티 래퍼는 구조체에서 사용될 때만 사용할 수 있습니다
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var userData: UserData
+    
+    @Binding var isViewPresented :Bool
     
     @State private var email: String = ""
     @State private var password:String = ""
@@ -40,6 +43,8 @@ struct SignUpView: View {
     
     @State private var isCompleteClose = false
     @State private var showAlert = false
+    
+    @State private var showingSignUpView = false
     
     
     
@@ -74,15 +79,14 @@ struct SignUpView: View {
                     //: BUTTON 완료
                     Button(action: {
                         
-                        if checkSignUpCondition() {
-                            registerUser(email: email, password: password)
-                        } else {
-                            
-                            //                            Alert(title: Text("안녕"),
-                            //                            message: Text("필수항목을 모두 입력해주세요"),
-                            //                                  dismissButton: .default(Text("OK")))
-                        }
-                        
+                        self.presentationMode.wrappedValue.dismiss()
+                        fetchData()
+                        //                        if checkSignUpCondition() {
+                        //                            registerUser(email: email, password: password)
+                        //                        } else {
+                        //
+                        //                        }
+                        //
                         
                     }) {
                         Text("회원가입 완료")
@@ -104,20 +108,22 @@ struct SignUpView: View {
             .navigationBarTitle("회원가입", displayMode: .inline)
             .navigationBarItems(trailing:
                                     Button(action: {
-                self.presentationMode.wrappedValue.dismiss()           }){
-                    Image(systemName: "xmark")
-                }
+                self.presentationMode.wrappedValue.dismiss()
+            })
+                                {
+                Image(systemName: "xmark")
+            }
             )
             .accentColor(Color.black)
-            
         }//:NAVIGATIONVEIW
-        .background(Color.pink)
-        .navigationViewStyle(StackNavigationViewStyle())
+        //        .background(Color.pink)
+        //        .navigationViewStyle(StackNavigationViewStyle())
         
         
-    }
+    }//: View
     
-    private func saveUserToFirebase(uid: String) {
+    
+    private func saveUserToFirebase(_ uid: String, completion: @escaping (Bool) -> Void ) {
         let db = Firestore.firestore()
         let userRef = db.collection("users").document()
         
@@ -126,19 +132,37 @@ struct SignUpView: View {
         ]) { error in
             if let error = error {
                 print("Error Saving \(error.localizedDescription)")
+                completion(false)
             } else {
                 print("db 저장 성공")
-                self.presentationMode.wrappedValue.dismiss()
+                completion(true)
+                //                showingSignUpView = false
+                //
+                //
+                //                self.presentationMode.wrappedValue.dismiss()
             }
         }
     }
     
-    private func uploadUserInfo(_ uid: String) -> Void {
+    private func uploadUserInfo(_ uid: String) {
         if !uid.isEmpty {
-            saveUserToFirebase(uid: uid)
-            print("회원가입 성공" + uid)
+            saveUserToFirebase(uid) { success in if success {
+                print("회원가입 성공" + uid)
+                //                DispatchQueue.global().async {
+                //                    DispatchQueue.main.async {
+                //                        showingSignUpView = false
+                //                        guard let pvc = self.presentingViewController else {return}
+                //                        self.dismiss(animated: true) {
+                //                            pvc.present(MulistVIew(), animated: true, competion: nil)
+                //                        }
+                //                    }
+                //                }
+            } else {
+                print("회원가입 성공못함 1")
+            }
+            }
         } else {
-            print("회원가입 성공못함")
+            print("회원가입 성공못함 2")
         }
     }
     
@@ -163,11 +187,28 @@ struct SignUpView: View {
             uploadUserInfo(createUid)
         }
     }
-}
-
-
-struct LogingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
+    
+    func fetchData() {
+        DispatchQueue.global().async {
+            // 비동기적인 데이터 요청 등의 작업 수행
+            
+            DispatchQueue.main.async {
+                // 메인 큐에서 UI 업데이트
+                print("fetCh")
+                isViewPresented = true
+                presentationMode.wrappedValue.dismiss()
+             
+            }
+        }
+    }
+    
+    struct LogingView_Previews: PreviewProvider {
+        static var previews: some View {
+            SignUpView(isViewPresented: .constant(false))
+//                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            
+        }
     }
 }
+
+
