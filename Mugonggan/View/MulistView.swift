@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import FirebaseStorage
 
 struct MulistView: View {
     
+    @State private var seletedImage: UIImage?
+    @State private var openPhoto = false
+    @State private var image = UIImage()
     
     @State var muListLinkActive = false
     
@@ -25,6 +29,16 @@ struct MulistView: View {
                 }
                 .padding(.top,20)
                 .padding(.trailing,20)
+                
+                Button(action: {
+                    self.openPhoto = true
+                }) {
+                    Text("사진올리기")
+                }.sheet(isPresented: $openPhoto) {
+                    ImagePicker(sourceType: .photoLibrary)
+                }
+                
+                
                 
                 LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(images, id: \.self) { imageName in
@@ -44,6 +58,32 @@ struct MulistView: View {
         }
      
     }
+    
+//    func uploadImage() {
+//        guard let image = seletedImage else {
+//            return
+//        }
+//        
+//        guard let imageData = image.jpegData(compressionQuality: 0.8) else {return}
+//        
+//        let storage = Storage.storage()
+//        let storageRef = storage.reference()
+//        let imageRef = storageRef.child("images/iamge.jpg")
+//        
+//        let metadata = StorageMetadata()
+//        metadata.contentType = "image/jpeg"
+//        
+//        imageRef.putData(imageData, metadata: metadata) { _, error in
+//            if let error = error {
+//                print("error: \(error.localizedDescription)")
+//            } else {
+//                print("image upload 성공")
+//            }
+//            
+//    }
+//    
+//    
+//    }
 }
 
 

@@ -79,14 +79,14 @@ struct SignUpView: View {
                     //: BUTTON 완료
                     Button(action: {
                         
-                        self.presentationMode.wrappedValue.dismiss()
-                        fetchData()
-                        //                        if checkSignUpCondition() {
-                        //                            registerUser(email: email, password: password)
-                        //                        } else {
-                        //
-                        //                        }
-                        //
+                        //                        self.presentationMode.wrappedValue.dismiss()
+                        //                        fetchData()
+                        if checkSignUpCondition() {
+                            registerUser(email: email, password: password)
+                        } else {
+                            
+                        }
+                        
                         
                     }) {
                         Text("회원가입 완료")
@@ -116,10 +116,6 @@ struct SignUpView: View {
             )
             .accentColor(Color.black)
         }//:NAVIGATIONVEIW
-        //        .background(Color.pink)
-        //        .navigationViewStyle(StackNavigationViewStyle())
-        
-        
     }//: View
     
     
@@ -128,7 +124,10 @@ struct SignUpView: View {
         let userRef = db.collection("users").document()
         
         userRef.setData([
-            "name": uid
+            "uid": uid,
+            "name": name,
+            "password" : password,
+            "email" : email
         ]) { error in
             if let error = error {
                 print("Error Saving \(error.localizedDescription)")
@@ -136,10 +135,6 @@ struct SignUpView: View {
             } else {
                 print("db 저장 성공")
                 completion(true)
-                //                showingSignUpView = false
-                //
-                //
-                //                self.presentationMode.wrappedValue.dismiss()
             }
         }
     }
@@ -147,16 +142,9 @@ struct SignUpView: View {
     private func uploadUserInfo(_ uid: String) {
         if !uid.isEmpty {
             saveUserToFirebase(uid) { success in if success {
+                isViewPresented = true
+                self.presentationMode.wrappedValue.dismiss()
                 print("회원가입 성공" + uid)
-                //                DispatchQueue.global().async {
-                //                    DispatchQueue.main.async {
-                //                        showingSignUpView = false
-                //                        guard let pvc = self.presentingViewController else {return}
-                //                        self.dismiss(animated: true) {
-                //                            pvc.present(MulistVIew(), animated: true, competion: nil)
-                //                        }
-                //                    }
-                //                }
             } else {
                 print("회원가입 성공못함 1")
             }
@@ -197,7 +185,7 @@ struct SignUpView: View {
                 print("fetCh")
                 isViewPresented = true
                 presentationMode.wrappedValue.dismiss()
-             
+                
             }
         }
     }
@@ -205,7 +193,7 @@ struct SignUpView: View {
     struct LogingView_Previews: PreviewProvider {
         static var previews: some View {
             SignUpView(isViewPresented: .constant(false))
-//                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            //                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             
         }
     }

@@ -24,6 +24,7 @@
 		FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */; };
 		FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */; };
 		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
+		FFA542492A1DDAFD001196F8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA542482A1DDAFD001196F8 /* ImagePicker.swift */; };
 		FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42372A1B4F010077E020 /* MulistView.swift */; };
 		FFBD423A2A1B568C0077E020 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42392A1B568C0077E020 /* UserData.swift */; };
 		FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD423E2A1C8D4C0077E020 /* LoginView.swift */; };
@@ -42,6 +43,7 @@
 		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		FF72F0A02A160B5C004EDDB0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFA542482A1DDAFD001196F8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FFBD42372A1B4F010077E020 /* MulistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulistView.swift; sourceTree = "<group>"; };
 		FFBD42392A1B568C0077E020 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FFBD423E2A1C8D4C0077E020 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				FFBD423E2A1C8D4C0077E020 /* LoginView.swift */,
 				FFBD42402A1CFCF80077E020 /* MuDetailView.swift */,
 				FFBD42422A1D0CD10077E020 /* UserHomeView.swift */,
+				FFA542482A1DDAFD001196F8 /* ImagePicker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
 				FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */,
 				FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */,
+				FFA542492A1DDAFD001196F8 /* ImagePicker.swift in Sources */,
 				FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */,
 				FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */,
 			);

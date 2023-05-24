@@ -18,6 +18,7 @@ struct LoginView: View {
     
     @State private var email:String = ""
     @State private var password:String = ""
+    @State private var isLoggedIn : Bool = false
     
     @State private var isEmailEditing: Bool = false
     @State private var isPwEditing: Bool = false
@@ -41,6 +42,7 @@ struct LoginView: View {
                 TextField("email",text: $email, onEditingChanged: { editing in isEmailEditing = editing }
                 )
                 .padding()
+                .autocapitalization(.none)
                 .background(Color(UIColor.black))
                 .foregroundColor(.white)
                 .overlay(
@@ -58,6 +60,7 @@ struct LoginView: View {
                 TextField("비밀번호", text: $password, onEditingChanged: {editing in
                     isPwEditing = editing})
                 .padding()
+                .autocapitalization(.none)
                 .background(Color(UIColor.black))
                 .foregroundColor(.white)
                 .overlay(
@@ -74,18 +77,18 @@ struct LoginView: View {
                 VStack(spacing: 20){
                     HStack(){
                         Button(action: {
-                            Auth.auth().signIn(withEmail: email, password: password) {
-                                (authResult, error) in
-                                if authResult != nil {
-                                    print("로그인성공")
-                                } else {
-                                    print("로그인실패")
-                                }
-                            }
-                        }) {
+                            
+                login()
+
+                            
+                        })
+                               {
+
                             Text("로그인")
                         }
                         .frame(width: 100, height: 70)
+                        
+                       
                         Button(action: {
                             userData.isLoggedIn = false
                             self.showingSignUpView.toggle()
@@ -133,6 +136,38 @@ struct LoginView: View {
    
     }//: BODY VIEW
 
+    
+    func login() {
+        
+        
+        let success = true
+        Auth.auth().signIn(withEmail: email ,password: password) { _, error in
+            if let error = error {
+                print("로그인 실패")
+             
+            } else {
+                
+                print("로그인 성공")
+                self.isLoggedIn.toggle()
+                if isLoggedIn {
+                    DispatchQueue.main.async {
+                             let newView = MulistView()
+                             let hostingVC = UIHostingController(rootView: newView)
+                        
+                        if let window = UIApplication.shared.windows.first {
+                            
+                            window.rootViewController = hostingVC
+                            window.makeKeyAndVisible()
+                        }
+                       }
+                    print("isLoggedIn true")
+                } else {
+                    print("isLoggedIn false")
+                }
+              
+            }
+        }
+    }
     }//:VIEW
 
 struct LoginView_Previews: PreviewProvider {
