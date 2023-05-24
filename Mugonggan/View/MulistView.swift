@@ -10,9 +10,7 @@ import FirebaseStorage
 
 struct MulistView: View {
     
-    @State private var seletedImage: UIImage?
-    @State private var openPhoto = false
-    @State private var image = UIImage()
+   
     
     @State var muListLinkActive = false
     
@@ -30,13 +28,7 @@ struct MulistView: View {
                 .padding(.top,20)
                 .padding(.trailing,20)
                 
-                Button(action: {
-                    self.openPhoto = true
-                }) {
-                    Text("사진올리기")
-                }.sheet(isPresented: $openPhoto) {
-                    ImagePicker(sourceType: .photoLibrary)
-                }
+         
                 
                 
                 
