@@ -9,7 +9,10 @@ import SwiftUI
 
 struct UserHomeView: View {
     @State private var selectedImage: UIImage?
-    @State private var profileIamge: Image?
+    @State private var uploadBtn: Image?
+//    @State private var pickedImage: Image?
+    @State private var pickedImage: Image? = Image(systemName: "photo.artframe")
+       
     @State private var openPhoto = false
     
     @Binding var muListLinkActive : Bool
@@ -57,12 +60,14 @@ struct UserHomeView: View {
                 
                 Spacer()
                 
+                
+                
                 HStack{
                     Button(action: {
                         self.openPhoto = true
                     }) {
                         
-                        if let profileIamge = profileIamge {
+                        if let profileIamge = uploadBtn {
                             profileIamge
                                 .resizable()
                                 .scaledToFill()
@@ -75,17 +80,27 @@ struct UserHomeView: View {
                     .sheet(isPresented: $openPhoto,
                            onDismiss: loadImage,
                            content: {ImagePicker(image: $selectedImage)})
-//                    .sheet(isPresented: $openPhoto) {
-//                        ImagePicker(sourceType: .photoLibrary)
-//                    }
                 }
-                
                 .frame(width: 100, height: 50)
                 .background(.purple)
                 .cornerRadius(10)
+                
+                
             }
             .padding()
+        
             
+            HStack{
+                
+                if let image = pickedImage{
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 300, alignment: .center)
+                }
+                  
+            }
+       
             Spacer()
         }
     }
@@ -94,7 +109,7 @@ struct UserHomeView: View {
         guard let selectedImage = selectedImage else {
             return
         }
-        profileIamge = Image(uiImage:  selectedImage)
+        pickedImage = Image(uiImage:  selectedImage)
     }
 }
 
