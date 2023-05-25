@@ -14,6 +14,7 @@ struct LoginView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject private var userData: UserData
     
     @State private var email:String = ""
@@ -151,7 +152,7 @@ struct LoginView: View {
                 self.isLoggedIn.toggle()
                 if isLoggedIn {
                     DispatchQueue.main.async {
-                             let newView = MulistView()
+                        let newView = MulistView().environmentObject(viewModel)
                              let hostingVC = UIHostingController(rootView: newView)
                         
                         if let window = UIApplication.shared.windows.first {
@@ -173,5 +174,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(AuthViewModel())
     }
 }

@@ -11,7 +11,7 @@ import FirebaseStorage
 struct MulistView: View {
     
    
-    
+    @EnvironmentObject var viewModel: AuthViewModel
     @State var muListLinkActive = false
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
@@ -35,7 +35,7 @@ struct MulistView: View {
                 LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(images, id: \.self) { imageName in
                        
-                        NavigationLink(destination: MuDetailView(muListLinkActive : $muListLinkActive) , isActive: $muListLinkActive){
+                        NavigationLink(destination: MuDetailView(muListLinkActive : $muListLinkActive) ,isActive: $muListLinkActive){
                             
                             Image(imageName)
                                 .resizable()
@@ -84,5 +84,6 @@ struct MulistView: View {
 struct MulistView_Previews: PreviewProvider {
     static var previews: some View {
         MulistView()
+            .environmentObject(AuthViewModel())
     }
 }

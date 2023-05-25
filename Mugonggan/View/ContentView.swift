@@ -15,6 +15,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var userData = UserData()
         @State private var showingSignUpView = false
+    @EnvironmentObject var viewModel: AuthViewModel
     
     
     @FetchRequest(
@@ -25,12 +26,15 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            if showingSignUpView {
-                MulistView()
-            } else {
-                MainView()
-            }
+            
+            LoginView()
+//            if showingSignUpView {
+//                MulistView()
+//            } else {
+//                MainView()
+//            }
         }
+      
         .onAppear{
             print("where: contentView")}
             .onReceive(userData.$isLoggedIn) { isLoggedIn in
@@ -46,5 +50,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(AuthViewModel())
     }
 }

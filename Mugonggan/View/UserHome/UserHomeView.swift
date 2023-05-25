@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct UserHomeView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
     @State private var selectedImage: UIImage?
     @State private var uploadBtn: Image?
 //    @State private var pickedImage: Image?
     @State private var pickedImage: Image? = Image(systemName: "photo.artframe")
        
-    @State private var openPhoto = false
+    @State private var openPhotoView = false
     
     @Binding var muListLinkActive : Bool
     
@@ -64,7 +65,8 @@ struct UserHomeView: View {
                 
                 HStack{
                     Button(action: {
-                        self.openPhoto = true
+                        self.openPhotoView = true
+                        
                     }) {
                         
                         if let profileIamge = uploadBtn {
@@ -77,9 +79,9 @@ struct UserHomeView: View {
                                 .foregroundColor(.white)
                         }
                     }
-                    .sheet(isPresented: $openPhoto,
-                           onDismiss: loadImage,
-                           content: {ImagePicker(image: $selectedImage)})
+                    .sheet(isPresented: $openPhotoView) {
+                        UploadPhotoView()
+                    }
                 }
                 .frame(width: 100, height: 50)
                 .background(.purple)
@@ -116,5 +118,6 @@ struct UserHomeView: View {
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
         UserHomeView(muListLinkActive: .constant(true))
+            .environmentObject(AuthViewModel())
     }
 }
