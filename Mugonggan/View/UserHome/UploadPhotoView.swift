@@ -14,11 +14,24 @@ struct UploadPhotoView: View {
     @State private var isIndicatorAnimating: Bool = false
     
     @EnvironmentObject var viewModel :  AuthViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
 
         VStack{
-            IntroParagraph(title1: "Select your profile image")
+            
+            HStack {
+                Spacer()
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "xmark")
+            }
+                .padding(.trailing,30)
+            }
+            .padding(.top, -80)
+            
+            IntroParagraph(title1: "Select your profile image",title2:"hi")
             
             
             Button(action: {

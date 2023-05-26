@@ -13,6 +13,9 @@
 		FF4D3C952A1F3139000CAD35 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C942A1F3139000CAD35 /* AuthViewModel.swift */; };
 		FF4D3C982A1F3A74000CAD35 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C972A1F3A74000CAD35 /* ImageUploader.swift */; };
 		FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */; };
+		FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */; };
+		FF694E8D2A2087ED00D6B6B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF694E8C2A2087ED00D6B6B4 /* Kingfisher */; };
+		FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */; };
 		FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */; };
 		FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08C2A15C659004EDDB0 /* ContentView.swift */; };
 		FF72F08F2A15C65A004EDDB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF72F08E2A15C65A004EDDB0 /* Assets.xcassets */; };
@@ -44,6 +47,8 @@
 		FF4D3C942A1F3139000CAD35 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		FF4D3C972A1F3A74000CAD35 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeProfileCell.swift; sourceTree = "<group>"; };
+		FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		FF72F0872A15C659004EDDB0 /* Mugonggan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mugonggan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugongganApp.swift; sourceTree = "<group>"; };
 		FF72F08C2A15C659004EDDB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +74,7 @@
 				FF72F11B2A1670B8004EDDB0 /* FirebaseDatabaseSwift in Frameworks */,
 				FF72F1192A1670B8004EDDB0 /* FirebaseDatabase in Frameworks */,
 				FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */,
+				FF694E8D2A2087ED00D6B6B4 /* Kingfisher in Frameworks */,
 				FF72F1152A1670B8004EDDB0 /* FirebaseAnalytics in Frameworks */,
 				FF72F11D2A1670B8004EDDB0 /* FirebaseFirestore in Frameworks */,
 				FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */,
@@ -86,6 +92,7 @@
 				FFA542482A1DDAFD001196F8 /* ImagePicker.swift */,
 				FFBD42422A1D0CD10077E020 /* UserHomeView.swift */,
 				FF4D3C882A1F224F000CAD35 /* UploadPhotoView.swift */,
+				FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */,
 			);
 			path = UserHome;
 			sourceTree = "<group>";
@@ -137,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */,
+				FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -228,6 +236,7 @@
 				FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */,
 				FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */,
 				FF72F1222A1670B8004EDDB0 /* FirebaseStorage */,
+				FF694E8C2A2087ED00D6B6B4 /* Kingfisher */,
 			);
 			productName = Mugonggan;
 			productReference = FF72F0872A15C659004EDDB0 /* Mugonggan.app */;
@@ -259,6 +268,7 @@
 			mainGroup = FF72F07E2A15C659004EDDB0;
 			packageReferences = (
 				FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FF694E8B2A2087ED00D6B6B4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FF72F0882A15C659004EDDB0 /* Products */;
 			projectDirPath = "";
@@ -287,7 +297,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */,
 				FF72F0942A15C65A004EDDB0 /* Persistence.swift in Sources */,
+				FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */,
 				FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */,
 				FF4D3C892A1F224F000CAD35 /* UploadPhotoView.swift in Sources */,
 				FFBD423A2A1B568C0077E020 /* UserData.swift in Sources */,
@@ -504,6 +516,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FF694E8B2A2087ED00D6B6B4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -515,6 +535,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FF694E8C2A2087ED00D6B6B4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF694E8B2A2087ED00D6B6B4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		FF72F1142A1670B8004EDDB0 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FF72F1132A1670B8004EDDB0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

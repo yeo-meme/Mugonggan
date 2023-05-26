@@ -21,9 +21,13 @@ struct MulistView: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                
                 HStack {
                     Spacer()
-                    Text("메메님 방가루")
+                    
+                    NavigationLink(destination: UserHomeView( muListLinkActive: $muListLinkActive)) {
+                        Text("메메님 방가루")
+                    }
                 }
                 .padding(.top,20)
                 .padding(.trailing,20)

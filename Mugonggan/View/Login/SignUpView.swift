@@ -54,6 +54,8 @@ struct SignUpView: View {
         NavigationView{
             VStack {
                 VStack(alignment: .leading, spacing: 20) {
+                    
+                    IntroParagraph(title1: "Get started.", title2: "Create your account")
                     TextField("email", text: $email)
                         .autocapitalization(.none)
                         .padding()
