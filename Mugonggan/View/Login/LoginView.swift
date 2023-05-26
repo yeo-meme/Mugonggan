@@ -24,7 +24,6 @@ struct LoginView: View {
     @State private var isEmailEditing: Bool = false
     @State private var isPwEditing: Bool = false
     
-    
     @State private var showingSignUpView: Bool = false
     @State private var isViewPresented = false
     
@@ -101,11 +100,9 @@ struct LoginView: View {
                 }//:VSTACK
                 .padding(.horizontal)
                 .padding(.top, -120)
-                //                .background(Color.green)
                 
                 Spacer()
             }//: VStack
-            //            .navigationBarTitle("무공간", displayMode: .inline)
             .sheet(isPresented: $showingSignUpView) {
                 SignUpView(isViewPresented: $isViewPresented).environment(\.managedObjectContext, self.managedObjectContext)
                     .onDisappear{
@@ -127,8 +124,6 @@ struct LoginView: View {
                     }
             }
         }
-        
-        
     }//: BODY VIEW
     
     
@@ -138,12 +133,7 @@ struct LoginView: View {
         Auth.auth().signIn(withEmail: email ,password: password) { result, error in
             if let error = error {
                 print("로그인 실패")
-                
             } else {
-//                guard let user = result?.user else {return}
-//                viewModel.userSession = user
-                
-                print("로그인 성공")
                 self.isLoggedIn.toggle()
                 if isLoggedIn {
                     DispatchQueue.main.async {
@@ -151,7 +141,6 @@ struct LoginView: View {
                         let hostingVC = UIHostingController(rootView: newView)
                         
                         if let window = UIApplication.shared.windows.first {
-                            
                             window.rootViewController = hostingVC
                             window.makeKeyAndVisible()
                         }

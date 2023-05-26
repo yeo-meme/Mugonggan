@@ -18,13 +18,7 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     
- 
-    
-//    private var items: FetchedResults<Item>
-    
     var body: some View {
-//        NavigationView {
-            
         Group {
             if (viewModel.userSession != nil) {
                 MulistView()
@@ -50,7 +44,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(AuthViewModel())
     }
 }

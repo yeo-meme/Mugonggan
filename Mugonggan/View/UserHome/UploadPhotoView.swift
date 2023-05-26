@@ -64,6 +64,7 @@ struct UploadPhotoView: View {
                 viewModel.uploadProfileImage(selectedImage!) { success in
                     if success {
                         isIndicatorAnimating = false
+                        self.presentationMode.wrappedValue.dismiss()
                         print("사진등록이완료되었움")
                     } else {
                         print("사진등록이완료되지 않았움")

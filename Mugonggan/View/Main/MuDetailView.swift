@@ -10,24 +10,14 @@ import SwiftUI
 struct MuDetailView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @Binding var muListLinkActive:Bool
+    
     var body: some View {
         
         VStack(spacing: 1) {
             HStack{
                 
                 UserHomeProfileCell()
-                //                NavigationLink(destination: UserHomeView(muListLinkActive: $muListLinkActive)) {
-                //                    Image(systemName: "circle.fill")
-                //                        .resizable()
-                //                        .scaledToFit()
-                //                        .foregroundColor(.purple)
-                //                    .frame(width: 70,height: 70, alignment: .center)
-                //                }
-                //
-                //                VStack{
-                //                    Text("먀먀먀용")
-                //                    Text("언제올렸냐야아아ㅏㅇ")
-                //                }
+         
                 Button(action: {}) {
                     Text("팔로우")
                         .foregroundColor(.white)

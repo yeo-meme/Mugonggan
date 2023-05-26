@@ -16,7 +16,6 @@ struct CapsuleButton: View {
     
     var body: some View {
         if disabled {
-            
             Button(action:
                 action
             , label: {
