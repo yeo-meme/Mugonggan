@@ -27,15 +27,15 @@ struct LoginView: View {
     
     @State private var showingSignUpView: Bool = false
     @State private var isViewPresented = false
-        
+    
     var body: some View {
         NavigationView {
             VStack{
                 VStack(alignment: .leading, spacing: 30){
                     Spacer()
                     
-                  IntroParagraph(title1: "Hello", title2: "WelcomeBack")
-                        
+                    IntroParagraph(title1: "Hello", title2: "WelcomeBack")
+                    
                     
                     TextField("email",text: $email, onEditingChanged: { editing in isEmailEditing = editing }
                     )
@@ -75,18 +75,13 @@ struct LoginView: View {
                     VStack(spacing: 20){
                         HStack(){
                             Button(action: {
-                                
-                    login()
-
-                                
+//                                login()
+                                viewModel.login(withEmail: email, password: password)
                             })
-                                   {
-
+                            {
                                 Text("로그인")
                             }
                             .frame(width: 100, height: 70)
-                            
-                           
                             Button(action: {
                                 userData.isLoggedIn = false
                                 self.showingSignUpView.toggle()
@@ -110,65 +105,66 @@ struct LoginView: View {
                 
                 Spacer()
             }//: VStack
-//            .navigationBarTitle("무공간", displayMode: .inline)
+            //            .navigationBarTitle("무공간", displayMode: .inline)
             .sheet(isPresented: $showingSignUpView) {
                 SignUpView(isViewPresented: $isViewPresented).environment(\.managedObjectContext, self.managedObjectContext)
                     .onDisappear{
                         if isViewPresented {
                             DispatchQueue.main.async {
-                                     let newView = MulistView()
-                                     let hostingVC = UIHostingController(rootView: newView)
+                                let newView = MulistView()
+                                let hostingVC = UIHostingController(rootView: newView)
                                 
                                 if let window = UIApplication.shared.windows.first {
                                     
                                     window.rootViewController = hostingVC
                                     window.makeKeyAndVisible()
                                 }
-                               }
+                            }
                             print("isViewPresented true")
                         } else {
                             print("isViewPresented false")
                         }
                     }
+            }
         }
-        }
-  
-   
+        
+        
     }//: BODY VIEW
-
+    
     
     func login() {
         
-        
         let success = true
-        Auth.auth().signIn(withEmail: email ,password: password) { _, error in
+        Auth.auth().signIn(withEmail: email ,password: password) { result, error in
             if let error = error {
                 print("로그인 실패")
-             
+                
             } else {
+//                guard let user = result?.user else {return}
+//                viewModel.userSession = user
                 
                 print("로그인 성공")
                 self.isLoggedIn.toggle()
                 if isLoggedIn {
                     DispatchQueue.main.async {
                         let newView = MulistView().environmentObject(viewModel)
-                             let hostingVC = UIHostingController(rootView: newView)
+                        let hostingVC = UIHostingController(rootView: newView)
                         
                         if let window = UIApplication.shared.windows.first {
                             
                             window.rootViewController = hostingVC
                             window.makeKeyAndVisible()
                         }
-                       }
+                    }
                     print("isLoggedIn true")
                 } else {
                     print("isLoggedIn false")
                 }
-              
+                
             }
         }
     }
-    }//:VIEW
+}//:VIEW
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {

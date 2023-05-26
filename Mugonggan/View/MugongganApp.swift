@@ -45,7 +45,7 @@ struct MugongganApp: App {
           
 
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(userData)
                 .environmentObject(AuthViewModel.shared)
         }

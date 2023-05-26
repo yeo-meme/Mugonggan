@@ -16,6 +16,7 @@
 		FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */; };
 		FF694E8D2A2087ED00D6B6B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF694E8C2A2087ED00D6B6B4 /* Kingfisher */; };
 		FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */; };
+		FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E922A209B3E00D6B6B4 /* UserInfo.swift */; };
 		FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */; };
 		FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08C2A15C659004EDDB0 /* ContentView.swift */; };
 		FF72F08F2A15C65A004EDDB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF72F08E2A15C65A004EDDB0 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeProfileCell.swift; sourceTree = "<group>"; };
 		FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
+		FF694E922A209B3E00D6B6B4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		FF72F0872A15C659004EDDB0 /* Mugonggan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mugonggan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugongganApp.swift; sourceTree = "<group>"; };
 		FF72F08C2A15C659004EDDB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -172,9 +174,9 @@
 				FF4D3C962A1F3A5F000CAD35 /* API */,
 				FF4D3C932A1F3129000CAD35 /* Auth */,
 				FFBD423B2A1B56D30077E020 /* Model */,
-				FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */,
 				FF72F09D2A15F6FB004EDDB0 /* View */,
 				FF72F08E2A15C65A004EDDB0 /* Assets.xcassets */,
+				FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */,
 				FF72F0932A15C65A004EDDB0 /* Persistence.swift */,
 				FF72F0952A15C65A004EDDB0 /* Mugonggan.xcdatamodeld */,
 				FF72F0902A15C65A004EDDB0 /* Preview Content */,
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				FFBD42392A1B568C0077E020 /* UserData.swift */,
+				FF694E922A209B3E00D6B6B4 /* UserInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				FFBD423A2A1B568C0077E020 /* UserData.swift in Sources */,
 				FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */,
 				FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */,
+				FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */,
 				FF4D3C952A1F3139000CAD35 /* AuthViewModel.swift in Sources */,
 				FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */,
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,

@@ -28,6 +28,15 @@ struct UserHomeView: View {
         NavigationView {
             ZStack {
                 VStack{
+                    HStack{
+                        Spacer()
+                        Text("설정")
+                        Image(systemName: "sparkles")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .padding(.trailing,15)
+                    }
+                    
                     //엑스
 //                    HStack{
 //                        Spacer()

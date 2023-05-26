@@ -23,6 +23,7 @@ struct IntroParagraph: View {
                 .font(.largeTitle)
                 .bold()
                 .foregroundColor(.purple)
+            
         }
 //        .padding(.horizontal, 32)
     }

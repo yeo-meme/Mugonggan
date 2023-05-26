@@ -11,26 +11,25 @@ import FirebaseCore
 import FirebaseFirestore
 
 
-struct User {
-    
-    let uid: String
-    var email: String
-    var name: String
-    var password: String
-    
-    init(uid: String, email: String, name: String, password: String) {
-        self.uid = uid
-        self.email = email
-        self.name = name
-        self.password = password
-    }
-    
-}
+//struct UserInfo {
+//
+//    let uid: String
+//    var email: String
+//    var name: String
+//    var password: String
+//
+//    init(uid: String, email: String, name: String, password: String) {
+//        self.uid = uid
+//        self.email = email
+//        self.name = name
+//        self.password = password
+//    }
+//
+//}
 
 struct SignUpView: View {
     
-    
-    //View 컨텍스트에서 제공되는 환경 속성입니다. 이 속성은 현재 뷰가 표시되는 방식과 관련된 정보를 제공
+    @EnvironmentObject var viewModel: AuthViewModel    //View 컨텍스트에서 제공되는 환경 속성입니다. 이 속성은 현재 뷰가 표시되는 방식과 관련된 정보를 제공
     // 프로퍼티 래퍼는 구조체에서 사용될 때만 사용할 수 있습니다
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var userData: UserData
@@ -164,18 +163,20 @@ struct SignUpView: View {
     }
     
     private func registerUser(email: String, password: String) -> Void {
-        var createUid: String = ""
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error)  in
-            if let error = error {
-                print("Error : \(error.localizedDescription)")
-                return
-            }
-            guard let user = result?.user else {return}
-            
-            createUid = String(user.uid)
-            print("createUid" + createUid)
-            uploadUserInfo(createUid)
-        }
+        
+        viewModel.register(withEmail: email, name: name, password: password)
+//        var createUid: String = ""
+//        Auth.auth().createUser(withEmail: email, password: password) { (result, error)  in
+//            if let error = error {
+//                print("Error : \(error.localizedDescription)")
+//                return
+//            }
+//            guard let user = result?.user else {return}
+//
+//            createUid = String(user.uid)
+//            print("createUid" + createUid)
+//            uploadUserInfo(createUid)
+//        }
     }
     
     func fetchData() {
@@ -195,6 +196,7 @@ struct SignUpView: View {
     struct LogingView_Previews: PreviewProvider {
         static var previews: some View {
             SignUpView(isViewPresented: .constant(false))
+                .environmentObject(AuthViewModel())
             //                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             
         }

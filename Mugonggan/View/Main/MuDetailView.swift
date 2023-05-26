@@ -11,21 +11,23 @@ struct MuDetailView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @Binding var muListLinkActive:Bool
     var body: some View {
-
-        VStack {
+        
+        VStack(spacing: 1) {
             HStack{
-                NavigationLink(destination: UserHomeView(muListLinkActive: $muListLinkActive)) {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.purple)
-                    .frame(width: 70,height: 70, alignment: .center)
-                }
                 
-                VStack{
-                    Text("먀먀먀용")
-                    Text("언제올렸냐야아아ㅏㅇ")
-                }
+                UserHomeProfileCell()
+                //                NavigationLink(destination: UserHomeView(muListLinkActive: $muListLinkActive)) {
+                //                    Image(systemName: "circle.fill")
+                //                        .resizable()
+                //                        .scaledToFit()
+                //                        .foregroundColor(.purple)
+                //                    .frame(width: 70,height: 70, alignment: .center)
+                //                }
+                //
+                //                VStack{
+                //                    Text("먀먀먀용")
+                //                    Text("언제올렸냐야아아ㅏㅇ")
+                //                }
                 Button(action: {}) {
                     Text("팔로우")
                         .foregroundColor(.white)
@@ -34,23 +36,45 @@ struct MuDetailView: View {
                         .cornerRadius(10)
                 }
             }
+            
+            
+            HStack(spacing: 70) {
+                
+                VStack{
+                    Image(systemName: "bell")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                    Text("알림")
+                }
+                VStack{
+                    Image(systemName: "bookmark")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                    Text("즐겨찾기")
+                }
+                VStack{
+                    Image(systemName: "heart")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                    Text("좋아요")
+                }
+                
+               
+            }
+            .frame(maxWidth: .infinity, maxHeight: 70)
+            .padding()
+            .cornerRadius(10)
+            
+            
+            CustomDivider(leadingSpace: 100)
+            
             Image("image1")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            .padding()
+                .padding()
             
-            HStack() {
-                Text("좋아요")
-                    .foregroundColor(.white)
-                Text("즐겨찾기")
-                    .foregroundColor(.white)
-                Text("댓글")
-                    .foregroundColor(.white)
-            }
-            .frame(maxWidth: .infinity, maxHeight: 70)
-            .background(Color.purple)
-            .padding()
-            .cornerRadius(10)
+          
+            Spacer()
         }
         
     }

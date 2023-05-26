@@ -31,7 +31,8 @@ struct UploadPhotoView: View {
             }
             .padding(.top, -80)
             
-            IntroParagraph(title1: "Select your profile image",title2:"hi")
+            IntroParagraph(title1: "Hi",title2:"Select\n your profile image")
+                .padding(.horizontal, 30)
             
             
             Button(action: {

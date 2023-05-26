@@ -14,34 +14,34 @@ import FirebaseFirestore
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var userData = UserData()
-        @State private var showingSignUpView = false
+    @State private var showingSignUpView = false
     @EnvironmentObject var viewModel: AuthViewModel
     
     
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
+ 
     
-    private var items: FetchedResults<Item>
+//    private var items: FetchedResults<Item>
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             
-            LoginView()
-//            if showingSignUpView {
-//                MulistView()
-//            } else {
-//                MainView()
-//            }
-        }
-      
-        .onAppear{
-            print("where: contentView")}
-            .onReceive(userData.$isLoggedIn) { isLoggedIn in
-                if isLoggedIn {
-                    showingSignUpView = false
-                }
+        Group {
+            if (viewModel.userSession != nil) {
+                MulistView()
+            } else{
+                LoginView()
             }
+        }
+
+//        }
+      
+//        .onAppear{
+//            print("where: contentView")}
+//            .onReceive(userData.$isLoggedIn) { isLoggedIn in
+//                if isLoggedIn {
+//                    showingSignUpView = false
+//                }
+//            }
            
     }
     
@@ -49,7 +49,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(AuthViewModel())
     }
 }
