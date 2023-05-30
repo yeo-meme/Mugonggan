@@ -59,7 +59,6 @@ struct UserHomeView: View {
                     
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(images, id: \.self) { imageName in
-                                
                                 Image(imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -85,7 +84,7 @@ struct UserHomeView: View {
                             .frame(width: 48,height: 48,alignment: .center)
                     })
                     .sheet(isPresented: $openPhotoView) {
-                        UploadPhotoView()
+                        UploadChannelPhotoView()
                     }
                 }//: ZSTACK
                     .padding(.bottom, 15)

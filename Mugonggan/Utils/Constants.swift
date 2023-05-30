@@ -16,6 +16,7 @@ let KEY_USERNAME = "name"
 let KEY_PASSWORD = "password"
 let KEY_UID = "uid"
 let KEY_PROFILE_IMAGE_URL = "profileImageUrl"
+let KEY_CHANNEL_IMAGE_URL = "channelImageUrl"
 
 let FOLDER_PROFILE_IMAGES = "profile_images"
 let FOLDER_CHANNEL_IMAGES = "channel_images"

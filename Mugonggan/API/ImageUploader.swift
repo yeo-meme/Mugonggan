@@ -18,15 +18,14 @@ struct ImageUploader {
 //                let imageRef = storageRef.child("images/image.jpg")
         
         let filename = NSUUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+        let ref = Storage.storage().reference(withPath: "/\(folderName)/\(filename)")
         
+        print("file path: \(ref)")
         ref.putData(imageData, metadata: nil) { _, error in
             ref.downloadURL { url, error in
                 guard let imageUrl = url?.absoluteString else { return }
                 completion(imageUrl)
-
             }
-
         }
     }
 }

@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct UploadPhotoView: View {
+struct UploadChannelPhotoView: View {
+  
     @State private var imagePickerPresented : Bool = false
     @State private var selectedImage: UIImage?
     @State private var muUploadImage: Image?
     @State private var isIndicatorAnimating: Bool = false
+    @EnvironmentObject var viewModel : AuthViewModel
     
-    @EnvironmentObject var viewModel :  AuthViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
 
         VStack{
-            
             HStack {
                 Spacer()
                 Button(action: {
@@ -31,14 +31,12 @@ struct UploadPhotoView: View {
             }
             .padding(.top, -80)
             
-            IntroParagraph(title1: "Hi",title2:"Select\n your profile image")
-                .padding(.horizontal, 30)
+            IntroParagraph(title1: "공유해보세요",title2:"당신만의 \n(사)무공간을")
             
             
             Button(action: {
                 imagePickerPresented.toggle()
             }, label: {
-                
                 if let muUploadImage = muUploadImage {
                     muUploadImage
                         .resizable()
@@ -57,11 +55,16 @@ struct UploadPhotoView: View {
             .padding(.bottom)
             .sheet(isPresented: $imagePickerPresented, onDismiss: loadImage, content:{ ImagePicker(image:$selectedImage)})
             
-            CapsuleButton(text: "Continue",
+           
+            CapsuleButton(text: "다음",
                           disabled: muUploadImage == nil,
-                          isAnimating: isIndicatorAnimating, action: {
+                          isAnimating: isIndicatorAnimating,
+                          action: {
+//                print("image가 null이니? \(muUploadImage)")
                 isIndicatorAnimating = true
-                viewModel.uploadProfileImage(selectedImage!) { success in
+//                viewModel.test(selectedImage!)
+                viewModel.uploadChannelImage(selectedImage!)
+                { success in
                     if success {
                         isIndicatorAnimating = false
                         self.presentationMode.wrappedValue.dismiss()
@@ -83,8 +86,9 @@ struct UploadPhotoView: View {
     }
 }
 
-struct UploadPhotoView_Previews: PreviewProvider {
+struct UploadChannelPhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        UploadPhotoView()
+        UploadChannelPhotoView()
+            .environmentObject(AuthViewModel())
     }
 }

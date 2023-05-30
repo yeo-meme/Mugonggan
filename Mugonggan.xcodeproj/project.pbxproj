@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FF4D3C892A1F224F000CAD35 /* UploadPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C882A1F224F000CAD35 /* UploadPhotoView.swift */; };
+		FF4D3C892A1F224F000CAD35 /* UploadChannelPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C882A1F224F000CAD35 /* UploadChannelPhotoView.swift */; };
 		FF4D3C8F2A1F23A5000CAD35 /* IntroParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C8E2A1F23A5000CAD35 /* IntroParagraph.swift */; };
 		FF4D3C912A1F2EE9000CAD35 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C902A1F2EE9000CAD35 /* CapsuleButton.swift */; };
 		FF4D3C952A1F3139000CAD35 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C942A1F3139000CAD35 /* AuthViewModel.swift */; };
 		FF4D3C982A1F3A74000CAD35 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C972A1F3A74000CAD35 /* ImageUploader.swift */; };
 		FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */; };
+		FF4EFC152A25B50A00F8F82F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4EFC142A25B50A00F8F82F /* Extensions.swift */; };
 		FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */; };
 		FF694E8D2A2087ED00D6B6B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF694E8C2A2087ED00D6B6B4 /* Kingfisher */; };
 		FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */; };
@@ -35,19 +36,21 @@
 		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
 		FFA542492A1DDAFD001196F8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA542482A1DDAFD001196F8 /* ImagePicker.swift */; };
 		FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42372A1B4F010077E020 /* MulistView.swift */; };
-		FFBD423A2A1B568C0077E020 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42392A1B568C0077E020 /* UserData.swift */; };
 		FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD423E2A1C8D4C0077E020 /* LoginView.swift */; };
 		FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42402A1CFCF80077E020 /* MuDetailView.swift */; };
 		FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42422A1D0CD10077E020 /* UserHomeView.swift */; };
+		FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FF4D3C882A1F224F000CAD35 /* UploadPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoView.swift; sourceTree = "<group>"; };
+		FF28E97F2A211121000B25D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FF4D3C882A1F224F000CAD35 /* UploadChannelPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadChannelPhotoView.swift; sourceTree = "<group>"; };
 		FF4D3C8E2A1F23A5000CAD35 /* IntroParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroParagraph.swift; sourceTree = "<group>"; };
 		FF4D3C902A1F2EE9000CAD35 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		FF4D3C942A1F3139000CAD35 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		FF4D3C972A1F3A74000CAD35 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FF4EFC142A25B50A00F8F82F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeProfileCell.swift; sourceTree = "<group>"; };
 		FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		FF694E922A209B3E00D6B6B4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -62,10 +65,10 @@
 		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFA542482A1DDAFD001196F8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FFBD42372A1B4F010077E020 /* MulistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulistView.swift; sourceTree = "<group>"; };
-		FFBD42392A1B568C0077E020 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FFBD423E2A1C8D4C0077E020 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FFBD42402A1CFCF80077E020 /* MuDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuDetailView.swift; sourceTree = "<group>"; };
 		FFBD42422A1D0CD10077E020 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
+		FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +96,7 @@
 			children = (
 				FFA542482A1DDAFD001196F8 /* ImagePicker.swift */,
 				FFBD42422A1D0CD10077E020 /* UserHomeView.swift */,
-				FF4D3C882A1F224F000CAD35 /* UploadPhotoView.swift */,
+				FF4D3C882A1F224F000CAD35 /* UploadChannelPhotoView.swift */,
 				FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */,
 			);
 			path = UserHome;
@@ -104,6 +107,7 @@
 			children = (
 				FFBD423E2A1C8D4C0077E020 /* LoginView.swift */,
 				FF72F09E2A15F770004EDDB0 /* SignUpView.swift */,
+				FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -147,6 +151,7 @@
 			children = (
 				FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */,
 				FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */,
+				FF4EFC142A25B50A00F8F82F /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 		FF72F0892A15C659004EDDB0 /* Mugonggan */ = {
 			isa = PBXGroup;
 			children = (
+				FF28E97F2A211121000B25D6 /* Info.plist */,
 				FF4D3C992A1F3CB3000CAD35 /* Utils */,
 				FF4D3C962A1F3A5F000CAD35 /* API */,
 				FF4D3C932A1F3129000CAD35 /* Auth */,
@@ -208,7 +214,6 @@
 		FFBD423B2A1B56D30077E020 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FFBD42392A1B568C0077E020 /* UserData.swift */,
 				FF694E922A209B3E00D6B6B4 /* UserInfo.swift */,
 			);
 			path = Model;
@@ -304,8 +309,8 @@
 				FF72F0942A15C65A004EDDB0 /* Persistence.swift in Sources */,
 				FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */,
 				FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */,
-				FF4D3C892A1F224F000CAD35 /* UploadPhotoView.swift in Sources */,
-				FFBD423A2A1B568C0077E020 /* UserData.swift in Sources */,
+				FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */,
+				FF4D3C892A1F224F000CAD35 /* UploadChannelPhotoView.swift in Sources */,
 				FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */,
 				FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */,
 				FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */,
@@ -313,6 +318,7 @@
 				FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */,
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
 				FF4D3C912A1F2EE9000CAD35 /* CapsuleButton.swift in Sources */,
+				FF4EFC152A25B50A00F8F82F /* Extensions.swift in Sources */,
 				FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */,
 				FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */,
 				FFA542492A1DDAFD001196F8 /* ImagePicker.swift in Sources */,
@@ -451,6 +457,7 @@
 				DEVELOPMENT_TEAM = 9R82AZ54M6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mugonggan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -479,6 +486,7 @@
 				DEVELOPMENT_TEAM = 9R82AZ54M6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mugonggan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

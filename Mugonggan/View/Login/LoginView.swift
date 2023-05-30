@@ -74,7 +74,6 @@ struct LoginView: View {
                     VStack(spacing: 20){
                         HStack(){
                             Button(action: {
-//                                login()
                                 viewModel.login(withEmail: email, password: password)
                             })
                             {

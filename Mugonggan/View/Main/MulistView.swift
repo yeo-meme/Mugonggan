@@ -21,6 +21,7 @@ struct MulistView: View {
         NavigationView {
             ScrollView {
                 HStack {
+                    
                     Spacer()
                     NavigationLink(destination: UserHomeView( muListLinkActive: $muListLinkActive)) {
                         Text("메메님 방가루")
@@ -28,6 +29,12 @@ struct MulistView: View {
                 }
                 .padding(.top,20)
                 .padding(.trailing,20)
+                
+                Button(action: {
+                    viewModel.signOut()
+                }) {
+                    Text("logout")
+                }
                 
                 
                 

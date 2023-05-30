@@ -37,9 +37,18 @@ struct SignUpView: View {
         
         NavigationView{
             VStack {
+                NavigationLink(
+                destination: ProfilePhotoSelectorView() ,
+                isActive: $viewModel.didAuthenticateUser,
+                label: {})
+                
+                IntroParagraph(title1: "회원등록하고", title2: "무공간을 이용해보세요")
+                    .padding(.horizontal, -10)
+                    .padding(.top, 20)
+                
                 VStack(alignment: .leading, spacing: 20) {
                     
-                    IntroParagraph(title1: "Get started.", title2: "Create your account")
+                   
                     TextField("email", text: $email)
                         .autocapitalization(.none)
                         .padding()
@@ -66,7 +75,7 @@ struct SignUpView: View {
                     Button(action: {
                
                         if checkSignUpCondition() {
-                            registerUser(email: email, password: password)
+                            viewModel.register(withEmail: email, name: name, password: password)
                         } else {
                             
                         }
@@ -80,7 +89,6 @@ struct SignUpView: View {
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .background(Color.black)
                             .cornerRadius(9)
-                        
                     }//: 회원가입 완료버튼 BUTTON
                 }//:VSTACK
                 .padding(.horizontal)
@@ -143,10 +151,6 @@ struct SignUpView: View {
             return false
         }
         return true
-    }
-    
-    private func registerUser(email: String, password: String) -> Void {
-        viewModel.register(withEmail: email, name: name, password: password)
     }
     
 //    func fetchData() {
