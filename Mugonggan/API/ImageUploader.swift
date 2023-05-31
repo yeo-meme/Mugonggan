@@ -10,7 +10,7 @@ import Firebase
 import FirebaseStorage
 
 struct ImageUploader {
-    static func uploadImage(image: UIImage, folderName: String, completion: @escaping(String) -> Void) {
+    static func uploadImage(image: UIImage, folderName: String,uid: String, completion: @escaping(String) -> Void) {
         
         guard let imageData = image.jpegData(compressionQuality: 0.0001) else { return }
         
@@ -18,7 +18,7 @@ struct ImageUploader {
 //                let imageRef = storageRef.child("images/image.jpg")
         
         let filename = NSUUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/\(folderName)/\(filename)")
+        let ref = Storage.storage().reference(withPath: "/\(folderName)/\(uid)/\(filename)")
         
         print("file path: \(ref)")
         ref.putData(imageData, metadata: nil) { _, error in

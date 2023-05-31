@@ -60,9 +60,7 @@ struct UploadChannelPhotoView: View {
                           disabled: muUploadImage == nil,
                           isAnimating: isIndicatorAnimating,
                           action: {
-//                print("image가 null이니? \(muUploadImage)")
                 isIndicatorAnimating = true
-//                viewModel.test(selectedImage!)
                 viewModel.uploadChannelImage(selectedImage!)
                 { success in
                     if success {

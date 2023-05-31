@@ -70,7 +70,7 @@ class AuthViewModel: NSObject, ObservableObject {
     func uploadProfileImage(_ image: UIImage, completion: @escaping(Bool) -> Void) {
         guard let uid = tempCurrentUser?.uid else {return}
         
-        ImageUploader.uploadImage(image: image, folderName: FOLDER_PROFILE_IMAGES) { imageUrl in
+        ImageUploader.uploadImage(image: image, folderName: FOLDER_PROFILE_IMAGES, uid: uid) { imageUrl in
             let data: [String: Any] = [KEY_PROFILE_IMAGE_URL : imageUrl]
             
         print("data : \(data)")
@@ -94,7 +94,7 @@ class AuthViewModel: NSObject, ObservableObject {
     func uploadChannelImage(_ image: UIImage, completion: @escaping(Bool) -> Void) {
         guard let uid = currentUser?.uid else { return }
       
-        ImageUploader.uploadImage(image: image, folderName: FOLDER_CHANNEL_IMAGES) { imageUrl in
+        ImageUploader.uploadImage(image: image, folderName: FOLDER_CHANNEL_IMAGES,uid: uid) { imageUrl in
             let data: [String: Any] = [KEY_CHANNEL_IMAGE_URL : imageUrl]
             
             COLLECTION_CHANNELS.document(uid).setData(data) { error in
