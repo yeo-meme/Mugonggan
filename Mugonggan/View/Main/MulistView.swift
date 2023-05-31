@@ -7,9 +7,11 @@
 
 import SwiftUI
 import FirebaseStorage
+import SDWebImageSwiftUI
 
 struct MulistView: View {
-    
+  
+    @State private var imageURLs:[URL] = []
    
     @EnvironmentObject var viewModel: AuthViewModel
     @State var muListLinkActive = false
@@ -39,47 +41,67 @@ struct MulistView: View {
                 
                 
                 LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(images, id: \.self) { imageName in
+                    ForEach(imageURLs, id: \.self) { imageURL in
                         NavigationLink(destination: MuDetailView(muListLinkActive : $muListLinkActive) ,isActive: $muListLinkActive){
-                            Image(imageName)
+                            
+                            WebImage(url: imageURL)
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(height: 150)
+                                .scaledToFill()
+                                .frame(width:100, height:100)
                                 .cornerRadius(10)
+                                .padding(4)
+                         
+                                
+//                            Image(imageName)
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(height: 150)
+//                                .cornerRadius(10)
                         }
                     }
                 }
                 .padding()
             }
+            .onAppear {
+                fetchImageUrls()
+            }
         }
      
     }
     
-//    func uploadImage() {
-//        guard let image = seletedImage else {
-//            return
-//        }
-//        
-//        guard let imageData = image.jpegData(compressionQuality: 0.8) else {return}
-//        
-//        let storage = Storage.storage()
-//        let storageRef = storage.reference()
-//        let imageRef = storageRef.child("images/iamge.jpg")
-//        
-//        let metadata = StorageMetadata()
-//        metadata.contentType = "image/jpeg"
-//        
-//        imageRef.putData(imageData, metadata: metadata) { _, error in
-//            if let error = error {
-//                print("error: \(error.localizedDescription)")
-//            } else {
-//                print("image upload 성공")
-//            }
-//            
-//    }
-//    
-//    
-//    }
+    
+    func fetchImageUrls() {
+        guard let uid = viewModel.userSession?.uid else {return}
+        
+        let storageRef = Storage.storage().reference()
+        let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
+        
+        let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
+        
+
+        
+        ref.listAll { (result, error) in
+            if let error = error {
+                print("Failed to fetch image URLs: \(error.localizedDescription)")
+                return
+            }
+            print("result:\(result?.items)")
+           
+            if let items = result?.items {
+                for item in items {
+                    item.downloadURL{ url, error in
+                        if let error = error {
+                            print("Failed to fetch download URL: \(error.localizedDescription)")
+                            return
+                        }
+                        if let url = url {
+                            imageURLs.append(url)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
