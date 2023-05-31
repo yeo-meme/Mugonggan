@@ -93,6 +93,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF37A5CF2A2738AE0094A233 /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
 		FF4D3C8A2A1F2256000CAD35 /* UserHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +210,7 @@
 		FF72F09D2A15F6FB004EDDB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FF37A5CF2A2738AE0094A233 /* Motion */,
 				FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */,
 				FF72F08C2A15C659004EDDB0 /* ContentView.swift */,
 				FF4D3C8D2A1F2394000CAD35 /* Elements */,
