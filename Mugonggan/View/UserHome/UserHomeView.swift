@@ -16,7 +16,7 @@ struct UserHomeView: View {
     
     @State private var openPhotoView = false
     
-    @Binding var muListLinkActive : Bool
+//    @Binding var muListLinkActive : Bool
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     
@@ -28,14 +28,18 @@ struct UserHomeView: View {
         NavigationView {
             ZStack {
                 VStack{
-                    HStack{
-                        Spacer()
-                        Text("설정")
-                        Image(systemName: "sparkles")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing,15)
-                    }
+                    
+                    NavigationLink(destination: SettingView(viewModel.currentUser ?? MOCK_USER), label: {
+                        HStack{
+                            Spacer()
+                            Text("설정")
+                            Image(systemName: "sparkles")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing,15)
+                        }
+                    })
+               
                     
                     //엑스
 //                    HStack{
@@ -104,7 +108,7 @@ struct UserHomeView: View {
 
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        UserHomeView(muListLinkActive: .constant(true))
+        UserHomeView()
             .environmentObject(AuthViewModel())
     }
 }

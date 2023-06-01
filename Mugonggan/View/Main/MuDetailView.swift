@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MuDetailView: View {
     @EnvironmentObject var viewModel: AuthViewModel
-    @Binding var muListLinkActive:Bool
+//    @Binding var muListLinkActive:Bool
     
     var body: some View {
         
@@ -72,7 +72,7 @@ struct MuDetailView: View {
 
 struct MuDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MuDetailView(muListLinkActive: .constant(true))
+        MuDetailView()
             .environmentObject(AuthViewModel())
     }
 }

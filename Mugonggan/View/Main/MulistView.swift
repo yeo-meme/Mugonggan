@@ -15,7 +15,9 @@ struct MulistView: View {
     @State private var gridColumn: Double = 3.0
     @State private var selectedImage: URL? = nil
     @State private var firstSelectedImage: URL? = nil
+    @State private var imageSize: CGFloat = 100
     
+//    @Binding var muListLinkActive : Bool
     let haptics = UIImpactFeedbackGenerator(style: .medium)
     
     func gridSwitch() {
@@ -27,7 +29,6 @@ struct MulistView: View {
     @State private var imageURLs:[URL] = []
     
     @EnvironmentObject var viewModel: AuthViewModel
-    @State var muListLinkActive = false
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -39,7 +40,7 @@ struct MulistView: View {
                     HStack {
                         
                         Spacer()
-                        NavigationLink(destination: UserHomeView( muListLinkActive: $muListLinkActive)) {
+                        NavigationLink(destination: UserHomeView()) {
                             Text("메메님 방가루")
                         }
                     }
@@ -52,11 +53,16 @@ struct MulistView: View {
                         Text("logout")
                     }
                     
-                    WebImage(url:selectedImage)
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.white, lineWidth: 8))
+                    NavigationLink(
+                        destination: MuDetailView() , label: {
+                            WebImage(url:selectedImage)
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(Circle())
+                                .frame(width: 330, height: 330)
+                                .overlay(Circle().stroke(Color.white, lineWidth: 8))
+                        })
+                   
                     
                     // MARK: - SLIDER
                     Slider(value: $gridColumn, in : 2...4, step: 1)
@@ -67,20 +73,21 @@ struct MulistView: View {
                     
                     // MARK: - GRID
                     
-                    LazyVGrid(columns: gridLayout, alignment: .center,spacing: 10) {
+                    LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
                         ForEach(imageURLs, id: \.self) { imageURL in
-                            NavigationLink(destination: MuDetailView(muListLinkActive : $muListLinkActive) ,isActive: $muListLinkActive){
+//                            NavigationLink(destination: MuDetailView() ,isActive: $muListLinkActive){
                                 
                                 WebImage(url: imageURL)
                                     .resizable()
-                                    .scaledToFit()
+                                    .aspectRatio(contentMode: .fill)
+//                                    .frame(width: imageSize  , height: imageSize)
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(Color.white, lineWidth: 1))
                                     .onTapGesture {
                                         selectedImage = imageURL
                                         haptics.impactOccurred()
                                     }
-                            }
+//                            }
                         }
                     } //: GRID
                     .onAppear {

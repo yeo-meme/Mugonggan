@@ -35,6 +35,14 @@
 		FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */; };
 		FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */; };
 		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
+		FF9F22A32A28711D00684EC1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A22A28711D00684EC1 /* SettingView.swift */; };
+		FF9F22A52A28713D00684EC1 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */; };
+		FF9F22AA2A2875C300684EC1 /* SettingsProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A92A2875C300684EC1 /* SettingsProfile.swift */; };
+		FF9F22AC2A2876D200684EC1 /* SettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22AB2A2876D200684EC1 /* SettingsCellViewModel.swift */; };
+		FF9F22AF2A2877A800684EC1 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22AE2A2877A800684EC1 /* EditProfileView.swift */; };
+		FF9F22B12A28784500684EC1 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22B02A28784500684EC1 /* SettingsCell.swift */; };
+		FF9F22B32A28791700684EC1 /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22B22A28791700684EC1 /* EditProfileCell.swift */; };
+		FF9F22B52A28794E00684EC1 /* EditUsernameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22B42A28794E00684EC1 /* EditUsernameCell.swift */; };
 		FFA542492A1DDAFD001196F8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA542482A1DDAFD001196F8 /* ImagePicker.swift */; };
 		FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42372A1B4F010077E020 /* MulistView.swift */; };
 		FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD423E2A1C8D4C0077E020 /* LoginView.swift */; };
@@ -64,6 +72,14 @@
 		FF72F0962A15C65A004EDDB0 /* Mugonggan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mugonggan.xcdatamodel; sourceTree = "<group>"; };
 		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FF9F22A22A28711D00684EC1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		FF9F22A92A2875C300684EC1 /* SettingsProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfile.swift; sourceTree = "<group>"; };
+		FF9F22AB2A2876D200684EC1 /* SettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellViewModel.swift; sourceTree = "<group>"; };
+		FF9F22AE2A2877A800684EC1 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		FF9F22B02A28784500684EC1 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		FF9F22B22A28791700684EC1 /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
+		FF9F22B42A28794E00684EC1 /* EditUsernameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameCell.swift; sourceTree = "<group>"; };
 		FFA542482A1DDAFD001196F8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FFBD42372A1B4F010077E020 /* MulistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulistView.swift; sourceTree = "<group>"; };
 		FFBD423E2A1C8D4C0077E020 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -103,10 +119,7 @@
 		FF4D3C8A2A1F2256000CAD35 /* UserHome */ = {
 			isa = PBXGroup;
 			children = (
-				FFA542482A1DDAFD001196F8 /* ImagePicker.swift */,
 				FFBD42422A1D0CD10077E020 /* UserHomeView.swift */,
-				FF4D3C882A1F224F000CAD35 /* UploadChannelPhotoView.swift */,
-				FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */,
 			);
 			path = UserHome;
 			sourceTree = "<group>";
@@ -184,10 +197,11 @@
 		FF72F0892A15C659004EDDB0 /* Mugonggan */ = {
 			isa = PBXGroup;
 			children = (
+				FF9F22A02A286F5F00684EC1 /* Channel */,
 				FF28E97F2A211121000B25D6 /* Info.plist */,
 				FF4D3C992A1F3CB3000CAD35 /* Utils */,
 				FF4D3C962A1F3A5F000CAD35 /* API */,
-				FF4D3C932A1F3129000CAD35 /* Auth */,
+				FF9F22B72A287CEB00684EC1 /* ViewModel */,
 				FFBD423B2A1B56D30077E020 /* Model */,
 				FF72F09D2A15F6FB004EDDB0 /* View */,
 				FF72F08E2A15C65A004EDDB0 /* Assets.xcassets */,
@@ -210,6 +224,8 @@
 		FF72F09D2A15F6FB004EDDB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FF9F22A72A28758600684EC1 /* Settings */,
+				FF9F22A12A2870A600684EC1 /* Photo */,
 				FF37A5CF2A2738AE0094A233 /* Motion */,
 				FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */,
 				FF72F08C2A15C659004EDDB0 /* ContentView.swift */,
@@ -219,6 +235,70 @@
 				FF4D3C8A2A1F2256000CAD35 /* UserHome */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FF9F22A02A286F5F00684EC1 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		FF9F22A12A2870A600684EC1 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				FFA542482A1DDAFD001196F8 /* ImagePicker.swift */,
+				FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */,
+				FF4D3C882A1F224F000CAD35 /* UploadChannelPhotoView.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		FF9F22A72A28758600684EC1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FF9F22AD2A28778100684EC1 /* EditProfile */,
+				FF9F22A82A2875A100684EC1 /* Settings */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FF9F22A82A2875A100684EC1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FF9F22A22A28711D00684EC1 /* SettingView.swift */,
+				FF9F22A92A2875C300684EC1 /* SettingsProfile.swift */,
+				FF9F22AB2A2876D200684EC1 /* SettingsCellViewModel.swift */,
+				FF9F22B02A28784500684EC1 /* SettingsCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FF9F22AD2A28778100684EC1 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				FF9F22AE2A2877A800684EC1 /* EditProfileView.swift */,
+				FF9F22B22A28791700684EC1 /* EditProfileCell.swift */,
+				FF9F22B42A28794E00684EC1 /* EditUsernameCell.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		FF9F22B72A287CEB00684EC1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF9F22B82A287CFD00684EC1 /* Settings */,
+				FF4D3C932A1F3129000CAD35 /* Auth */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF9F22B82A287CFD00684EC1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		FFBD423B2A1B56D30077E020 /* Model */ = {
@@ -318,7 +398,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */,
+				FF9F22AC2A2876D200684EC1 /* SettingsCellViewModel.swift in Sources */,
 				FF72F0942A15C65A004EDDB0 /* Persistence.swift in Sources */,
+				FF9F22AA2A2875C300684EC1 /* SettingsProfile.swift in Sources */,
 				FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */,
 				FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */,
 				FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */,
@@ -328,16 +410,22 @@
 				FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */,
 				FF4D3C952A1F3139000CAD35 /* AuthViewModel.swift in Sources */,
 				FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */,
+				FF9F22A52A28713D00684EC1 /* EditProfileViewModel.swift in Sources */,
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
 				FF4D3C912A1F2EE9000CAD35 /* CapsuleButton.swift in Sources */,
 				FF4EFC152A25B50A00F8F82F /* Extensions.swift in Sources */,
 				FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */,
 				FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */,
+				FF9F22B52A28794E00684EC1 /* EditUsernameCell.swift in Sources */,
 				FFA542492A1DDAFD001196F8 /* ImagePicker.swift in Sources */,
+				FF9F22B12A28784500684EC1 /* SettingsCell.swift in Sources */,
 				FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */,
 				FF4D3C982A1F3A74000CAD35 /* ImageUploader.swift in Sources */,
+				FF9F22B32A28791700684EC1 /* EditProfileCell.swift in Sources */,
 				FF4D3C8F2A1F23A5000CAD35 /* IntroParagraph.swift in Sources */,
 				FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */,
+				FF9F22AF2A2877A800684EC1 /* EditProfileView.swift in Sources */,
+				FF9F22A32A28711D00684EC1 /* SettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
