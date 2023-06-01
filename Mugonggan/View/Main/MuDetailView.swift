@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MuDetailView: View {
     @EnvironmentObject var viewModel: AuthViewModel
+//    @EnvironmentObject var userViweModel: UserViewModel
+    
 //    @Binding var muListLinkActive:Bool
+    
     
     var body: some View {
         

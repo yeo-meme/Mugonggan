@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct UserHomeView: View {
+    
     @EnvironmentObject var viewModel: AuthViewModel
+   
+    
     @State private var selectedImage: UIImage?
     @State private var uploadBtn: Image?
-    //    @State private var pickedImage: Image?
     @State private var pickedImage: Image? = Image(systemName: "photo.artframe")
-    
     @State private var openPhotoView = false
-    
 //    @Binding var muListLinkActive : Bool
-    
     let images: [String] = ["image1","image2","image3","image4","image5"]
-    
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     
     

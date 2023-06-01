@@ -12,6 +12,7 @@ import SDWebImageSwiftUI
 struct MulistView: View {
     
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
+    
     @State private var gridColumn: Double = 3.0
     @State private var selectedImage: URL? = nil
     @State private var firstSelectedImage: URL? = nil
@@ -19,15 +20,9 @@ struct MulistView: View {
     
 //    @Binding var muListLinkActive : Bool
     let haptics = UIImpactFeedbackGenerator(style: .medium)
-    
-    func gridSwitch() {
-        withAnimation(.easeIn) {
-            gridLayout = Array(repeating: .init(.flexible()), count: Int(gridColumn))
-        }
-    }
+  
     
     @State private var imageURLs:[URL] = []
-    
     @EnvironmentObject var viewModel: AuthViewModel
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
@@ -104,6 +99,12 @@ struct MulistView: View {
         
     }
     
+    
+    func gridSwitch() {
+        withAnimation(.easeIn) {
+            gridLayout = Array(repeating: .init(.flexible()), count: Int(gridColumn))
+        }
+    }
     
     func fetchImageUrls() {
         guard let uid = viewModel.userSession?.uid else {return}

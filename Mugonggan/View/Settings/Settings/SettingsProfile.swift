@@ -10,9 +10,9 @@ import Kingfisher
 
 
 struct SettingsProfile: View {
-    @ObservedObject var viewModel : EditProfileViewModel
+    @ObservedObject var viewModel : UserViewModel
     
-    init(viewModel: EditProfileViewModel) {
+    init(viewModel: UserViewModel) {
         self.viewModel = viewModel
     }
     

@@ -9,12 +9,17 @@ import SwiftUI
 import Kingfisher
 
 struct UserHomeProfileCell: View {
+
+//    @ObservedObject var viewModel: AuthViewModel
+//    @ObservedObject var userViewModel: UserViewModel
+    @EnvironmentObject var viewModel: AuthViewModel
+   
     
     var body: some View {
-        let imageURL = "https://i.pinimg.com/564x/e9/b5/e2/e9b5e29ea71553178976e7866a72057c.jpg"
+//        guard let imageURL =
         VStack (spacing: 1) {
             HStack (spacing: 12){
-                KFImage(URL(string: imageURL))
+                KFImage(URL(string:viewModel.currentUser!.profileImageUrl))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 48,height: 48)
@@ -22,7 +27,7 @@ struct UserHomeProfileCell: View {
                     .padding(.leading)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("user name")
+                    Text(viewModel.currentUser!.name)
                         .bold()
                         .foregroundColor(.black)
                     

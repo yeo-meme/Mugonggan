@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct SettingView: View {
-    
+    @ObservedObject var userViewModel: UserViewModel
     @ObservedObject var viewModel: EditProfileViewModel
     @State private var showSheet = false
     
     init(_ user: UserInfo) {
         self.viewModel = EditProfileViewModel(user)
+        self.userViewModel = UserViewModel(user)
     }
     
     var body: some View {
@@ -24,7 +25,7 @@ struct SettingView: View {
             VStack(spacing: 32) {
                 NavigationLink(
                     destination: EditProfileView(viewModel),
-                    label: { SettingsProfile(viewModel: viewModel)
+                    label: { SettingsProfile(viewModel: userViewModel)
                     })
                 
                 
