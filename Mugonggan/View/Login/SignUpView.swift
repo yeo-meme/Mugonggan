@@ -73,7 +73,6 @@ struct SignUpView: View {
                     
                     //: BUTTON 완료
                     Button(action: {
-               
                         if checkSignUpCondition() {
                             viewModel.register(withEmail: email, name: name, password: password)
                         } else {
@@ -109,42 +108,7 @@ struct SignUpView: View {
             .accentColor(Color.black)
         }//:NAVIGATIONVEIW
     }//: View
-    
-    
-//    private func saveUserToFirebase(_ uid: String, completion: @escaping (Bool) -> Void ) {
-//        let db = Firestore.firestore()
-//        let userRef = db.collection("users").document()
-//
-//        userRef.setData([
-//            "uid": uid,
-//            "name": name,
-//            "password" : password,
-//            "email" : email
-//        ]) { error in
-//            if let error = error {
-//                print("Error Saving \(error.localizedDescription)")
-//                completion(false)
-//            } else {
-//                print("db 저장 성공")
-//                completion(true)
-//            }
-//        }
-//    }
-    
-//    private func uploadUserInfo(_ uid: String) {
-//        if !uid.isEmpty {
-//            saveUserToFirebase(uid) { success in if success {
-//                isViewPresented = true
-//                self.presentationMode.wrappedValue.dismiss()
-//                print("회원가입 성공" + uid)
-//            } else {
-//                print("회원가입 성공못함 1")
-//            }
-//            }
-//        } else {
-//            print("회원가입 성공못함 2")
-//        }
-//    }
+ 
     
     private func checkSignUpCondition () -> Bool {
         if name.isEmpty ||  email.isEmpty || password.isEmpty {
@@ -152,27 +116,12 @@ struct SignUpView: View {
         }
         return true
     }
-    
-//    func fetchData() {
-//        DispatchQueue.global().async {
-//            // 비동기적인 데이터 요청 등의 작업 수행
-//
-//            DispatchQueue.main.async {
-//                // 메인 큐에서 UI 업데이트
-//                print("fetCh")
-//                isViewPresented = true
-//                presentationMode.wrappedValue.dismiss()
-//
-//            }
-//        }
-//    }
+
     
     struct LogingView_Previews: PreviewProvider {
         static var previews: some View {
             SignUpView(isViewPresented: .constant(false))
                 .environmentObject(AuthViewModel())
-            //                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            
         }
     }
 }

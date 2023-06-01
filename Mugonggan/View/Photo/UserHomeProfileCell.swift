@@ -10,13 +10,10 @@ import Kingfisher
 
 struct UserHomeProfileCell: View {
 
-//    @ObservedObject var viewModel: AuthViewModel
-//    @ObservedObject var userViewModel: UserViewModel
     @EnvironmentObject var viewModel: AuthViewModel
    
     
     var body: some View {
-//        guard let imageURL =
         VStack (spacing: 1) {
             HStack (spacing: 12){
                 KFImage(URL(string:viewModel.currentUser!.profileImageUrl))
@@ -31,8 +28,7 @@ struct UserHomeProfileCell: View {
                         .bold()
                         .foregroundColor(.black)
                     
-                    Text("user 상태 제목")
-                        .foregroundColor(Color(.systemGray))
+                
                 }
                 
                 Spacer()

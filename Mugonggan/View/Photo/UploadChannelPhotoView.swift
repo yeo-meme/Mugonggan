@@ -9,6 +9,8 @@ import SwiftUI
 
 struct UploadChannelPhotoView: View {
   
+   
+    
     @State private var imagePickerPresented : Bool = false
     @State private var selectedImage: UIImage?
     @State private var muUploadImage: Image?
@@ -18,7 +20,6 @@ struct UploadChannelPhotoView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-
         VStack{
             HStack {
                 Spacer()
@@ -55,7 +56,10 @@ struct UploadChannelPhotoView: View {
             .padding(.bottom)
             .sheet(isPresented: $imagePickerPresented, onDismiss: loadImage, content:{ ImagePicker(image:$selectedImage)})
             
-           
+            
+        
+            
+           // MARK: - NEXT BTN
             CapsuleButton(text: "다음",
                           disabled: muUploadImage == nil,
                           isAnimating: isIndicatorAnimating,

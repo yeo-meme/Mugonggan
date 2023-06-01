@@ -226,11 +226,11 @@
 		FF72F09D2A15F6FB004EDDB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FF72F08C2A15C659004EDDB0 /* ContentView.swift */,
+				FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */,
 				FF9F22A72A28758600684EC1 /* Settings */,
 				FF9F22A12A2870A600684EC1 /* Photo */,
 				FF37A5CF2A2738AE0094A233 /* Motion */,
-				FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */,
-				FF72F08C2A15C659004EDDB0 /* ContentView.swift */,
 				FF4D3C8D2A1F2394000CAD35 /* Elements */,
 				FF4D3C8C2A1F2282000CAD35 /* Main */,
 				FF4D3C8B2A1F2269000CAD35 /* Login */,

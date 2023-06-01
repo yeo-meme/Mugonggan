@@ -27,18 +27,7 @@ struct ContentView: View {
             }
         }
 
-//        }
-      
-//        .onAppear{
-//            print("where: contentView")}
-//            .onReceive(userData.$isLoggedIn) { isLoggedIn in
-//                if isLoggedIn {
-//                    showingSignUpView = false
-//                }
-//            }
-           
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

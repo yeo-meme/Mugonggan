@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import Firebase
+import Foundation
 
 class AuthViewModel: NSObject, ObservableObject {
     
@@ -73,7 +74,7 @@ class AuthViewModel: NSObject, ObservableObject {
         ImageUploader.uploadImage(image: image, folderName: FOLDER_PROFILE_IMAGES, uid: uid) { imageUrl in
             let data: [String: Any] = [KEY_PROFILE_IMAGE_URL : imageUrl]
             
-        print("data : \(data)")
+            print("data : \(data)")
             COLLECTION_USERS.document(uid).updateData(data) { error in
                 if let errorMessage = error?.localizedDescription {
                     self.showErrorAlert = true
@@ -90,14 +91,45 @@ class AuthViewModel: NSObject, ObservableObject {
         }
     }
     
-    //CHANNEL
+    
+    func dateFormatter() -> String {
+        let currentTime = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let currentTimeString = dateFormatter.string(from: currentTime)
+        
+        return currentTimeString
+    }
+    // MARK: - CHANNEL IMAGE UPLOAD
     func uploadChannelImage(_ image: UIImage, completion: @escaping(Bool) -> Void) {
         guard let uid = currentUser?.uid else { return }
-      
+        guard let email = currentUser?.email else { return }
+        guard let name = currentUser?.name else { return }
+        let likeCount = 2
+        let bookmarkCount = 3
+        let commentCount = 4
+        let currentTime = Date()
+        
+        let collection_dc_add = COLLECTION_CHANNELS.document(uid)
+        let subCollection = collection_dc_add.collection("SUB").document()
+        
         ImageUploader.uploadImage(image: image, folderName: FOLDER_CHANNEL_IMAGES,uid: uid) { imageUrl in
-            let data: [String: Any] = [KEY_CHANNEL_IMAGE_URL : imageUrl]
             
-            COLLECTION_CHANNELS.document(uid).setData(data) { error in
+            let data: [String: Any] = [KEY_CHANNEL_IMAGE_URL : imageUrl,
+                                       "uid":uid,
+                                       "email":email,
+                                       "name":name,
+                                       "likeCount":likeCount,
+                                       "bookmarkCount":bookmarkCount,
+                                       "commentCount":commentCount,
+                                       "timestamp": currentTime
+                            
+            ]
+            //도큐먼트 아이디지정
+            //
+            
+            subCollection.setData(data) { error in
                 if let errorMessage = error?.localizedDescription {
                     self.showErrorAlert = true
                     self.errorMessage = errorMessage
@@ -112,6 +144,8 @@ class AuthViewModel: NSObject, ObservableObject {
             completion(true)
         }
     }
+    
+    
     
     
     func test(_ image: UIImage) {
@@ -140,7 +174,6 @@ class AuthViewModel: NSObject, ObservableObject {
             guard let user = result?.user else { return }
             self.tempCurrentUser = user
             self.tempCurrentUsername = name
-            //            userSession = user
             createUid = String(user.uid)
             
             let data: [String: Any] = [KEY_EMAIL: email,
@@ -161,7 +194,7 @@ class AuthViewModel: NSObject, ObservableObject {
     }
     
     
-
+    
     
     
 }
