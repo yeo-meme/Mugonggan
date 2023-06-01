@@ -35,6 +35,8 @@
 		FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */; };
 		FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */; };
 		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
+		FF949B4C2A28D53E00CDDACA /* UserHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF949B4B2A28D53E00CDDACA /* UserHomeViewModel.swift */; };
+		FF949B502A28D5E300CDDACA /* UserHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF949B4F2A28D5E300CDDACA /* UserHome.swift */; };
 		FF9F22A32A28711D00684EC1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A22A28711D00684EC1 /* SettingView.swift */; };
 		FF9F22A52A28713D00684EC1 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */; };
 		FF9F22AA2A2875C300684EC1 /* SettingsProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A92A2875C300684EC1 /* SettingsProfile.swift */; };
@@ -73,6 +75,8 @@
 		FF72F0962A15C65A004EDDB0 /* Mugonggan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mugonggan.xcdatamodel; sourceTree = "<group>"; };
 		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FF949B4B2A28D53E00CDDACA /* UserHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewModel.swift; sourceTree = "<group>"; };
+		FF949B4F2A28D5E300CDDACA /* UserHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHome.swift; sourceTree = "<group>"; };
 		FF9F22A22A28711D00684EC1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		FF9F22A92A2875C300684EC1 /* SettingsProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfile.swift; sourceTree = "<group>"; };
@@ -239,6 +243,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FF949B4A2A28D52700CDDACA /* UserHome */ = {
+			isa = PBXGroup;
+			children = (
+				FF949B4B2A28D53E00CDDACA /* UserHomeViewModel.swift */,
+			);
+			path = UserHome;
+			sourceTree = "<group>";
+		};
 		FF9F22A02A286F5F00684EC1 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +301,7 @@
 		FF9F22B72A287CEB00684EC1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				FF949B4A2A28D52700CDDACA /* UserHome */,
 				FF9F22B92A2881C700684EC1 /* User */,
 				FF9F22B82A287CFD00684EC1 /* Settings */,
 				FF4D3C932A1F3129000CAD35 /* Auth */,
@@ -316,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				FF694E922A209B3E00D6B6B4 /* UserInfo.swift */,
+				FF949B4F2A28D5E300CDDACA /* UserHome.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -425,6 +439,8 @@
 				FF9F22A52A28713D00684EC1 /* EditProfileViewModel.swift in Sources */,
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
 				FF4D3C912A1F2EE9000CAD35 /* CapsuleButton.swift in Sources */,
+				FF949B502A28D5E300CDDACA /* UserHome.swift in Sources */,
+				FF949B4C2A28D53E00CDDACA /* UserHomeViewModel.swift in Sources */,
 				FF4EFC152A25B50A00F8F82F /* Extensions.swift in Sources */,
 				FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */,
 				FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */,

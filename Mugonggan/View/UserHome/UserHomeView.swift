@@ -13,6 +13,7 @@ struct UserHomeView: View {
     
     @EnvironmentObject var viewModel: AuthViewModel
    
+    @ObservedObject var userHomeModel : UserHomeViewModel
     
     @State private var selectedImage: UIImage?
     @State private var uploadBtn: Image?
@@ -79,21 +80,21 @@ struct UserHomeView: View {
                         }
                     } //: GRID
                     .onAppear{
-                       
+                      fetchImageUrls()
                     }
                     
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(images, id: \.self) { imageName in
-                                Image(imageName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(height: 150)
-                                    .cornerRadius(10)
-
-                        }
-                    }
-                    .padding()
-                    Spacer()
+//                    LazyVGrid(columns: columns, spacing: 10) {
+//                        ForEach(images, id: \.self) { imageName in
+//                                Image(imageName)
+//                                    .resizable()
+//                                    .aspectRatio(contentMode: .fill)
+//                                    .frame(height: 150)
+//                                    .cornerRadius(10)
+//
+//                        }
+//                    }
+//                    .padding()
+//                    Spacer()
                 }
             }
             // MARK: - PLUS BTN
@@ -119,38 +120,69 @@ struct UserHomeView: View {
 //        .navigationBarBackButtonHidden(true)
     }
     
+    
+    
     // MARK: - FETCH URL
     func fetchImageUrls() {
         guard let uid = viewModel.userSession?.uid else {return}
         
-        let storageRef = Storage.storage().reference()
-        let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
+//        let storageRef = Storage.storage().reference()
+//        let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
+//
+//        let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
+//
+//
         
-        let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
         
-        
-        
-        ref.listAll { (result, error) in
+        let ref = COLLECTION_CHANNELS.document(uid).collection("SUB").document()
+        COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{( querySnapshot, error) in
             if let error = error {
-                print("Failed to fetch image URLs: \(error.localizedDescription)")
+                print("Failed to get documents: \(error.localizedDescription)")
                 return
             }
-            print("result:\(result?.items)")
-            
-            if let items = result?.items {
-                for item in items {
-                    item.downloadURL{ url, error in
-                        if let error = error {
-                            print("Failed to fetch download URL: \(error.localizedDescription)")
-                            return
-                        }
-                        if let url = url {
-                            imageURLs.append(url)
-                        }
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents found")
+                     return
+            }
+
+            for document in documents {
+                let data = document.data()
+                if let channelUrl = data[KEY_CHANNEL_IMAGE_URL] as? String {
+                    if let url = URL(string: channelUrl) {
+                        imageURLs.append(url)
+                        print("Profile URL: \(channelUrl)")
                     }
                 }
+//                selectedImage = imageURLs[0]
+//                print("첫번째 셀렉티드: \(selectedImage)")
             }
         }
+        
+        
+//        ref.listAll { (result, error) in
+//            if let error = error {
+//                print("Failed to fetch image URLs: \(error.localizedDescription)")
+//                return
+//            }
+//            print("result:\(result?.items)")
+//
+//            if let items = result?.items {
+//                for item in items {
+//                    item.downloadURL{ url, error in
+//                        if let error = error {
+//                            print("Failed to fetch download URL: \(error.localizedDescription)")
+//                            return
+//                        }
+//                        if let url = url {
+//                            imageURLs.append(url)
+//                        }
+//                        selectedImage = imageURLs[0]
+//                        print("첫번째 셀렉티드: \(selectedImage)")
+//                    }
+//                }
+//            }
+//        }
     }
     
     // MARK: - LOAD IMAGE
@@ -164,7 +196,7 @@ struct UserHomeView: View {
 
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        UserHomeView()
+        UserHomeView(userHomeModel: UserHomeViewModel())
             .environmentObject(AuthViewModel())
     }
 }

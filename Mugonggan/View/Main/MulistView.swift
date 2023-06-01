@@ -35,7 +35,7 @@ struct MulistView: View {
                     HStack {
                         
                         Spacer()
-                        NavigationLink(destination: UserHomeView()) {
+                        NavigationLink(destination: UserHomeView(userHomeModel: UserHomeViewModel())) {
                             Text("메메님 방가루")
                         }
                     }

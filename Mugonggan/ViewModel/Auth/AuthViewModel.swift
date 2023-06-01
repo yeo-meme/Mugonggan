@@ -101,6 +101,8 @@ class AuthViewModel: NSObject, ObservableObject {
         
         return currentTimeString
     }
+    
+    
     // MARK: - CHANNEL IMAGE UPLOAD
     func uploadChannelImage(_ image: UIImage, completion: @escaping(Bool) -> Void) {
         guard let uid = currentUser?.uid else { return }
@@ -116,18 +118,17 @@ class AuthViewModel: NSObject, ObservableObject {
         
         ImageUploader.uploadImage(image: image, folderName: FOLDER_CHANNEL_IMAGES,uid: uid) { imageUrl in
             
-            let data: [String: Any] = [KEY_CHANNEL_IMAGE_URL : imageUrl,
-                                       "uid":uid,
-                                       "email":email,
-                                       "name":name,
-                                       "likeCount":likeCount,
-                                       "bookmarkCount":bookmarkCount,
-                                       "commentCount":commentCount,
-                                       "timestamp": currentTime
-                            
+            let data: [String: Any] = [
+                KEY_CHANNEL_IMAGE_URL : imageUrl,
+                "uid":uid,
+                "email":email,
+                "name":name,
+                "likeCount":likeCount,
+                "bookmarkCount":bookmarkCount,
+                "commentCount":commentCount,
+                "timestamp": currentTime
             ]
-            //도큐먼트 아이디지정
-            //
+            
             
             subCollection.setData(data) { error in
                 if let errorMessage = error?.localizedDescription {
@@ -146,11 +147,6 @@ class AuthViewModel: NSObject, ObservableObject {
     }
     
     
-    
-    
-    func test(_ image: UIImage) {
-        print("왜 안읽히냐 \(image)")
-    }
     func signOut() {
         self.didAuthenticateUser = false
         self.currentUser = nil
