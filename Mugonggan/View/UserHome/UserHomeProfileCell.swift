@@ -11,7 +11,6 @@ import Kingfisher
 struct UserHomeProfileCell: View {
 
     @EnvironmentObject var viewModel: AuthViewModel
-   
     
     var body: some View {
         VStack (spacing: 1) {
@@ -21,7 +20,7 @@ struct UserHomeProfileCell: View {
                     .scaledToFill()
                     .frame(width: 48,height: 48)
                     .clipShape(Circle())
-                    .padding(.leading)
+                    .padding(10)
                 
 //                VStack(alignment: .leading, spacing: 4) {
 //                    Text(viewModel.currentUser!.name)
