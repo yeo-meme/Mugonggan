@@ -15,7 +15,7 @@ struct UserHomeProfileCell: View {
     
     var body: some View {
         VStack (spacing: 1) {
-            HStack (spacing: 12){
+            HStack{
                 KFImage(URL(string:viewModel.currentUser!.profileImageUrl))
                     .resizable()
                     .scaledToFill()
@@ -23,20 +23,20 @@ struct UserHomeProfileCell: View {
                     .clipShape(Circle())
                     .padding(.leading)
                 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(viewModel.currentUser!.name)
-                        .bold()
-                        .foregroundColor(.black)
-                    
-                
-                }
-                
-                Spacer()
+//                VStack(alignment: .leading, spacing: 4) {
+//                    Text(viewModel.currentUser!.name)
+//                        .bold()
+//                        .foregroundColor(.black)
+//
+//
+//                }
+//
+//                Spacer()
             }
-            .frame(height: 70)
-            .background(Color.white)
-            
-            CustomDivider(leadingSpace: 76)
+//            .frame(height: 70)
+//            .background(Color.white)
+//            
+//            CustomDivider(leadingSpace: 76)
         }
     }
 }

@@ -10,10 +10,11 @@ import SDWebImageSwiftUI
 import FirebaseStorage
 
 struct UserHomeView: View {
+    @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var viewModel: AuthViewModel
-   
     @ObservedObject var userHomeModel : UserHomeViewModel
+   
     
     @State private var selectedImage: UIImage?
     @State private var uploadBtn: Image?
@@ -22,10 +23,14 @@ struct UserHomeView: View {
 //    @Binding var muListLinkActive : Bool
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+    
     @State private var imageURLs:[URL] = []
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
+
+            
     
     var body: some View {
+        let userHomeNameCell = UserHomeNameCell(viewModel)
         
         NavigationView {
             ZStack {
@@ -40,63 +45,31 @@ struct UserHomeView: View {
                                 .padding(.trailing,15)
                         }
                     })
-               
+                    CoverImageViw()
                     
-                    // MARK: - 엑스
-                    //엑스
-//                    HStack{
-//                        Spacer()
-//                        Button(action: {
-//                            muListLinkActive = false
-//                        },label: {
-//                            Image(systemName: "xmark")
-//                                .resizable()
-//                                .frame(width: 20,height: 20)
-//                                .foregroundColor(.purple)
-//                                .padding(.trailing,30)
-//                        })
-//                    }
                     
                     HStack{
                         UserHomeProfileCell()
                     }
-//                    .padding(.top, 30)
              
                     
-                    LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                        ForEach(imageURLs, id: \.self) { imageURL in
-//                            NavigationLink(destination: MuDetailView() ,isActive: $muListLinkActive){
-                                
-                                WebImage(url: imageURL)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-//                                    .frame(width: imageSize  , height: imageSize)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color.white, lineWidth: 1))
-                                    .onTapGesture {
-                             
-                                    }
-//                            }
-                        }
-                    } //: GRID
-                    .onAppear{
-                      fetchImageUrls()
-                    }
-                    
-//                    LazyVGrid(columns: columns, spacing: 10) {
-//                        ForEach(images, id: \.self) { imageName in
-//                                Image(imageName)
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fill)
-//                                    .frame(height: 150)
-//                                    .cornerRadius(10)
-//
-//                        }
-//                    }
-//                    .padding()
-//                    Spacer()
+                   
+                    Spacer()
                 }
-            }
+                
+            }//: ZSTACK
+            .navigationBarTitle(userHomeNameCell.nickName, displayMode: .inline)
+            
+            .navigationBarItems(leading: UserHomeProfileCell(),trailing: Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "xmark")
+                    .imageScale(.large)
+            })
+            .onAppear {
+                       // Update nickName when the view appears
+                       userHomeNameCell.nickName = viewModel.currentUser?.name ?? ""
+                   }
             // MARK: - PLUS BTN
             .overlay(
                 ZStack{
@@ -116,74 +89,83 @@ struct UserHomeView: View {
                     .padding(.bottom, 15)
                     .padding(.trailing,15) , alignment: .bottomTrailing
             )
+           
         }
-//        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    var backButton: some View {
+        NavigationLink(destination: MulistView()) {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.black)
+        }
     }
     
     
     
     // MARK: - FETCH URL
-    func fetchImageUrls() {
-        guard let uid = viewModel.userSession?.uid else {return}
-        
-//        let storageRef = Storage.storage().reference()
-//        let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
+//    func fetchImageUrls() {
+//        guard let uid = viewModel.userSession?.uid else {return}
 //
-//        let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
+////        let storageRef = Storage.storage().reference()
+////        let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
+////
+////        let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
+////
+////
 //
 //
-        
-        
-        let ref = COLLECTION_CHANNELS.document(uid).collection("SUB").document()
-        COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{( querySnapshot, error) in
-            if let error = error {
-                print("Failed to get documents: \(error.localizedDescription)")
-                return
-            }
-
-            guard let documents = querySnapshot?.documents else {
-                print("No documents found")
-                     return
-            }
-
-            for document in documents {
-                let data = document.data()
-                if let channelUrl = data[KEY_CHANNEL_IMAGE_URL] as? String {
-                    if let url = URL(string: channelUrl) {
-                        imageURLs.append(url)
-                        print("Profile URL: \(channelUrl)")
-                    }
-                }
-//                selectedImage = imageURLs[0]
-//                print("첫번째 셀렉티드: \(selectedImage)")
-            }
-        }
-        
-        
-//        ref.listAll { (result, error) in
+////        let ref = COLLECTION_CHANNELS.document(uid).collection("SUB").document()
+//
+//        COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{( querySnapshot, error) in
 //            if let error = error {
-//                print("Failed to fetch image URLs: \(error.localizedDescription)")
+//                print("Failed to get documents: \(error.localizedDescription)")
 //                return
 //            }
-//            print("result:\(result?.items)")
 //
-//            if let items = result?.items {
-//                for item in items {
-//                    item.downloadURL{ url, error in
-//                        if let error = error {
-//                            print("Failed to fetch download URL: \(error.localizedDescription)")
-//                            return
-//                        }
-//                        if let url = url {
-//                            imageURLs.append(url)
-//                        }
-//                        selectedImage = imageURLs[0]
-//                        print("첫번째 셀렉티드: \(selectedImage)")
+//            guard let documents = querySnapshot?.documents else {
+//                print("No documents found")
+//                     return
+//            }
+//
+//            for document in documents {
+//                let data = document.data()
+//                if let channelUrl = data[KEY_CHANNEL_IMAGE_URL] as? String {
+//                    if let url = URL(string: channelUrl) {
+//                        imageURLs.append(url)
+//                        print("Profile URL: \(channelUrl)")
 //                    }
 //                }
+////                selectedImage = imageURLs[0]
+////                print("첫번째 셀렉티드: \(selectedImage)")
 //            }
 //        }
-    }
+//
+//
+////        ref.listAll { (result, error) in
+////            if let error = error {
+////                print("Failed to fetch image URLs: \(error.localizedDescription)")
+////                return
+////            }
+////            print("result:\(result?.items)")
+////
+////            if let items = result?.items {
+////                for item in items {
+////                    item.downloadURL{ url, error in
+////                        if let error = error {
+////                            print("Failed to fetch download URL: \(error.localizedDescription)")
+////                            return
+////                        }
+////                        if let url = url {
+////                            imageURLs.append(url)
+////                        }
+////                        selectedImage = imageURLs[0]
+////                        print("첫번째 셀렉티드: \(selectedImage)")
+////                    }
+////                }
+////            }
+////        }
+//    }
     
     // MARK: - LOAD IMAGE
     func loadImage() {
