@@ -164,15 +164,8 @@ struct MyCountView: View {
                 }
                 .background(Color("CountColor"))
                 .padding(.horizontal,10)
-                
-                //                Rectangle()
-                //                    .foregroundColor(Color.white)
-                //                    .frame(width: .infinity, height: 100)
-                //                    .overlay(
-                //
-                //                    )
+             
             }
-            
         }
     }
 }

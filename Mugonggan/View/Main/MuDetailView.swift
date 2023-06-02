@@ -54,40 +54,145 @@ struct MuDetailView: View {
             }
          
             
-            
-
-            
-            HStack(spacing: 70) {
-                VStack{
-                    Image(systemName: "heart")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                    ForEach(channelViewModel.channels) { channel in
-                                  Text(channel.likeCount)
-                              }
+            //like,etc
+            HStack {
+                HStack(spacing: 0){
+                    VStack{
+                        Rectangle()
+                            .stroke(Color.black)
+                            .frame(height: 100)
+                            .overlay(
+                                HStack {
+                                    VStack{
+                                        Circle()
+                                            .stroke(Color.black)
+                                            .foregroundColor(Color.white)
+                                            .overlay(
+                                                VStack{
+                                                    ForEach(channelViewModel.channels) { channel in
+                                                      Text(channel.likeCount)
+                                                            .font(.system(size: 15, weight: .semibold))
+                                                                                }
+                                                }
+                                            )
+                                            .background(Circle().foregroundColor(Color.white))
+                                        Divider()
+                                            .background(Color.black)
+                                        
+                                        Text("좋아요")
+                                            .font(.system(size: 13))
+                                    }
+                                    
+                                    Image(systemName: "heart")
+                                        .padding(.bottom,1)
+                                        .frame(width: 30,height: 30)
+                                    
+                                }
+                                    .padding()
+                            )
+                    }
+                    VStack{
+                        Rectangle()
+                            .stroke(Color.black)
+                            .frame(height: 100)
+                            .overlay(
+                                HStack {
+                                    VStack{
+                                        Circle()
+                                            .stroke(Color.black)
+                                            .foregroundColor(Color.white)
+                                            .overlay(
+                                                VStack{
+                                                    ForEach(channelViewModel.channels) { channel in
+                                                      Text(channel.bookmarkCount)
+                                                            .font(.system(size: 15, weight: .semibold))
+                                                                                }
+                                                }
+                                            )
+                                            .background(Circle().foregroundColor(Color.white))
+                                        Divider()
+                                            .background(Color.black)
+                                        Text("북마크")
+                                            .font(.system(size: 13))
+                                    }
+                                 
+                                    Image(systemName: "bookmark")
+                                        .padding(.bottom,1)
+                                    
+                                }
+                                    .padding()
+                            )
+                    }
+                    VStack{
+                        Rectangle()
+                            .stroke(Color.black)
+                            .frame(height: 100)
+                            .foregroundColor(Color.white)
+                            .overlay(
+                                HStack {
+                                    VStack{
+                                        Circle()
+                                            .stroke(Color.black)
+                                            .foregroundColor(Color.white)
+                                            .overlay(
+                                                VStack{
+                                                    ForEach(channelViewModel.channels) { channel in
+                                                      Text(channel.commentCount)
+                                                            .font(.system(size: 15, weight: .semibold))
+                                                                                }
+                                                }
+                                            )
+                                            .background(Circle().foregroundColor(Color.white))
+                                        Divider()
+                                            .background(Color.black)
+                                        Text("댓글")
+                                            .font(.system(size: 13))
+                                    }
+                              
+                                    Image(systemName: "message")
+                                        .padding(.bottom,1)
+                                    
+                                }
+                                    .padding()
+                            )
+                    }
                 }
-                VStack{
-                    Image(systemName: "bookmark")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                    ForEach(channelViewModel.channels) { channel in
-                                  Text(channel.bookmarkCount)
-                              }
-                }
-                VStack{
-                    Image(systemName: "message")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                    ForEach(channelViewModel.channels) { channel in
-                                  Text(channel.commentCount)
-                              }
-                }
-                
-                
+                .background(Color("CountColor"))
+                .padding(.horizontal,10)
+             
             }
-            .frame(maxWidth: .infinity, maxHeight: 70)
-            .padding()
-            .cornerRadius(10)
+            
+//            HStack(spacing: 70) {
+//                VStack{
+//                    Image(systemName: "heart")
+//                        .resizable()
+//                        .frame(width: 15, height: 15)
+//                    ForEach(channelViewModel.channels) { channel in
+//                                  Text(channel.likeCount)
+//                              }
+//                }
+//                VStack{
+//                    Image(systemName: "bookmark")
+//                        .resizable()
+//                        .frame(width: 15, height: 15)
+//                    ForEach(channelViewModel.channels) { channel in
+//                                  Text(channel.bookmarkCount)
+//                              }
+//                }
+//                VStack{
+//                    Image(systemName: "message")
+//                        .resizable()
+//                        .frame(width: 15, height: 15)
+//                    ForEach(channelViewModel.channels) { channel in
+//                                  Text(channel.commentCount)
+//                              }
+//                }
+//
+//
+//            }
+//            .frame(maxWidth: .infinity, maxHeight: 70)
+//            .padding()
+//            .cornerRadius(10)
             
             CustomDivider(leadingSpace: 0)
     

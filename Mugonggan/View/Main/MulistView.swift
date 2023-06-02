@@ -18,9 +18,7 @@ struct MulistView: View {
     @State private var firstSelectedImage: URL? = nil
     @State private var imageSize: CGFloat = 100
     
-//    @Binding var muListLinkActive : Bool
     let haptics = UIImpactFeedbackGenerator(style: .medium)
-  
     
     @State private var imageURLs:[URL] = []
     @EnvironmentObject var viewModel: AuthViewModel
@@ -32,21 +30,6 @@ struct MulistView: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .center, spacing: 30){
-                    HStack {
-                        
-                        Spacer()
-                        NavigationLink(destination: UserHomeView(userHomeModel: UserHomeViewModel())) {
-                            Text("메메님 방가루")
-                        }
-                    }
-                    .padding(.top,20)
-                    .padding(.trailing,20)
-                    
-                    Button(action: {
-                        viewModel.signOut()
-                    }) {
-                        Text("logout")
-                    }
                     
                     NavigationLink(
                         destination: MuDetailView(selectedImage: selectedImage) , label: {
@@ -89,8 +72,13 @@ struct MulistView: View {
                     }
                 }//: VSTACK
                 .padding(.horizontal, 10)
-                .padding(.vertical, 50 )
+                .navigationBarItems(trailing: NavigationLink(destination: UserHomeView(userHomeModel: UserHomeViewModel())) {
+                    Text("\(viewModel.currentUser?.name ?? "")님 방가방가")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(Color.black)
+                })
             }//: SCROLL
+            .background(MotionAnimationView())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } //: NAVAIGATION VIEW
         

@@ -48,10 +48,10 @@ struct SettingView: View {
                 .background(Color.white)
                 .actionSheet(isPresented: $showSheet) {
                     ActionSheet(title: Text("Log out"),
-                                message: Text("Are you sure you want to log out?"),
+                                message: Text("로그아웃 하시면 자동로그인 풀려서 다시 로그인하셔야 해요"),
                                 buttons: [
-                                    .destructive(Text("Log out"), action: { AuthViewModel.shared.signOut() }),
-                                    .cancel(Text("Cancel")) ])
+                                    .destructive(Text("웅 로그아웃"), action: { AuthViewModel.shared.signOut() }),
+                                    .cancel(Text("그건 귀찮은데")) ])
                 }
                 Spacer()
                 

@@ -53,6 +53,7 @@
 		FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42422A1D0CD10077E020 /* UserHomeView.swift */; };
 		FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */; };
 		FFD9921E2A2A4B840055359C /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9921D2A2A4B840055359C /* Owner.swift */; };
+		FFD992202A2A58070055359C /* MotionAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9921F2A2A58070055359C /* MotionAnimationView.swift */; };
 		FFE6F1E72A297705004C1981 /* MyUploadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */; };
 		FFE6F1E92A2979CB004C1981 /* MyCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6F1E82A2979CB004C1981 /* MyCountView.swift */; };
 		FFE6F1EB2A298BB7004C1981 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6F1EA2A298BB7004C1981 /* Color.swift */; };
@@ -101,6 +102,7 @@
 		FFBD42422A1D0CD10077E020 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 		FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
 		FFD9921D2A2A4B840055359C /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		FFD9921F2A2A58070055359C /* MotionAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionAnimationView.swift; sourceTree = "<group>"; };
 		FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUploadImageView.swift; sourceTree = "<group>"; };
 		FFE6F1E82A2979CB004C1981 /* MyCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountView.swift; sourceTree = "<group>"; };
 		FFE6F1EA2A298BB7004C1981 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				FFBD42402A1CFCF80077E020 /* MuDetailView.swift */,
 				FFBD42372A1B4F010077E020 /* MulistView.swift */,
 				FFE6F1EF2A29E60E004C1981 /* LikeCell.swift */,
+				FFD9921F2A2A58070055359C /* MotionAnimationView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */,
 				FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */,
 				FFF6E2922A28E48A0058ECD3 /* CoverImageViw.swift in Sources */,
+				FFD992202A2A58070055359C /* MotionAnimationView.swift in Sources */,
 				FFE6F1EB2A298BB7004C1981 /* Color.swift in Sources */,
 				FF4D3C892A1F224F000CAD35 /* UploadChannelPhotoView.swift in Sources */,
 				FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */,
