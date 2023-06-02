@@ -10,19 +10,22 @@ import SDWebImageSwiftUI
 import FirebaseStorage
 
 struct UserHomeView: View {
+    
     @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var viewModel: AuthViewModel
     @ObservedObject var userHomeModel : UserHomeViewModel
     
-    
     @State private var selectedImage: UIImage?
     @State private var uploadBtn: Image?
     @State private var pickedImage: Image? = Image(systemName: "photo.artframe")
     @State private var openPhotoView = false
-    //    @Binding var muListLinkActive : Bool
+    @State private var userName = ""
+
+    
     let images: [String] = ["image1","image2","image3","image4","image5"]
-    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+    
     
     @State private var imageURLs:[URL] = []
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
@@ -30,35 +33,100 @@ struct UserHomeView: View {
     
     
     var body: some View {
+       
         let userHomeNameCell = UserHomeNameCell(viewModel)
         
         NavigationView {
             ZStack {
                 VStack{
-                    
-                    Text("나의 최근 등록된 무공간")
+                    Text("❤️‍🔥를 많은 받은 나의 무공간")
                         .font(.system(size: 20, weight: .semibold))
-                    CoverImageViw()
-                        .frame(height: 300)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    Spacer()
+                    TabView {
+                        ForEach(images, id: \.self) { imageName in
+                            Image(imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: 300)
+                                .cornerRadius(10)
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle())
+                    
+                    Text("나의 무공간💖")
+                        .font(.system(size: 20, weight: .semibold))
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(images, id: \.self) { imageName in
+                            Image(imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: 80)
+                                .cornerRadius(10)
+                        }
+                    }
+                    .padding()
+                    
+                    
+                    
+                                        
+                                      
+                                        
+                                   
+                                        
+                
+                    
+//                    CoverImageViw()
+//                        .frame(height: 300)
+//                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    
+//                    MyUploadImageView()
+                    
+//                    LazyVGrid(columns: columns, spacing: 10) {
+//                                  ForEach(images, id: \.self) { imageName in
+//                                      Image(imageName)
+//                                          .resizable()
+//                                          .aspectRatio(contentMode: .fill)
+//                                          .frame(height: 150)
+//                                          .cornerRadius(10)
+//                                  }
+//                              }
+//                              .padding()
+                    
+                  
+                    
+               
+                    
                 }
             }//: ZSTACK
-            .navigationBarTitle(userHomeNameCell.nickName, displayMode: .inline)
             
-            .navigationBarItems(leading:
-                                    NavigationLink(destination: SettingView(viewModel.currentUser ?? MOCK_USER)) {
-                UserHomeProfileCell()
-            },trailing: Button(action: {
+            
+            // MARK: - 연동코드
+//            .navigationBarTitle(userName, displayMode: .inline)
+//            .navigationBarItems(leading:
+//                                    NavigationLink(destination: SettingView(viewModel.currentUser ?? MOCK_USER)) {
+//                UserHomeProfileCell()
+//            },trailing: Button(action: {
+//                self.presentationMode.wrappedValue.dismiss()
+//            }) {
+//                Image(systemName: "xmark")
+//                    .imageScale(.large)
+//            })
+//            .onAppear {
+//                // Update nickName when the view appears
+//                userName = viewModel.currentUser?.name ?? ""
+//            }
+            
+            
+            // MARK: -더미
+            .navigationBarTitle("userName", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "xmark")
                     .imageScale(.large)
             })
-            .onAppear {
-                // Update nickName when the view appears
-                userHomeNameCell.nickName = viewModel.currentUser?.name ?? ""
-            }
+            
+            
             // MARK: - PLUS BTN
             .overlay(
                 ZStack{
@@ -83,12 +151,12 @@ struct UserHomeView: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    var backButton: some View {
-        NavigationLink(destination: MulistView()) {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.black)
-        }
-    }
+//    var backButton: some View {
+//        NavigationLink(destination: MulistView()) {
+//            Image(systemName: "chevron.left")
+//                .foregroundColor(.black)
+//        }
+//    }
     
     
     

@@ -36,7 +36,9 @@ struct CoverImageViw: View {
     
     // MARK: - FETCH URL
     func fetchImageUrls() {
-        guard let uid = viewModel.userSession?.uid else {return}
+        guard let uid = viewModel.currentUser?.uid else {
+            return
+        }
         
 //        let storageRef = Storage.storage().reference()
 //        let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
@@ -98,10 +100,10 @@ struct CoverImageViw: View {
 //        }
     }
 }
-
-struct CoverImageViw_Previews: PreviewProvider {
-    static var previews: some View {
-        CoverImageViw()
-            .environmentObject(AuthViewModel())
-    }
-}
+//
+//struct CoverImageViw_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CoverImageViw()
+//            .environmentObject(AuthViewModel())
+//    }
+//}
