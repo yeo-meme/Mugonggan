@@ -33,7 +33,7 @@ struct LoginView: View {
                 VStack(alignment: .leading, spacing: 30){
                     Spacer()
                     
-                    IntroParagraph(title1: "Hello", title2: "WelcomeBack")
+                    IntroParagraph(title1: "어서오세요", title2: "무공간입니다")
                     
                     
                     TextField("email",text: $email, onEditingChanged: { editing in isEmailEditing = editing }

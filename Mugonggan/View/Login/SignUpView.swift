@@ -38,9 +38,9 @@ struct SignUpView: View {
         NavigationView{
             VStack {
                 NavigationLink(
-                destination: ProfilePhotoSelectorView() ,
-                isActive: $viewModel.didAuthenticateUser,
-                label: {})
+                    destination: ProfilePhotoSelectorView() ,
+                    isActive: $viewModel.didAuthenticateUser,
+                    label: {})
                 
                 IntroParagraph(title1: "회원등록하고", title2: "무공간을 이용해보세요")
                     .padding(.horizontal, -10)
@@ -48,7 +48,7 @@ struct SignUpView: View {
                 
                 VStack(alignment: .leading, spacing: 20) {
                     
-                   
+                    
                     TextField("email", text: $email)
                         .autocapitalization(.none)
                         .padding()
@@ -108,7 +108,7 @@ struct SignUpView: View {
             .accentColor(Color.black)
         }//:NAVIGATIONVEIW
     }//: View
- 
+    
     
     private func checkSignUpCondition () -> Bool {
         if name.isEmpty ||  email.isEmpty || password.isEmpty {
@@ -116,7 +116,7 @@ struct SignUpView: View {
         }
         return true
     }
-
+    
     
     struct LogingView_Previews: PreviewProvider {
         static var previews: some View {

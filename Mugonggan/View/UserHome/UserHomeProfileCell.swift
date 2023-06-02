@@ -15,7 +15,7 @@ struct UserHomeProfileCell: View {
     var body: some View {
         VStack (spacing: 1) {
             HStack{
-                KFImage(URL(string:viewModel.currentUser!.profileImageUrl))
+                KFImage(URL(string:viewModel.currentUser?.profileImageUrl ?? ""))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 48,height: 48)
