@@ -1,23 +1,20 @@
 //
-//  UserHomeViewModel.swift
+//  DetailViewModel.swift
 //  Mugonggan
 //
-//  Created by yeomim kim on 2023/06/01.
+//  Created by yeomim kim on 2023/06/02.
 //
 
-import Firebase
-import Combine
+import SwiftUI
 
-
-class UserHomeViewModel: ObservableObject {
-    @Published var userHome = [UserHome]()
-   
+struct DetailViewModel: View {
     
-    init(userHome: [UserHome] = [UserHome]()) {
-        self.userHome = userHome
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
+    
     //AuthViewModel.shared.currentUser?.name ?? ""
-    func getDetailPhoto() {
+    func getUserPhoto() {
         let uid =
         AuthViewModel.shared.userSession?.uid ?? ""
         
@@ -43,5 +40,11 @@ class UserHomeViewModel: ObservableObject {
             }
        
         }
+    }
+}
+
+struct DetailViewModel_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailViewModel()
     }
 }

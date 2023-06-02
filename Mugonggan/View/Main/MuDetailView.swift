@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct MuDetailView: View {
+    let selectedImage: URL?
     @EnvironmentObject var viewModel: AuthViewModel
-//    @EnvironmentObject var userViweModel: UserViewModel
-    
-//    @Binding var muListLinkActive:Bool
-    
+
     
     var body: some View {
         
         VStack(spacing: 1) {
             HStack{
                 
-                UserHomeProfileCell()
+//                UserHomeProfileCell()
          
                 Button(action: {}) {
                     Text("팔로우")
@@ -29,6 +27,12 @@ struct MuDetailView: View {
                         .cornerRadius(10)
                 }
             }
+            if let imageURL = selectedImage {
+                       Text("Selected Image: \(imageURL)")
+                   } else {
+                       Text("No Image Selected")
+                   }
+            
             
             
             HStack(spacing: 70) {
@@ -75,7 +79,7 @@ struct MuDetailView: View {
 
 struct MuDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MuDetailView()
+        MuDetailView(selectedImage: nil)
             .environmentObject(AuthViewModel())
     }
 }

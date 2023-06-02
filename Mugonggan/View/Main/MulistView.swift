@@ -49,7 +49,7 @@ struct MulistView: View {
                     }
                     
                     NavigationLink(
-                        destination: MuDetailView() , label: {
+                        destination: MuDetailView(selectedImage: selectedImage) , label: {
                             WebImage(url:selectedImage)
                                 .resizable()
                                 .scaledToFill()
@@ -67,11 +67,9 @@ struct MulistView: View {
                         })
                     
                     // MARK: - GRID
-                    
                     LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                        ForEach(imageURLs, id: \.self) { imageURL in
-//                            NavigationLink(destination: MuDetailView() ,isActive: $muListLinkActive){
-                                
+                        ForEach(imageURLs, id: \.self) {
+                            imageURL in
                                 WebImage(url: imageURL)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -106,6 +104,9 @@ struct MulistView: View {
         }
     }
     
+    /**
+     storage : FOLDER_CHANNEL_IMAGES ALL
+     */
     func fetchImageUrls() {
         guard let uid = viewModel.userSession?.uid else {return}
         
@@ -113,7 +114,6 @@ struct MulistView: View {
         let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
         
         let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
-        
         
         
         ref.listAll { (result, error) in

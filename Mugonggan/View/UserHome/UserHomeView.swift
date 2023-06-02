@@ -39,8 +39,12 @@ struct UserHomeView: View {
         NavigationView {
             ZStack {
                 VStack{
-                    Text("❤️‍🔥를 많은 받은 나의 무공간")
-                        .font(.system(size: 20, weight: .semibold))
+                    HStack {
+                        Text("❤️‍🔥를 많은 받은 나의 무공간")
+                            .font(.system(size: 14,weight: .bold))
+                    Spacer()
+                    }
+                    .padding(.leading, 10)
                     TabView {
                         ForEach(images, id: \.self) { imageName in
                             Image(imageName)
@@ -53,21 +57,42 @@ struct UserHomeView: View {
                     }
                     .tabViewStyle(PageTabViewStyle())
                     
+                    HStack {
+                        Text("미미의 무공간 실적")
+                            .font(.system(size: 14,weight: .bold))
+                    Spacer()
+                    }
+                    .padding(.leading, 10)
                     MyCountView()
                     
                     
-                    Text("나의 무공간💖")
-                        .font(.system(size: 20, weight: .semibold))
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(images, id: \.self) { imageName in
-                            Image(imageName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(height: 80)
-                                .cornerRadius(10)
-                        }
+                    HStack {
+                        Text("내가 올린 무공간 이미지")
+                            .font(.system(size: 14,weight: .bold))
+                    Spacer()
                     }
-                    .padding()
+                    .padding(.leading, 10)
+                    
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(0..<images.count, id: \.self) { index in
+                                if index < images.count {
+                                    Image(images[index])
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(height: 80)
+                                        .cornerRadius(10)
+                                } else {
+                                    Image(systemName: "photo")
+                                                   .resizable()
+                                                   .aspectRatio(contentMode: .fit)
+                                                   .frame(height: 150)
+                                                   .foregroundColor(.gray)
+                                                   .cornerRadius(10)
+                                }
+                             
+                            }
+                        }
+                        .padding()
                     
                     
                     
