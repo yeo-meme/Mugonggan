@@ -23,64 +23,47 @@ struct MuDetailView: View {
     init(selectedImage: URL?) {
            self.selectedImage = selectedImage
            self.channelViewModel = ChannelViewModel(selectedImage: selectedImage)
-   
        }
     
     
     var body: some View {
         VStack(spacing: 1) {
             HStack{
-                //                UserHomeProfileCell()
                 Button(action: {
-//                    findMatchDocument()
                 }) {
                     Text("팔로우")
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.purple)
                         .cornerRadius(10)
-         
                 }
             }
-            .onAppear{
-//                findMatchDocument()
-//                findTest()
-            }
-            
-            if let imageURL = selectedImage {
-                Text("Selected Image: \(imageURL)")
-               
-            } else {
-                Text("No Image Selected")
-            }
-        
-            
-            
+
             
             HStack(spacing: 70) {
-                
-                HStack{
-                    ForEach(channelViewModel.channels) { channel in
-                                  Text(channel.name)
-                              }
-                    Text("where")
-                }
                 VStack{
                     Image(systemName: "heart")
                         .resizable()
                         .frame(width: 15, height: 15)
+                    ForEach(channelViewModel.channels) { channel in
+                                  Text(channel.likeCount)
+                              }
                 }
                 VStack{
                     Image(systemName: "bookmark")
                         .resizable()
                         .frame(width: 15, height: 15)
-                    Text("북마크")
+                    ForEach(channelViewModel.channels) { channel in
+                                  Text(channel.bookmarkCount)
+                              }
                 }
                 VStack{
                     Image(systemName: "message")
                         .resizable()
                         .frame(width: 15, height: 15)
-                    Text("댓글")
+                    ForEach(channelViewModel.channels) { channel in
+                                  Text(channel.commentCount)
+                              }
                 }
                 
                 
@@ -99,11 +82,14 @@ struct MuDetailView: View {
                 .padding()
             
            
-            
-            //            KFImage(selectedImage)
-            //                .resizable()
-            //                .aspectRatio(contentMode: .fit)
-            //                .padding()
+//            ForEach(channelViewModel.channels) { channel in
+//              
+//                      }
+            KFImage(channelViewModel.detailImageUrl)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding()
+        
             
             VStack {
                 HStack{
@@ -146,95 +132,6 @@ struct MuDetailView: View {
         // 댓글 작성이 완료되면 isSubmittingComment를 false로 설정하여 버튼을 다시 활성화합니다.
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             isSubmittingComment = false
-        }
-    }
-    
-    
-     func findTest() {
-        COLLECTION_CHANNELS_ZIP.getDocuments{ (snapshot, error) in
-            if let error = error {
-                print("도큐먼트 검색 에러: \(error.localizedDescription)")
-            }
-            guard let documents = snapshot?.documents else {
-                          print("검색 결과가 없습니다.")
-                          return
-                      }
-            
-            for document in documents {
-                let data = document.data()
-                print("디테일과 일치하는 data´ \(data)")
-         
-                guard let urlString = selectedImage?.absoluteString else {return}
-                
-                print("URL STRIng: \(urlString)")
-                
-                if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String {
-                       if fieldValue == urlString {
-                           // 일치하는 도큐먼트를 찾음
-                           print("찾아라 데이터: \(data)")
-                           print("찾아 도큐먼트: \(document)")
-                           if let channel = try? document.data(as: Channel.self) {
-                                           // 찾은 데이터를 Channel 구조체에 저장
-                                           print("Channel 데이터: \(channel)")
-//                               self.channel = channel
-                                           // TODO: 필요한 로직 수행
-                                       } else {
-                                           print("Channel 데이터를 변환할 수 없습니다.")
-                                       }
-                       } else {
-                           print("일치가 없음 \(fieldValue) 넘어온 \(urlString)")
-                       }
-                } else {
-                    print("일치하는 필드밸류없음")
-                }
-            }
-        }
-    }
-    
-    //KEY_CHANNEL_IMAGE_URL
-    func findMatchDocument() {
-        let uid =
-        AuthViewModel.shared.userSession?.uid ?? ""
-        
-        if uid != "" {
-            
-            COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{ (snapshot, error) in
-                if let error = error {
-                    print("도큐먼트 검색 에러: \(error.localizedDescription)")
-                }
-                guard let documents = snapshot?.documents else {
-                              print("검색 결과가 없습니다.")
-                              return
-                          }
-                
-                for document in documents {
-                    let data = document.data()
-                    print("디테일과 일치하는 data´ \(data)")
-             
-                    guard let urlString = selectedImage?.absoluteString else {return}
-                    
-                    print("URL STRIng: \(urlString)")
-                    
-                    if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String {
-                           if fieldValue == urlString {
-                               // 일치하는 도큐먼트를 찾음
-                               print("찾아라 데이터: \(data)")
-                               print("찾아 도큐먼트: \(document)")
-                               if let channel = try? document.data(as: Channel.self) {
-                                               // 찾은 데이터를 Channel 구조체에 저장
-                                               print("Channel 데이터: \(channel)")
-                                               // TODO: 필요한 로직 수행
-                                           } else {
-                                               print("Channel 데이터를 변환할 수 없습니다.")
-                                           }
-                           } else {
-                               print("일치가 없음 \(fieldValue) 넘어온 \(urlString)")
-                           }
-                    } else {
-                        print("일치하는 필드밸류없음")
-                    }
-                }
-            }
         }
     }
 }
