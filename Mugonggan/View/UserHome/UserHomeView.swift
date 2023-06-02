@@ -53,6 +53,9 @@ struct UserHomeView: View {
                     }
                     .tabViewStyle(PageTabViewStyle())
                     
+                    MyCountView()
+                    
+                    
                     Text("나의 무공간💖")
                         .font(.system(size: 20, weight: .semibold))
                     LazyVGrid(columns: columns, spacing: 10) {
@@ -91,11 +94,6 @@ struct UserHomeView: View {
 //                                  }
 //                              }
 //                              .padding()
-                    
-                  
-                    
-               
-                    
                 }
             }//: ZSTACK
             

@@ -101,9 +101,9 @@ struct CoverImageViw: View {
     }
 }
 //
-//struct CoverImageViw_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CoverImageViw()
-//            .environmentObject(AuthViewModel())
-//    }
-//}
+struct CoverImageViw_Previews: PreviewProvider {
+    static var previews: some View {
+        CoverImageViw()
+            .environmentObject(AuthViewModel())
+    }
+}

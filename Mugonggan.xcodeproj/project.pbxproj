@@ -53,6 +53,8 @@
 		FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42422A1D0CD10077E020 /* UserHomeView.swift */; };
 		FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */; };
 		FFE6F1E72A297705004C1981 /* MyUploadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */; };
+		FFE6F1E92A2979CB004C1981 /* MyCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6F1E82A2979CB004C1981 /* MyCountView.swift */; };
+		FFE6F1EB2A298BB7004C1981 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6F1EA2A298BB7004C1981 /* Color.swift */; };
 		FFF6E2922A28E48A0058ECD3 /* CoverImageViw.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6E2912A28E48A0058ECD3 /* CoverImageViw.swift */; };
 		FFF6E2942A28E7DD0058ECD3 /* UserHomeNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6E2932A28E7DD0058ECD3 /* UserHomeNameCell.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +98,8 @@
 		FFBD42422A1D0CD10077E020 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 		FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
 		FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUploadImageView.swift; sourceTree = "<group>"; };
+		FFE6F1E82A2979CB004C1981 /* MyCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCountView.swift; sourceTree = "<group>"; };
+		FFE6F1EA2A298BB7004C1981 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		FFF6E2912A28E48A0058ECD3 /* CoverImageViw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageViw.swift; sourceTree = "<group>"; };
 		FFF6E2932A28E7DD0058ECD3 /* UserHomeNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeNameCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +140,7 @@
 				FFF6E2912A28E48A0058ECD3 /* CoverImageViw.swift */,
 				FFF6E2932A28E7DD0058ECD3 /* UserHomeNameCell.swift */,
 				FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */,
+				FFE6F1E82A2979CB004C1981 /* MyCountView.swift */,
 			);
 			path = UserHome;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */,
 				FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */,
 				FF4EFC142A25B50A00F8F82F /* Extensions.swift */,
+				FFE6F1EA2A298BB7004C1981 /* Color.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -437,9 +443,11 @@
 				FFE6F1E72A297705004C1981 /* MyUploadImageView.swift in Sources */,
 				FF9F22AA2A2875C300684EC1 /* SettingsProfile.swift in Sources */,
 				FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */,
+				FFE6F1E92A2979CB004C1981 /* MyCountView.swift in Sources */,
 				FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */,
 				FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */,
 				FFF6E2922A28E48A0058ECD3 /* CoverImageViw.swift in Sources */,
+				FFE6F1EB2A298BB7004C1981 /* Color.swift in Sources */,
 				FF4D3C892A1F224F000CAD35 /* UploadChannelPhotoView.swift in Sources */,
 				FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */,
 				FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */,
