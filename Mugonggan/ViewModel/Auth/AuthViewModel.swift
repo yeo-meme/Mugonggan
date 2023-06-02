@@ -108,10 +108,10 @@ class AuthViewModel: NSObject, ObservableObject {
         guard let uid = currentUser?.uid else { return }
         guard let email = currentUser?.email else { return }
         guard let name = currentUser?.name else { return }
-        let likeCount = 2
-        let bookmarkCount = 3
-        let commentCount = 4
-        let currentTime = Date()
+        let likeCount = "2"
+        let bookmarkCount = "3"
+        let commentCount = "0"
+        let currentTime = Timestamp()
         
         let collection_dc_add = COLLECTION_CHANNELS.document(uid)
         let subCollection = collection_dc_add.collection("SUB").document()
@@ -129,6 +129,16 @@ class AuthViewModel: NSObject, ObservableObject {
                 "timestamp": currentTime
             ]
             
+      
+            
+            COLLECTION_CHANNELS_ZIP.addDocument(data: data) {error in
+                if let errorMessage = error?.localizedDescription {
+                    self.showErrorAlert = true
+                    self.errorMessage = errorMessage
+                    completion(false)
+                    return
+                }
+            }
             
             subCollection.setData(data) { error in
                 if let errorMessage = error?.localizedDescription {

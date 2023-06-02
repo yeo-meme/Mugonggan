@@ -11,42 +11,64 @@ import FirebaseStorage
 import Firebase
 
 struct MuDetailView: View {
+    @ObservedObject var channelViewModel: ChannelViewModel
+    
     let selectedImage: URL?
     @EnvironmentObject var viewModel: AuthViewModel
-    
+    var channel: Channel?
     @State private var commentText = ""
     @State private var isSubmittingComment = false
+    
+    
+    init(selectedImage: URL?) {
+           self.selectedImage = selectedImage
+           self.channelViewModel = ChannelViewModel(selectedImage: selectedImage)
+   
+       }
+    
     
     var body: some View {
         VStack(spacing: 1) {
             HStack{
                 //                UserHomeProfileCell()
-                
                 Button(action: {
-                    findMatchDocument()
+//                    findMatchDocument()
                 }) {
                     Text("팔로우")
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.purple)
                         .cornerRadius(10)
+         
                 }
             }
+            .onAppear{
+//                findMatchDocument()
+//                findTest()
+            }
+            
             if let imageURL = selectedImage {
                 Text("Selected Image: \(imageURL)")
+               
             } else {
                 Text("No Image Selected")
             }
+        
             
             
             
             HStack(spacing: 70) {
                 
+                HStack{
+                    ForEach(channelViewModel.channels) { channel in
+                                  Text(channel.name)
+                              }
+                    Text("where")
+                }
                 VStack{
                     Image(systemName: "heart")
                         .resizable()
                         .frame(width: 15, height: 15)
-                    Text("좋아요")
                 }
                 VStack{
                     Image(systemName: "bookmark")
@@ -76,6 +98,7 @@ struct MuDetailView: View {
                 .scaledToFit()
                 .padding()
             
+           
             
             //            KFImage(selectedImage)
             //                .resizable()
@@ -125,8 +148,50 @@ struct MuDetailView: View {
             isSubmittingComment = false
         }
     }
-    //KEY_CHANNEL_IMAGE_URL
     
+    
+     func findTest() {
+        COLLECTION_CHANNELS_ZIP.getDocuments{ (snapshot, error) in
+            if let error = error {
+                print("도큐먼트 검색 에러: \(error.localizedDescription)")
+            }
+            guard let documents = snapshot?.documents else {
+                          print("검색 결과가 없습니다.")
+                          return
+                      }
+            
+            for document in documents {
+                let data = document.data()
+                print("디테일과 일치하는 data´ \(data)")
+         
+                guard let urlString = selectedImage?.absoluteString else {return}
+                
+                print("URL STRIng: \(urlString)")
+                
+                if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String {
+                       if fieldValue == urlString {
+                           // 일치하는 도큐먼트를 찾음
+                           print("찾아라 데이터: \(data)")
+                           print("찾아 도큐먼트: \(document)")
+                           if let channel = try? document.data(as: Channel.self) {
+                                           // 찾은 데이터를 Channel 구조체에 저장
+                                           print("Channel 데이터: \(channel)")
+//                               self.channel = channel
+                                           // TODO: 필요한 로직 수행
+                                       } else {
+                                           print("Channel 데이터를 변환할 수 없습니다.")
+                                       }
+                       } else {
+                           print("일치가 없음 \(fieldValue) 넘어온 \(urlString)")
+                       }
+                } else {
+                    print("일치하는 필드밸류없음")
+                }
+            }
+        }
+    }
+    
+    //KEY_CHANNEL_IMAGE_URL
     func findMatchDocument() {
         let uid =
         AuthViewModel.shared.userSession?.uid ?? ""
@@ -158,34 +223,18 @@ struct MuDetailView: View {
                                if let channel = try? document.data(as: Channel.self) {
                                                // 찾은 데이터를 Channel 구조체에 저장
                                                print("Channel 데이터: \(channel)")
-                                               
                                                // TODO: 필요한 로직 수행
                                            } else {
                                                print("Channel 데이터를 변환할 수 없습니다.")
                                            }
+                           } else {
+                               print("일치가 없음 \(fieldValue) 넘어온 \(urlString)")
                            }
-                       }
+                    } else {
+                        print("일치하는 필드밸류없음")
+                    }
                 }
             }
-            
-            
-//            COLLECTION_CHANNELS.document(uid).collection("SUB")
-//                .whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: selectedImage)
-//                .getDocuments{ (snapshot, error) in
-//                    if let error = error {
-//                        print("도큐먼트 검색 에러: \(error.localizedDescription)")
-//                    }
-//
-//                    guard let documents = snapshot?.documents else {
-//                        print("검색 결과가 없습니다.")
-//                        return
-//                    }
-//
-//                    for document in documents {
-//                        let data = document.data()
-//                        print("디테일과 일치하는 도큐먼트 \(data)")
-//                    }
-//                }
         }
     }
 }
