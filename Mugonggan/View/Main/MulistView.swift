@@ -84,7 +84,7 @@ struct MulistView: View {
                         }
                     } //: GRID
                     .onAppear {
-                        fetchImageUrls()
+                        findMatchImageUrls()
                         gridSwitch()
                     }
                 }//: VSTACK
@@ -107,7 +107,7 @@ struct MulistView: View {
     /**
      storage : FOLDER_CHANNEL_IMAGES ALL
      */
-    func fetchImageUrls() {
+    func findMatchImageUrls() {
         guard let uid = viewModel.userSession?.uid else {return}
         
         let storageRef = Storage.storage().reference()

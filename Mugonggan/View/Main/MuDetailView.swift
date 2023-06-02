@@ -23,7 +23,7 @@ struct MuDetailView: View {
                 //                UserHomeProfileCell()
                 
                 Button(action: {
-                    getDetailPhoto()
+                    findMatchDocument()
                 }) {
                     Text("팔로우")
                         .foregroundColor(.white)
@@ -127,7 +127,7 @@ struct MuDetailView: View {
     }
     //KEY_CHANNEL_IMAGE_URL
     
-    func getDetailPhoto() {
+    func findMatchDocument() {
         let uid =
         AuthViewModel.shared.userSession?.uid ?? ""
         
@@ -155,6 +155,14 @@ struct MuDetailView: View {
                                // 일치하는 도큐먼트를 찾음
                                print("찾아라 데이터: \(data)")
                                print("찾아 도큐먼트: \(document)")
+                               if let channel = try? document.data(as: Channel.self) {
+                                               // 찾은 데이터를 Channel 구조체에 저장
+                                               print("Channel 데이터: \(channel)")
+                                               
+                                               // TODO: 필요한 로직 수행
+                                           } else {
+                                               print("Channel 데이터를 변환할 수 없습니다.")
+                                           }
                            }
                        }
                 }
