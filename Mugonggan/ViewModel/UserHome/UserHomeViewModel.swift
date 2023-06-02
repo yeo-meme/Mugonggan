@@ -10,10 +10,10 @@ import Combine
 
 
 class UserHomeViewModel: ObservableObject {
-    @Published var userHome = [UserHome]()
+    @Published var userHome = [Channel]()
    
     
-    init(userHome: [UserHome] = [UserHome]()) {
+    init(userHome: [Channel] = [Channel]()) {
         self.userHome = userHome
     }
     //AuthViewModel.shared.currentUser?.name ?? ""

@@ -7,44 +7,56 @@
 
 import SwiftUI
 
-struct DetailViewModel: View {
+class DetailViewModel: ObservableObject {
+  
+    var selectedImage: URL?
     
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-    
-    //AuthViewModel.shared.currentUser?.name ?? ""
-    func getUserPhoto() {
+    //KEY_CHANNEL_IMAGE_URL
+    func getDetailPhoto() {
+        
+        print("디테일모델들어옴 : \(selectedImage)")
         let uid =
         AuthViewModel.shared.userSession?.uid ?? ""
         
         if uid != "" {
             
-            COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{( querySnapshot, error) in
+            COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{ (snapshot, error) in
                 if let error = error {
-                    print("Failed to get documents: \(error.localizedDescription)")
-                    return
+                    print("도큐먼트 검색 에러: \(error.localizedDescription)")
                 }
-
-                guard let documents = querySnapshot?.documents else {
-                    print("No documents found")
-                         return
-                }
-
+                guard let documents = snapshot?.documents else {
+                              print("검색 결과가 없습니다.")
+                              return
+                          }
+                
                 for document in documents {
                     let data = document.data()
-                    if let channelUrl = data[KEY_CHANNEL_IMAGE_URL] as? String {
-                        print("Profile URL: \(channelUrl)")
-                    }
+                    print("디테일과 일치하는 data´ \(data)")
+             
+                    guard let urlString = self.selectedImage?.absoluteString else {return}
+                    
+                    print("URL STRIng: \(urlString)")
+                    
+                    if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String {
+                           if fieldValue == urlString {
+                               // 일치하는 도큐먼트를 찾음
+                               print("찾아라 데이터: \(data)")
+                               print("찾아 도큐먼트: \(document)")
+                               
+                               if let channel = try? document.data(as: Channel.self) {
+                                              // 찾은 데이터를 Channel 구조체에 저장
+                                              print("Channel 데이터: \(channel)")
+                                              
+                                              // TODO: 필요한 로직 수행
+                                          } else {
+                                              print("Channel 데이터를 변환할 수 없습니다.")
+                                          }
+                               
+                           }
+                       }
                 }
             }
-       
         }
     }
 }
 
-struct DetailViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailViewModel()
-    }
-}

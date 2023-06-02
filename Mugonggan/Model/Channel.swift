@@ -8,7 +8,7 @@
 import FirebaseFirestoreSwift
 import Firebase
 
-struct UserHome: Identifiable, Decodable {
+struct Channel: Identifiable, Decodable {
     @DocumentID var id: String?
     let bookmarkCount: Int
     let likeCount: Int
