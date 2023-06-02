@@ -16,7 +16,7 @@ class UserHomeViewModel: ObservableObject {
     init(userHome: [Channel] = [Channel]()) {
         self.userHome = userHome
     }
-    //AuthViewModel.shared.currentUser?.name ?? ""
+
     func getDetailPhoto() {
         let uid =
         AuthViewModel.shared.userSession?.uid ?? ""
@@ -41,7 +41,6 @@ class UserHomeViewModel: ObservableObject {
                     }
                 }
             }
-       
         }
     }
 }

@@ -23,12 +23,25 @@ struct MuDetailView: View {
     init(selectedImage: URL?) {
            self.selectedImage = selectedImage
            self.channelViewModel = ChannelViewModel(selectedImage: selectedImage)
+        
        }
     
     
     var body: some View {
         VStack(spacing: 1) {
+            
             HStack{
+                KFImage(channelViewModel.ownerProfileImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 48,height: 48)
+                    .clipShape(Circle())
+                    .padding(10)
+                
+                Text(channelViewModel.ownerProfileName ?? "")
+                
+                Spacer()
+                
                 Button(action: {
                 }) {
                     Text("팔로우")
@@ -37,7 +50,11 @@ struct MuDetailView: View {
                         .background(Color.purple)
                         .cornerRadius(10)
                 }
+                .padding(.trailing, 10)
             }
+         
+            
+            
 
             
             HStack(spacing: 70) {
@@ -72,19 +89,8 @@ struct MuDetailView: View {
             .padding()
             .cornerRadius(10)
             
-            
             CustomDivider(leadingSpace: 0)
-            
-            // MARK: - dummy
-            Image("image1")
-                .resizable()
-                .scaledToFit()
-                .padding()
-            
-           
-//            ForEach(channelViewModel.channels) { channel in
-//              
-//                      }
+    
             KFImage(channelViewModel.detailImageUrl)
                             .resizable()
                             .aspectRatio(contentMode: .fit)

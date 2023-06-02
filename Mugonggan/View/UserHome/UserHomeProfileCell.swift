@@ -21,21 +21,7 @@ struct UserHomeProfileCell: View {
                     .frame(width: 48,height: 48)
                     .clipShape(Circle())
                     .padding(10)
-                
-//                VStack(alignment: .leading, spacing: 4) {
-//                    Text(viewModel.currentUser!.name)
-//                        .bold()
-//                        .foregroundColor(.black)
-//
-//
-//                }
-//
-//                Spacer()
             }
-//            .frame(height: 70)
-//            .background(Color.white)
-//            
-//            CustomDivider(leadingSpace: 76)
         }
     }
 }

@@ -8,29 +8,20 @@
 import SwiftUI
 
 class ChannelViewModel: ObservableObject {
+    
     @Published var channels = [Channel]()
     @Published var showErrorAlert = false
     @Published var errorMessage = ""
-    
     @Published var channelPartner: Channel?
+    @Published var owner: Owner?
     
     var selectedDoc: String?
     var selectedImage: String?
-    //    var channel: Channel?
-    //KEY_CHANNEL_IMAGE_URL
-    //    init (selectedImage: URL? = nil) {
-    ////    init (selectedImage: URL) {
-    //        self.selectedImage = selectedImage
-    //        fetchChannels()
-    //    }
     
     init(selectedImage: URL?) {
         self.selectedImage = selectedImage?.absoluteString
         findMatchDoc()
-        print("제발 찾아줘 \(selectedImage)")
     }
-    
-    
     
     func findMatchDoc() {
         COLLECTION_CHANNELS_ZIP.getDocuments{(snapshot, error) in
@@ -53,8 +44,24 @@ class ChannelViewModel: ObservableObject {
                 }
             }
             self.fetchDetail()
-            
         }
+    }
+    
+    func ownerFetch(uid: String) {
+        if uid != "" {
+            let query = COLLECTION_USERS.document(uid)
+            
+            query.getDocument{ snapshot, error in
+                if let errorMessage = error?.localizedDescription {
+                    self.showErrorAlert = true
+                    self.errorMessage = errorMessage
+                    return
+                }
+                self.owner = try? snapshot?.data(as: Owner.self)
+                print("패치 완료 \(self.owner)")
+            }
+        }
+        
     }
     
     func fetchDetail() {
@@ -67,20 +74,28 @@ class ChannelViewModel: ObservableObject {
                 self.errorMessage = errorMessage
                 return
             }
-            
             if let channel = try? snapshot?.data(as: Channel.self) {
-                                    print("Channel 데이터: \(channel)")
+                print("Channel 데이터: \(channel)")
                 self.channels.append(channel)
-                                } else {
-                                    print("Channel 데이터를 변환할 수 없습니다.")
-                                }
+            } else {
+                print("Channel 데이터를 변환할 수 없습니다.")
+            }
             self.channelPartner = try? snapshot?.data(as: Channel.self)
-
+            self.ownerFetch(uid: self.channelPartner?.uid ?? "")
         }
     }
     
     var detailImageUrl: URL? {
         guard let detail = channelPartner else { return nil }
         return URL(string: detail.channelImageUrl)
+    }
+    var ownerProfileImage: URL? {
+        guard let ownerProfile = owner else { return nil }
+        return URL(string: ownerProfile.profileImageUrl)
+    }
+    
+    var ownerProfileName: String? {
+        guard let ownerName = owner else { return nil }
+        return ownerName.name
     }
 }
