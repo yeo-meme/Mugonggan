@@ -52,6 +52,7 @@
 		FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42402A1CFCF80077E020 /* MuDetailView.swift */; };
 		FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42422A1D0CD10077E020 /* UserHomeView.swift */; };
 		FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */; };
+		FFC771072A3301E500C9DBD1 /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC771062A3301E500C9DBD1 /* LikeViewModel.swift */; };
 		FFD9921E2A2A4B840055359C /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9921D2A2A4B840055359C /* Owner.swift */; };
 		FFD992202A2A58070055359C /* MotionAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9921F2A2A58070055359C /* MotionAnimationView.swift */; };
 		FFE6F1E72A297705004C1981 /* MyUploadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */; };
@@ -101,6 +102,7 @@
 		FFBD42402A1CFCF80077E020 /* MuDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuDetailView.swift; sourceTree = "<group>"; };
 		FFBD42422A1D0CD10077E020 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 		FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
+		FFC771062A3301E500C9DBD1 /* LikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
 		FFD9921D2A2A4B840055359C /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		FFD9921F2A2A58070055359C /* MotionAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionAnimationView.swift; sourceTree = "<group>"; };
 		FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUploadImageView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		FF37A5CF2A2738AE0094A233 /* Motion */ = {
 			isa = PBXGroup;
 			children = (
+				FFD9921F2A2A58070055359C /* MotionAnimationView.swift */,
 			);
 			path = Motion;
 			sourceTree = "<group>";
@@ -169,7 +172,6 @@
 				FFBD42402A1CFCF80077E020 /* MuDetailView.swift */,
 				FFBD42372A1B4F010077E020 /* MulistView.swift */,
 				FFE6F1EF2A29E60E004C1981 /* LikeCell.swift */,
-				FFD9921F2A2A58070055359C /* MotionAnimationView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -230,8 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				FF9F22BB2A28823200684EC1 /* Model */,
-				FF9F22A02A286F5F00684EC1 /* Channel */,
-				FF28E97F2A211121000B25D6 /* Info.plist */,
 				FF4D3C992A1F3CB3000CAD35 /* Utils */,
 				FF4D3C962A1F3A5F000CAD35 /* API */,
 				FF9F22B72A287CEB00684EC1 /* ViewModel */,
@@ -240,6 +240,7 @@
 				FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */,
 				FF72F0932A15C65A004EDDB0 /* Persistence.swift */,
 				FF72F0952A15C65A004EDDB0 /* Mugonggan.xcdatamodeld */,
+				FF28E97F2A211121000B25D6 /* Info.plist */,
 				FF72F0902A15C65A004EDDB0 /* Preview Content */,
 			);
 			path = Mugonggan;
@@ -275,13 +276,6 @@
 				FF949B4B2A28D53E00CDDACA /* UserHomeViewModel.swift */,
 			);
 			path = UserHome;
-			sourceTree = "<group>";
-		};
-		FF9F22A02A286F5F00684EC1 /* Channel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Channel;
 			sourceTree = "<group>";
 		};
 		FF9F22A12A2870A600684EC1 /* Photo */ = {
@@ -326,6 +320,7 @@
 		FF9F22B72A287CEB00684EC1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				FFC771052A3301C700C9DBD1 /* Channel */,
 				FFE6F1EC2A29BCFA004C1981 /* Detail */,
 				FF949B4A2A28D52700CDDACA /* UserHome */,
 				FF9F22B92A2881C700684EC1 /* User */,
@@ -359,6 +354,14 @@
 				FFD9921D2A2A4B840055359C /* Owner.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FFC771052A3301C700C9DBD1 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				FFC771062A3301E500C9DBD1 /* LikeViewModel.swift */,
+			);
+			path = Channel;
 			sourceTree = "<group>";
 		};
 		FFE6F1EC2A29BCFA004C1981 /* Detail */ = {
@@ -492,6 +495,7 @@
 				FF9F22B12A28784500684EC1 /* SettingsCell.swift in Sources */,
 				FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */,
 				FFD9921E2A2A4B840055359C /* Owner.swift in Sources */,
+				FFC771072A3301E500C9DBD1 /* LikeViewModel.swift in Sources */,
 				FF4D3C982A1F3A74000CAD35 /* ImageUploader.swift in Sources */,
 				FF9F22B32A28791700684EC1 /* EditProfileCell.swift in Sources */,
 				FF4D3C8F2A1F23A5000CAD35 /* IntroParagraph.swift in Sources */,

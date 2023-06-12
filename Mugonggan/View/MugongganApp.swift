@@ -31,19 +31,6 @@ struct MugongganApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            if showingSignUpView {
-//                SignUpView().environment(\.managedObjectContext, persistenceController.container.viewContext)
-//            } else {
-//                ContentView().environment(\.managedObjectContext, persistenceController.container.viewContext)
-//            }
-//                .onReceive(userData.$isLoggedIn) { isLoggedIn in
-//                if isLoggedIn {
-//                    showingSignUpView = false
-//                }
-//            }
-            
-          
-
             ContentView()
                 .environmentObject(userData)
                 .environmentObject(AuthViewModel.shared)

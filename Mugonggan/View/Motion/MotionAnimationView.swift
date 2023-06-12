@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MotionAnimationView: View {
+
   // MARK: - PROPERTIES
-  
   @State private var randomCircle = Int.random(in: 12...16)
   @State private var isAnimating: Bool = false
   

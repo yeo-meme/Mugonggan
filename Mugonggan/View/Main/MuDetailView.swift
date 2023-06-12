@@ -23,7 +23,6 @@ struct MuDetailView: View {
     init(selectedImage: URL?) {
            self.selectedImage = selectedImage
            self.channelViewModel = ChannelViewModel(selectedImage: selectedImage)
-        
        }
     
     

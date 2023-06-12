@@ -198,11 +198,6 @@ class AuthViewModel: NSObject, ObservableObject {
             }
         }
     }
-    
-    
-    
-    
-    
 }
 
 

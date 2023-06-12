@@ -12,7 +12,6 @@ import SDWebImageSwiftUI
 struct MulistView: View {
     
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
-    
     @State private var gridColumn: Double = 3.0
     @State private var selectedImage: URL? = nil
     @State private var firstSelectedImage: URL? = nil
@@ -22,23 +21,73 @@ struct MulistView: View {
     
     @State private var imageURLs:[URL] = []
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var likeModel: LikeViewModel
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+    
+    @State private var isHeartFilled = false
+    @State private var isFilled = false
+    @State private var imageUrl: String?
     
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .center, spacing: 30){
-                    
+                    Button(action: {viewModel.signOut()}) {
+                        Text("로그아웃")
+                    }
+                    // MARK: - DetailView
                     NavigationLink(
                         destination: MuDetailView(selectedImage: selectedImage) , label: {
-                            WebImage(url:selectedImage)
-                                .resizable()
-                                .scaledToFill()
-                                .clipShape(Circle())
-                                .frame(width: 330, height: 330)
-                                .overlay(Circle().stroke(Color.white, lineWidth: 8))
+                            ZStack{
+                                
+                                WebImage(url:selectedImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 330, height: 330)
+                                    .overlay(Circle().stroke(Color.red, lineWidth: 8))
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        var matchingImageUrl: String? = ""
+                                        Button(action: {
+                                            isHeartFilled.toggle()
+                                            
+                                            if let matchImageUrl = selectedImage?.absoluteString {
+                                                self.imageUrl = matchImageUrl
+                                                matchingImageUrl = matchImageUrl
+                                            }
+                                            
+                                            if isHeartFilled {
+                                                isFilled = true
+                                                if let imageUrl = matchingImageUrl {
+                                                    LikeViewModel(imageUrl,isFiiled: isFilled)
+                                                    print("보낸다 url \(imageUrl)")
+                                                }
+                                            } else {
+                                                isFilled = false
+                                                if let imageUrl = matchingImageUrl {
+                                                    LikeViewModel(imageUrl,isFiiled: isFilled)
+                                                    print("보낸다 url \(imageUrl)")
+                                                }
+                                                
+                                            }
+                                          
+                                        }, label: {
+                                            Image(systemName: isHeartFilled ? "heart.fill" : "heart")
+                                                .resizable()
+                                                .frame(width: 30,height: 30)
+                                            .foregroundColor(.red)
+                                            .padding(8)
+                                            .padding(.trailing, 80)
+                                            .padding(.bottom, 30)
+                                        })
+                                    }
+                                }
+                            }
                         })
                    
                     
@@ -72,20 +121,19 @@ struct MulistView: View {
                     }
                 }//: VSTACK
                 .padding(.horizontal, 10)
-                .navigationBarItems(trailing: NavigationLink(destination: UserHomeView(userHomeModel: UserHomeViewModel())) {
+                .navigationBarItems(trailing: NavigationLink(destination: UserHomeView(userHomeModel: UserHomeViewModel())){
                     Text("\(viewModel.currentUser?.name ?? "")님 방가방가")
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(Color.black)
                 })
             }//: SCROLL
-            .background(MotionAnimationView())
+            // .background(MotionAnimationView())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } //: NAVAIGATION VIEW
-        
-        
     }
     
-    
+  
+    // MARK: - GRID SWITCH
     func gridSwitch() {
         withAnimation(.easeIn) {
             gridLayout = Array(repeating: .init(.flexible()), count: Int(gridColumn))
@@ -95,6 +143,7 @@ struct MulistView: View {
     /**
      storage : FOLDER_CHANNEL_IMAGES ALL
      */
+    // MARK: -FOLDER IAMGE ALL
     func findMatchImageUrls() {
         guard let uid = viewModel.userSession?.uid else {return}
         
@@ -109,7 +158,7 @@ struct MulistView: View {
                 print("Failed to fetch image URLs: \(error.localizedDescription)")
                 return
             }
-            print("result:\(result?.items)")
+            print("result:\(String(describing: result?.items))")
             
             if let items = result?.items {
                 for item in items {
