@@ -62,13 +62,12 @@ class LikeViewModel: ObservableObject {
     func miusUpdate(_ documentRef:DocumentReference) {
         var newLike = ""
         if let unwrappedChannel = channel {
-            if let likeCount = Int(unwrappedChannel.likeCount) {
+           let likeCount = unwrappedChannel.likeCount
                 newLike = String(likeCount - 1)
                 print("existLike: \(likeCount)")
                 print("newLike: \(newLike)")
-            } else {
-                print("Failed to convert likeCount to an integer")
-            }
+        } else{
+            print("Failed to get channel")
         }
         
         let data: [String: Any] = [KEY_LIKE_COUNT: newLike]
@@ -83,13 +82,12 @@ class LikeViewModel: ObservableObject {
     func plusUpdate(_ documentRef:DocumentReference) {
         var newLike = ""
         if let unwrappedChannel = channel {
-            if let likeCount = Int(unwrappedChannel.likeCount) {
+            let likeCount = unwrappedChannel.likeCount
                 newLike = String(likeCount + 1)
                 print("existLike: \(likeCount)")
                 print("newLike: \(newLike)")
             } else {
-                print("Failed to convert likeCount to an integer")
-            }
+                print("Failed to get channel")
         }
         
         let data: [String: Any] = [KEY_LIKE_COUNT: newLike]

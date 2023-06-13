@@ -48,11 +48,11 @@ struct UserHomeView: View {
                             }
                             .padding(.leading, 10)
                             
-                            CoverImageViw()
+                            CoverImageView()
                                 .frame(height: 300)
                                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         }
-                        
+                        // MARK: - COUNTVIEW
                         VStack{
                             HStack {
                                 Text("🔮 \(viewModel.currentUser?.name ?? "")님의 무공간 실적")
@@ -60,7 +60,8 @@ struct UserHomeView: View {
                                 Spacer()
                             }
                             .padding(.leading, 10)
-                            MyCountView()
+                            MyCountView(countViewModel: CountViewModel(userSession: viewModel.userSession))
+                                .environmentObject(viewModel)
                         }
                        
                         VStack{

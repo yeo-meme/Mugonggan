@@ -69,7 +69,7 @@ struct MuDetailView: View {
                                             .overlay(
                                                 VStack{
                                                     ForEach(channelViewModel.channels) { channel in
-                                                      Text(channel.likeCount)
+                                                      Text(String(channel.likeCount))
                                                             .font(.system(size: 15, weight: .semibold))
                                                                                 }
                                                 }
@@ -103,7 +103,7 @@ struct MuDetailView: View {
                                             .overlay(
                                                 VStack{
                                                     ForEach(channelViewModel.channels) { channel in
-                                                      Text(channel.bookmarkCount)
+                                                      Text(String(channel.bookmarkCount))
                                                             .font(.system(size: 15, weight: .semibold))
                                                                                 }
                                                 }
@@ -136,7 +136,7 @@ struct MuDetailView: View {
                                             .overlay(
                                                 VStack{
                                                     ForEach(channelViewModel.channels) { channel in
-                                                      Text(channel.commentCount)
+                                                      Text(String(channel.commentCount))
                                                             .font(.system(size: 15, weight: .semibold))
                                                                                 }
                                                 }

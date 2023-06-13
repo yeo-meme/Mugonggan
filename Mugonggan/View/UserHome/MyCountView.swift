@@ -10,6 +10,11 @@ import SwiftUI
 struct MyCountView: View {
     
     @EnvironmentObject private var viewModel: AuthViewModel
+    @StateObject private var countViewModel: CountViewModel
+    
+    init(countViewModel: CountViewModel) {
+        _countViewModel = StateObject(wrappedValue: countViewModel)
+    }
     
     var body: some View {
         VStack(spacing: 0){
@@ -80,7 +85,7 @@ struct MyCountView: View {
                                             .foregroundColor(Color.white)
                                             .overlay(
                                                 VStack{
-                                                    Text("4")
+                                                    Text("\(countViewModel.totalLikes)")
                                                         .font(.system(size: 15, weight: .semibold))
                                                 }
                                             )
@@ -112,7 +117,7 @@ struct MyCountView: View {
                                             .foregroundColor(Color.white)
                                             .overlay(
                                                 VStack{
-                                                    Text("7")
+                                                    Text("\(countViewModel.totalBookmark)")
                                                         .font(.system(size: 15, weight: .semibold))
                                                 }
                                             )
@@ -143,7 +148,7 @@ struct MyCountView: View {
                                             .foregroundColor(Color.white)
                                             .overlay(
                                                 VStack{
-                                                    Text("4")
+                                                    Text("\(countViewModel.totalComments)")
                                                         .font(.system(size: 15, weight: .semibold))
                                                 }
                                             )
@@ -164,14 +169,19 @@ struct MyCountView: View {
                 }
                 .background(Color("CountColor"))
                 .padding(.horizontal,10)
-             
             }
+        }
+        // MARK: -View Model
+        .onAppear{
+            countViewModel.fetchUser()
         }
     }
 }
 
 struct MyCountView_Previews: PreviewProvider {
     static var previews: some View {
-        MyCountView()
+        let countViewModel = CountViewModel(userSession: nil)
+        return MyCountView(countViewModel: countViewModel)
+            .environmentObject(AuthViewModel())
     }
 }

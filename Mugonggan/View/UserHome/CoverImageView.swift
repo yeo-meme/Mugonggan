@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import FirebaseStorage
 
-struct CoverImageViw: View {
+struct CoverImageView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     @State private var imageURLs:[URL] = []
@@ -60,7 +60,7 @@ struct CoverImageViw: View {
 
 struct CoverImageViw_Previews: PreviewProvider {
     static var previews: some View {
-        CoverImageViw()
+        CoverImageView()
             .environmentObject(AuthViewModel())
     }
 }

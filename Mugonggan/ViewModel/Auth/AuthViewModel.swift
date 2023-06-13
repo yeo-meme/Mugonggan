@@ -28,7 +28,7 @@ class AuthViewModel: NSObject, ObservableObject {
     override init() {
         super.init()
         userSession = Auth.auth().currentUser
-        fetchUser()
+        // fetchUser()
     }
     
     

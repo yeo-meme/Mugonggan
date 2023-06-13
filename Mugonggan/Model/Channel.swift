@@ -10,9 +10,9 @@ import Firebase
 
 struct Channel: Identifiable, Decodable {
     @DocumentID var id: String?
-    let bookmarkCount: String
-    let likeCount: String
-    let commentCount: String
+    let bookmarkCount: Int
+    let likeCount: Int
+    let commentCount: Int
     let channelImageUrl: String
     let email: String
     let name: String
@@ -20,9 +20,9 @@ struct Channel: Identifiable, Decodable {
     let timestamp : Timestamp
 }
 let MOCK_CHANNEL = Channel(id: "documentID",
-                        bookmarkCount: "00",
-                      likeCount: "00",
-                      commentCount: "00",
+                        bookmarkCount: 0,
+                      likeCount:0,
+                      commentCount: 0,
                       channelImageUrl: "https://firebasestorage.",
                       email: "test@gmail.com",
                       name: "usernickName",

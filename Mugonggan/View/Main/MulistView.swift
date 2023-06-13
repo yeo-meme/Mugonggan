@@ -37,11 +37,10 @@ struct MulistView: View {
                     Button(action: {viewModel.signOut()}) {
                         Text("로그아웃")
                     }
-                    // MARK: - DetailView
+                    // MARK: - DETAILVIEW
                     NavigationLink(
                         destination: MuDetailView(selectedImage: selectedImage) , label: {
                             ZStack{
-                                
                                 WebImage(url:selectedImage)
                                     .resizable()
                                     .scaledToFill()
@@ -52,6 +51,7 @@ struct MulistView: View {
                                     Spacer()
                                     HStack {
                                         Spacer()
+                                        // MARK: - LIKE BTN
                                         var matchingImageUrl: String? = ""
                                         Button(action: {
                                             isHeartFilled.toggle()
@@ -108,6 +108,7 @@ struct MulistView: View {
 //                                    .frame(width: imageSize  , height: imageSize)
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(Color.white, lineWidth: 1))
+                            // MARK: - IMAGE CLICK EVENT
                                     .onTapGesture {
                                         selectedImage = imageURL
                                         haptics.impactOccurred()
