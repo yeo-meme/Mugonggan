@@ -73,7 +73,6 @@ struct MulistView: View {
                                                     LikeViewModel(imageUrl,isFiiled: isFilled)
                                                     print("보낸다 url \(imageUrl)")
                                                 }
-                                                
                                             }
                                           
                                         }, label: {
@@ -87,6 +86,11 @@ struct MulistView: View {
                                         })
                                     }
                                 }
+                            }
+                            .onChange(of: selectedImage) {
+                                newValue in
+                                    isHeartFilled = false
+                                    isFilled = false
                             }
                         })
                    

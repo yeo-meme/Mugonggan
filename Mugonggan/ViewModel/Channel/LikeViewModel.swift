@@ -60,10 +60,10 @@ class LikeViewModel: ObservableObject {
     }
     
     func miusUpdate(_ documentRef:DocumentReference) {
-        var newLike = ""
+        var newLike = 0
         if let unwrappedChannel = channel {
            let likeCount = unwrappedChannel.likeCount
-                newLike = String(likeCount - 1)
+                newLike = likeCount-1
                 print("existLike: \(likeCount)")
                 print("newLike: \(newLike)")
         } else{
@@ -80,10 +80,10 @@ class LikeViewModel: ObservableObject {
         }
     }
     func plusUpdate(_ documentRef:DocumentReference) {
-        var newLike = ""
+        var newLike = 0
         if let unwrappedChannel = channel {
             let likeCount = unwrappedChannel.likeCount
-                newLike = String(likeCount + 1)
+                newLike = likeCount+1
                 print("existLike: \(likeCount)")
                 print("newLike: \(newLike)")
             } else {
