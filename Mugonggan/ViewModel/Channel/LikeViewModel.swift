@@ -9,7 +9,7 @@
 // Swift의 기본 프레임워크로, 문자열 처리, 날짜 및 시간, 파일 및 디렉터리 작업, 네트워킹 등과 같은 핵심적인 기능을 제공
 import Foundation //String, Date, URL, Data //Swift의 핵심적인 기능을 제공
 import FirebaseFirestore
-// import UIKit// UI 컴포넌트 및 기능을 사용할 수 있습니다. 예를 들어, UIView, UIButton, UILabel, UIImage 등과 같은 UI 요소/  iOS 앱 개발을 위한 UI 프레임워크입니다
+// import UIKit-: UI 컴포넌트 및 기능을 사용할 수 있습니다. 예를 들어, UIView, UIButton, UILabel, UIImage 등과 같은 UI 요소/  iOS 앱 개발을 위한 UI 프레임워크입니다
 
 class LikeViewModel: ObservableObject {
     @Published var channel: Channel?

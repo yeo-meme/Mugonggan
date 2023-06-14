@@ -7,6 +7,7 @@
 
 import FirebaseFirestoreSwift
 
+// MARK: - USERINFO
 struct Owner: Identifiable, Decodable {
     @DocumentID var id: String?
     let email: String

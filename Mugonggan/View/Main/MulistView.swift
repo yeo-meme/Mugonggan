@@ -150,8 +150,8 @@ struct MulistView: View {
      */
     // MARK: -FOLDER IAMGE ALL
     func findMatchImageUrls() {
-        guard let uid = viewModel.userSession?.uid else {return}
         
+        guard let uid = viewModel.userSession?.uid else {return}
         let storageRef = Storage.storage().reference()
         let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
         
@@ -163,7 +163,7 @@ struct MulistView: View {
                 print("Failed to fetch image URLs: \(error.localizedDescription)")
                 return
             }
-            print("result:\(String(describing: result?.items))")
+            print("result firestorage:\(String(describing: result?.items))")
             
             if let items = result?.items {
                 for item in items {
@@ -176,7 +176,7 @@ struct MulistView: View {
                             imageURLs.append(url)
                         }
                         selectedImage = imageURLs[0]
-                        print("첫번째 셀렉티드: \(selectedImage)")
+                        print("첫번째 디테일 이미지 셀렉티드 url: \(selectedImage)")
                     }
                 }
             }

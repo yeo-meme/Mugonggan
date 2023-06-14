@@ -11,6 +11,7 @@ import FirebaseStorage
 import Firebase
 
 struct MuDetailView: View {
+    //변경사항이 있는경우만 업데이트
     @ObservedObject var channelViewModel: ChannelViewModel
     
     let selectedImage: URL?
@@ -28,7 +29,6 @@ struct MuDetailView: View {
     
     var body: some View {
         VStack(spacing: 1) {
-            
             HStack{
                 KFImage(channelViewModel.ownerProfileImage)
                     .resizable()
