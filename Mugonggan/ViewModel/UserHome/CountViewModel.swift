@@ -16,19 +16,23 @@ class CountViewModel: ObservableObject {
     @Published var errorMessage = ""
     
     //firebase 인증된 사용자 타입 User
-    @Published var userSession: User?
+    // @Published var userSession: User?
+    
+    // MARK: - 최상위 user모델을받아서 사용할꺼야..
+    let authViewModel: AuthViewModel
     
     @Published var totalLikes = 0
     @Published var totalBookmark = 0
     @Published var totalComments = 0
     
-    init(userSession: User?) {
-        self.userSession = userSession
+    init(authViewModel: AuthViewModel) {
+        self.authViewModel = authViewModel
+        // self.userSession = userSession
         fetchUser()
     }
     
     func fetchUser() {
-        guard let uid = userSession?.uid else { return }
+        guard let uid = authViewModel.userSession?.uid else { return }
         print("누구냐 너 \(uid)")
         let query = COLLECTION_CHANNELS_ZIP.whereField(KEY_UID, isEqualTo: uid)
         

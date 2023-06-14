@@ -13,7 +13,10 @@ struct UserHomeView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    // !!!: .environmentObject(AuthViewModel()) 상위계층에서 주입되서 사용할수 있음
     @EnvironmentObject var viewModel: AuthViewModel
+    
+    // !!!: ObservableObject 프로토콜을 준수하는 객체에 사용 : SwiftUI에서 상태 변경을 감지하고 해당 변경을 알리는 데 사용되는 프로토콜로 뷰를 자동 업데이트한다
     @ObservedObject var userHomeModel : UserHomeViewModel
     
     @State private var selectedImage: UIImage?
@@ -60,8 +63,10 @@ struct UserHomeView: View {
                                 Spacer()
                             }
                             .padding(.leading, 10)
-                            MyCountView(countViewModel: CountViewModel(userSession: viewModel.userSession))
+                            MyCountView()
                                 .environmentObject(viewModel)
+                            // MyCountView(countViewModel: CountViewModel(userSession: viewModel.userSession))
+                            //     .environmentObject(viewModel)
                         }
                        
                         VStack{

@@ -12,8 +12,14 @@ struct MyCountView: View {
     @EnvironmentObject private var viewModel: AuthViewModel
     @StateObject private var countViewModel: CountViewModel
     
-    init(countViewModel: CountViewModel) {
-        _countViewModel = StateObject(wrappedValue: countViewModel)
+    // init(countViewModel: CountViewModel) {
+    //     _countViewModel = StateObject(wrappedValue: countViewModel)
+    // }
+    
+    // ???: - wrappedValue 랑 변수선언 궁금해
+    init() {
+        let viewModel = AuthViewModel()
+        self._countViewModel = StateObject(wrappedValue: CountViewModel(authViewModel: viewModel))
     }
     
     var body: some View {
@@ -180,8 +186,9 @@ struct MyCountView: View {
 
 struct MyCountView_Previews: PreviewProvider {
     static var previews: some View {
-        let countViewModel = CountViewModel(userSession: nil)
-        return MyCountView(countViewModel: countViewModel)
+        // !!!: 잔깐만..여기서 nil을 던지자너
+        // let countViewModel = CountViewModel(userSession: nil)
+        return MyCountView()
             .environmentObject(AuthViewModel())
     }
 }

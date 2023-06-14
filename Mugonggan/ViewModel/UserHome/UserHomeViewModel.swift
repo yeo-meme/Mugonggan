@@ -9,6 +9,7 @@ import Firebase
 import Combine
 
 
+// MARK: - DETAIL VIEW CALL MODEL
 class UserHomeViewModel: ObservableObject {
     @Published var userHome = [Channel]()
    

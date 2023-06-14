@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseStorage
 import SDWebImageSwiftUI
 
+// FIXME: -앱재시동하면 유저정보가 날아가서 아이디가 보이지않음
 struct MulistView: View {
     
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
@@ -87,6 +88,7 @@ struct MulistView: View {
                                     }
                                 }
                             }
+                            // MARK: - 사진이 바뀔때 하트 초기화하기
                             .onChange(of: selectedImage) {
                                 newValue in
                                     isHeartFilled = false
@@ -151,9 +153,9 @@ struct MulistView: View {
     // MARK: -FOLDER IAMGE ALL
     func findMatchImageUrls() {
         
-        guard let uid = viewModel.userSession?.uid else {return}
-        let storageRef = Storage.storage().reference()
-        let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
+        // guard let uid = viewModel.userSession?.uid else {return}
+        // let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
+        // let storageRef = Storage.storage().reference()
         
         let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
         
