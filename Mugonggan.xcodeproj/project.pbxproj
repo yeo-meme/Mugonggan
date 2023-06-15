@@ -20,6 +20,7 @@
 		FF694E8D2A2087ED00D6B6B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF694E8C2A2087ED00D6B6B4 /* Kingfisher */; };
 		FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */; };
 		FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E922A209B3E00D6B6B4 /* UserInfo.swift */; };
+		FF6D88402A3AF13100AC3230 /* MainListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D883F2A3AF13100AC3230 /* MainListViewModel.swift */; };
 		FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */; };
 		FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08C2A15C659004EDDB0 /* ContentView.swift */; };
 		FF72F08F2A15C65A004EDDB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF72F08E2A15C65A004EDDB0 /* Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeProfileCell.swift; sourceTree = "<group>"; };
 		FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		FF694E922A209B3E00D6B6B4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		FF6D883F2A3AF13100AC3230 /* MainListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewModel.swift; sourceTree = "<group>"; };
 		FF72F0872A15C659004EDDB0 /* Mugonggan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mugonggan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugongganApp.swift; sourceTree = "<group>"; };
 		FF72F08C2A15C659004EDDB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				FFC771062A3301E500C9DBD1 /* LikeViewModel.swift */,
+				FF6D883F2A3AF13100AC3230 /* MainListViewModel.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */,
 				FF9F22AF2A2877A800684EC1 /* EditProfileView.swift in Sources */,
 				FF9F22A32A28711D00684EC1 /* SettingView.swift in Sources */,
+				FF6D88402A3AF13100AC3230 /* MainListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

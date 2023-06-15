@@ -23,6 +23,7 @@ struct MulistView: View {
     @State private var imageURLs:[URL] = []
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var likeModel: LikeViewModel
+    @ObservedObject var mainListModel = MainListViewModel()
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -137,7 +138,13 @@ struct MulistView: View {
             // .background(MotionAnimationView())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } //: NAVAIGATION VIEW
+        .onAppear{
+            // mainListModel = MainListViewModel()
+            mainListModel.callAllChannel()
+            print("call")
+        }
     }
+     
     
   
     // MARK: - GRID SWITCH
