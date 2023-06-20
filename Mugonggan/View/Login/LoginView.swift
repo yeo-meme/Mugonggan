@@ -9,12 +9,11 @@ import SwiftUI
 import FirebaseAuth
 
 struct LoginView: View {
-    
-    
-    
+
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @EnvironmentObject var viewModel: AuthViewModel
+    
     @EnvironmentObject private var userData: UserData
     
     @State private var email:String = ""
@@ -107,7 +106,7 @@ struct LoginView: View {
                     .onDisappear{
                         if isViewPresented {
                             DispatchQueue.main.async {
-                                let newView = MulistView()
+                                let newView = MainWaveImageList()
                                 let hostingVC = UIHostingController(rootView: newView)
                                 
                                 if let window = UIApplication.shared.windows.first {
@@ -126,32 +125,32 @@ struct LoginView: View {
     }//: BODY VIEW
     
     
-    func login() {
-        
-        let success = true
-        Auth.auth().signIn(withEmail: email ,password: password) { result, error in
-            if let error = error {
-                print("로그인 실패")
-            } else {
-                self.isLoggedIn.toggle()
-                if isLoggedIn {
-                    DispatchQueue.main.async {
-                        let newView = MulistView().environmentObject(viewModel)
-                        let hostingVC = UIHostingController(rootView: newView)
-                        
-                        if let window = UIApplication.shared.windows.first {
-                            window.rootViewController = hostingVC
-                            window.makeKeyAndVisible()
-                        }
-                    }
-                    print("isLoggedIn true")
-                } else {
-                    print("isLoggedIn false")
-                }
-                
-            }
-        }
-    }
+    // func login() {
+    //     
+    //     let success = true
+    //     Auth.auth().signIn(withEmail: email ,password: password) { result, error in
+    //         if let error = error {
+    //             print("로그인 실패")
+    //         } else {
+    //             self.isLoggedIn.toggle()
+    //             if isLoggedIn {
+    //                 DispatchQueue.main.async {
+    //                     let newView = MulistView().environmentObject(viewModel)
+    //                     let hostingVC = UIHostingController(rootView: newView)
+    //                     
+    //                     if let window = UIApplication.shared.windows.first {
+    //                         window.rootViewController = hostingVC
+    //                         window.makeKeyAndVisible()
+    //                     }
+    //                 }
+    //                 print("isLoggedIn true")
+    //             } else {
+    //                 print("isLoggedIn false")
+    //             }
+    //             
+    //         }
+    //     }
+    // }
 }//:VIEW
 
 struct LoginView_Previews: PreviewProvider {

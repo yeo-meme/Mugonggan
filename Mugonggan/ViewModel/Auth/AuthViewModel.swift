@@ -112,10 +112,18 @@ class AuthViewModel: NSObject, ObservableObject {
         let bookmarkCount = "3"
         let commentCount = "0"
         let currentTime = Timestamp()
+        // let likewho = [LikeWho(likewho: "")]
         
+        // let folder = "hey/somthing"
+        // print("폴더 \(folder)")
+        
+        // MARK: - 사용자별  CHANNEL 분류 콜렉션
         let collection_dc_add = COLLECTION_CHANNELS.document(uid)
-        let subCollection = collection_dc_add.collection("SUB").document()
         
+        let subWhoLikeCollection = collection_dc_add.collection("SUB").document("likewho")
+        
+        
+        // MARK: - CHANNEL IMAGE UPLOAD STORAGE
         ImageUploader.uploadImage(image: image, folderName: FOLDER_CHANNEL_IMAGES,uid: uid) { imageUrl in
             
             let data: [String: Any] = [
@@ -127,11 +135,27 @@ class AuthViewModel: NSObject, ObservableObject {
                 "bookmarkCount":bookmarkCount,
                 "commentCount":commentCount,
                 "timestamp": currentTime
+                // "likewho" : likewho
+            ]
+            
+            let subData : [String: Any] = [
+                "likewho": ""
             ]
             
       
-            
+            // MARK: - ALL CHANNEL ZIP COLLECTION ZIP ADD
             COLLECTION_CHANNELS_ZIP.addDocument(data: data) {error in
+                if let errorMessage = error?.localizedDescription {
+                    self.showErrorAlert = true
+                    self.errorMessage = errorMessage
+                    completion(false)
+                    return
+                }
+                
+                
+            }
+            
+            collection_dc_add.setData(data){ error in
                 if let errorMessage = error?.localizedDescription {
                     self.showErrorAlert = true
                     self.errorMessage = errorMessage
@@ -140,7 +164,8 @@ class AuthViewModel: NSObject, ObservableObject {
                 }
             }
             
-            subCollection.setData(data) { error in
+            //test collection_dc_add
+            subWhoLikeCollection.setData(subData) { error in
                 if let errorMessage = error?.localizedDescription {
                     self.showErrorAlert = true
                     self.errorMessage = errorMessage

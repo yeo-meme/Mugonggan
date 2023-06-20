@@ -65,6 +65,7 @@ struct UploadChannelPhotoView: View {
                           isAnimating: isIndicatorAnimating,
                           action: {
                 isIndicatorAnimating = true
+                // MARK: - UPLOAD IMAGE FireStore
                 viewModel.uploadChannelImage(selectedImage!)
                 { success in
                     if success {

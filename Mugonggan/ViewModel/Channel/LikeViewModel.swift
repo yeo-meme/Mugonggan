@@ -12,12 +12,14 @@ import FirebaseFirestore
 // import UIKit-: UI 컴포넌트 및 기능을 사용할 수 있습니다. 예를 들어, UIView, UIButton, UILabel, UIImage 등과 같은 UI 요소/  iOS 앱 개발을 위한 UI 프레임워크입니다
 
 class LikeViewModel: ObservableObject {
+  
     @Published var channel: Channel?
     @Published var showErrorAlert = false
     @Published var errorMessage = ""
     @Published var imageUrl : String?
     var documentRef : DocumentReference?
     @Published var isFilled:Bool = false
+
     
     init(_ imageUrl: String, isFiiled: Bool) {
         self.imageUrl = imageUrl
@@ -27,9 +29,12 @@ class LikeViewModel: ObservableObject {
     
 
     
+    // MARK: - LIKE UPDATE
     func getChannel() {
         guard let url = imageUrl else { return }
         let query = COLLECTION_CHANNELS_ZIP.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: url)
+        
+      
         
         query.getDocuments { (snapshot, error) in
                 if let error = error {
@@ -48,11 +53,14 @@ class LikeViewModel: ObservableObject {
                     guard let channel = try? document.data(as: Channel.self) else { return }
                     self.channel = channel
                 }
-            guard let docRef = self.documentRef else {return}
             
+            
+            guard let docRef = self.documentRef else {return}
+          
+            let likeCollection = COLLECTION_CHANNELS_ZIP.document(self.channel!.uid).collection("SUB").document("likewho")
             
             if self.isFilled {
-                self.plusUpdate(docRef)
+                self.likePlusUpdate(docRef,likeCollection: likeCollection)
             } else {
                 self.miusUpdate(docRef)
             }
@@ -79,19 +87,38 @@ class LikeViewModel: ObservableObject {
             }
         }
     }
-    func plusUpdate(_ documentRef:DocumentReference) {
+    
+    // MARK: - 좋아요 증가
+    func likePlusUpdate(_ documentRef:DocumentReference, likeCollection: DocumentReference) {
         var newLike = 0
+        print("like 플러스 인")
+        
+        var likeName = AuthViewModel.shared.currentUser?.uid
+        
+        print("like 이름 \(likeName)")
+        
         if let unwrappedChannel = channel {
             let likeCount = unwrappedChannel.likeCount
                 newLike = likeCount+1
                 print("existLike: \(likeCount)")
                 print("newLike: \(newLike)")
+            
+            
             } else {
                 print("Failed to get channel")
         }
         
         let data: [String: Any] = [KEY_LIKE_COUNT: newLike]
-        documentRef.updateData(data) { error in
+        documentRef.setData(data) { error in
+            if let error = error {
+                print("도큐먼트 업데이트 에러: \(error.localizedDescription)")
+            } else {
+                print("도큐먼트 업데이트 성공")
+            }
+        }
+        
+        let likeData: [String: Any] = ["likewho" : likeName ]
+        likeCollection.updateData(likeData) { error in
             if let error = error {
                 print("도큐먼트 업데이트 에러: \(error.localizedDescription)")
             } else {

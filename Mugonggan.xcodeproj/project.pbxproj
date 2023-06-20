@@ -15,12 +15,17 @@
 		FF4D3C982A1F3A74000CAD35 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C972A1F3A74000CAD35 /* ImageUploader.swift */; };
 		FF4D3C9C2A1F3CD6000CAD35 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */; };
 		FF4EFC152A25B50A00F8F82F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4EFC142A25B50A00F8F82F /* Extensions.swift */; };
+		FF4F99422A4037E600778DD4 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4F99412A4037E600778DD4 /* Wave.swift */; };
+		FF4F99452A40383700778DD4 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4F99442A40383700778DD4 /* UserManager.swift */; };
+		FF4F99482A4113E400778DD4 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4F99472A4113E400778DD4 /* AuthManager.swift */; };
+		FF4F994B2A411AB500778DD4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4F994A2A411AB500778DD4 /* User.swift */; };
 		FF63CAA62A36FF8B00DD3B69 /* CountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63CAA52A36FF8B00DD3B69 /* CountViewModel.swift */; };
 		FF694E8A2A20870100D6B6B4 /* UserHomeProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */; };
 		FF694E8D2A2087ED00D6B6B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF694E8C2A2087ED00D6B6B4 /* Kingfisher */; };
 		FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */; };
 		FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E922A209B3E00D6B6B4 /* UserInfo.swift */; };
 		FF6D88402A3AF13100AC3230 /* MainListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D883F2A3AF13100AC3230 /* MainListViewModel.swift */; };
+		FF6D88422A3B035300AC3230 /* LikeWho.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D88412A3B035300AC3230 /* LikeWho.swift */; };
 		FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */; };
 		FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08C2A15C659004EDDB0 /* ContentView.swift */; };
 		FF72F08F2A15C65A004EDDB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF72F08E2A15C65A004EDDB0 /* Assets.xcassets */; };
@@ -37,7 +42,7 @@
 		FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */; };
 		FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */; };
 		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
-		FF949B4C2A28D53E00CDDACA /* UserHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF949B4B2A28D53E00CDDACA /* UserHomeViewModel.swift */; };
+		FF949B4C2A28D53E00CDDACA /* WaveSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF949B4B2A28D53E00CDDACA /* WaveSettingViewModel.swift */; };
 		FF949B502A28D5E300CDDACA /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF949B4F2A28D5E300CDDACA /* Channel.swift */; };
 		FF9F22A32A28711D00684EC1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A22A28711D00684EC1 /* SettingView.swift */; };
 		FF9F22A52A28713D00684EC1 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */; };
@@ -49,10 +54,10 @@
 		FF9F22B52A28794E00684EC1 /* EditUsernameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22B42A28794E00684EC1 /* EditUsernameCell.swift */; };
 		FF9F22BD2A28824300684EC1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22BC2A28824300684EC1 /* UserViewModel.swift */; };
 		FFA542492A1DDAFD001196F8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA542482A1DDAFD001196F8 /* ImagePicker.swift */; };
-		FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42372A1B4F010077E020 /* MulistView.swift */; };
+		FFBD42382A1B4F010077E020 /* MainWaveImageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42372A1B4F010077E020 /* MainWaveImageList.swift */; };
 		FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD423E2A1C8D4C0077E020 /* LoginView.swift */; };
 		FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42402A1CFCF80077E020 /* MuDetailView.swift */; };
-		FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42422A1D0CD10077E020 /* UserHomeView.swift */; };
+		FFBD42432A1D0CD10077E020 /* WaveSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBD42422A1D0CD10077E020 /* WaveSettingView.swift */; };
 		FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */; };
 		FFC771072A3301E500C9DBD1 /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC771062A3301E500C9DBD1 /* LikeViewModel.swift */; };
 		FFD9921E2A2A4B840055359C /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9921D2A2A4B840055359C /* Owner.swift */; };
@@ -75,11 +80,16 @@
 		FF4D3C972A1F3A74000CAD35 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		FF4D3C9B2A1F3CD6000CAD35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FF4EFC142A25B50A00F8F82F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FF4F99412A4037E600778DD4 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
+		FF4F99442A40383700778DD4 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FF4F99472A4113E400778DD4 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		FF4F994A2A411AB500778DD4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FF63CAA52A36FF8B00DD3B69 /* CountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewModel.swift; sourceTree = "<group>"; };
 		FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeProfileCell.swift; sourceTree = "<group>"; };
 		FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		FF694E922A209B3E00D6B6B4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		FF6D883F2A3AF13100AC3230 /* MainListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewModel.swift; sourceTree = "<group>"; };
+		FF6D88412A3B035300AC3230 /* LikeWho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeWho.swift; sourceTree = "<group>"; };
 		FF72F0872A15C659004EDDB0 /* Mugonggan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mugonggan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugongganApp.swift; sourceTree = "<group>"; };
 		FF72F08C2A15C659004EDDB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +99,7 @@
 		FF72F0962A15C65A004EDDB0 /* Mugonggan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mugonggan.xcdatamodel; sourceTree = "<group>"; };
 		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FF949B4B2A28D53E00CDDACA /* UserHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewModel.swift; sourceTree = "<group>"; };
+		FF949B4B2A28D53E00CDDACA /* WaveSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveSettingViewModel.swift; sourceTree = "<group>"; };
 		FF949B4F2A28D5E300CDDACA /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		FF9F22A22A28711D00684EC1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
@@ -101,10 +111,10 @@
 		FF9F22B42A28794E00684EC1 /* EditUsernameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameCell.swift; sourceTree = "<group>"; };
 		FF9F22BC2A28824300684EC1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		FFA542482A1DDAFD001196F8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		FFBD42372A1B4F010077E020 /* MulistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulistView.swift; sourceTree = "<group>"; };
+		FFBD42372A1B4F010077E020 /* MainWaveImageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWaveImageList.swift; sourceTree = "<group>"; };
 		FFBD423E2A1C8D4C0077E020 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FFBD42402A1CFCF80077E020 /* MuDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuDetailView.swift; sourceTree = "<group>"; };
-		FFBD42422A1D0CD10077E020 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
+		FFBD42422A1D0CD10077E020 /* WaveSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveSettingView.swift; sourceTree = "<group>"; };
 		FFC64D272A259CCB00B9C39E /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
 		FFC771062A3301E500C9DBD1 /* LikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
 		FFD9921D2A2A4B840055359C /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
@@ -151,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				FF694E892A20870100D6B6B4 /* UserHomeProfileCell.swift */,
-				FFBD42422A1D0CD10077E020 /* UserHomeView.swift */,
+				FFBD42422A1D0CD10077E020 /* WaveSettingView.swift */,
 				FFF6E2912A28E48A0058ECD3 /* CoverImageView.swift */,
 				FFF6E2932A28E7DD0058ECD3 /* UserHomeNameCell.swift */,
 				FFE6F1E62A297705004C1981 /* MyUploadImageView.swift */,
@@ -174,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				FFBD42402A1CFCF80077E020 /* MuDetailView.swift */,
-				FFBD42372A1B4F010077E020 /* MulistView.swift */,
+				FFBD42372A1B4F010077E020 /* MainWaveImageList.swift */,
 				FFE6F1EF2A29E60E004C1981 /* LikeCell.swift */,
 			);
 			path = Main;
@@ -216,6 +226,22 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		FF4F99432A40382000778DD4 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				FF4F99442A40383700778DD4 /* UserManager.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		FF4F99462A4113C800778DD4 /* AuthManager */ = {
+			isa = PBXGroup;
+			children = (
+				FF4F99472A4113E400778DD4 /* AuthManager.swift */,
+			);
+			path = AuthManager;
+			sourceTree = "<group>";
+		};
 		FF72F07E2A15C659004EDDB0 = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +261,8 @@
 		FF72F0892A15C659004EDDB0 /* Mugonggan */ = {
 			isa = PBXGroup;
 			children = (
+				FF4F99462A4113C800778DD4 /* AuthManager */,
+				FF4F99432A40382000778DD4 /* Firestore */,
 				FF9F22BB2A28823200684EC1 /* Model */,
 				FF4D3C992A1F3CB3000CAD35 /* Utils */,
 				FF4D3C962A1F3A5F000CAD35 /* API */,
@@ -277,7 +305,7 @@
 		FF949B4A2A28D52700CDDACA /* UserHome */ = {
 			isa = PBXGroup;
 			children = (
-				FF949B4B2A28D53E00CDDACA /* UserHomeViewModel.swift */,
+				FF949B4B2A28D53E00CDDACA /* WaveSettingViewModel.swift */,
 				FF63CAA52A36FF8B00DD3B69 /* CountViewModel.swift */,
 			);
 			path = UserHome;
@@ -357,6 +385,9 @@
 				FF694E922A209B3E00D6B6B4 /* UserInfo.swift */,
 				FF949B4F2A28D5E300CDDACA /* Channel.swift */,
 				FFD9921D2A2A4B840055359C /* Owner.swift */,
+				FF6D88412A3B035300AC3230 /* LikeWho.swift */,
+				FF4F99412A4037E600778DD4 /* Wave.swift */,
+				FF4F994A2A411AB500778DD4 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -479,21 +510,23 @@
 				FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */,
 				FFF6E2922A28E48A0058ECD3 /* CoverImageView.swift in Sources */,
 				FFD992202A2A58070055359C /* MotionAnimationView.swift in Sources */,
+				FF6D88422A3B035300AC3230 /* LikeWho.swift in Sources */,
 				FFE6F1EB2A298BB7004C1981 /* Color.swift in Sources */,
 				FF4D3C892A1F224F000CAD35 /* UploadChannelPhotoView.swift in Sources */,
 				FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */,
 				FF72F0972A15C65A004EDDB0 /* Mugonggan.xcdatamodeld in Sources */,
 				FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */,
 				FF4D3C952A1F3139000CAD35 /* AuthViewModel.swift in Sources */,
-				FFBD42382A1B4F010077E020 /* MulistView.swift in Sources */,
+				FFBD42382A1B4F010077E020 /* MainWaveImageList.swift in Sources */,
 				FF9F22BD2A28824300684EC1 /* UserViewModel.swift in Sources */,
 				FF9F22A52A28713D00684EC1 /* EditProfileViewModel.swift in Sources */,
 				FF72F09F2A15F770004EDDB0 /* SignUpView.swift in Sources */,
 				FF4D3C912A1F2EE9000CAD35 /* CapsuleButton.swift in Sources */,
+				FF4F99482A4113E400778DD4 /* AuthManager.swift in Sources */,
 				FF949B502A28D5E300CDDACA /* Channel.swift in Sources */,
-				FF949B4C2A28D53E00CDDACA /* UserHomeViewModel.swift in Sources */,
+				FF949B4C2A28D53E00CDDACA /* WaveSettingViewModel.swift in Sources */,
 				FF4EFC152A25B50A00F8F82F /* Extensions.swift in Sources */,
-				FFBD42432A1D0CD10077E020 /* UserHomeView.swift in Sources */,
+				FFBD42432A1D0CD10077E020 /* WaveSettingView.swift in Sources */,
 				FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */,
 				FF9F22B52A28794E00684EC1 /* EditUsernameCell.swift in Sources */,
 				FFF6E2942A28E7DD0058ECD3 /* UserHomeNameCell.swift in Sources */,
@@ -501,15 +534,18 @@
 				FF9F22B12A28784500684EC1 /* SettingsCell.swift in Sources */,
 				FF63CAA62A36FF8B00DD3B69 /* CountViewModel.swift in Sources */,
 				FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */,
+				FF4F99422A4037E600778DD4 /* Wave.swift in Sources */,
 				FFD9921E2A2A4B840055359C /* Owner.swift in Sources */,
 				FFC771072A3301E500C9DBD1 /* LikeViewModel.swift in Sources */,
 				FF4D3C982A1F3A74000CAD35 /* ImageUploader.swift in Sources */,
+				FF4F994B2A411AB500778DD4 /* User.swift in Sources */,
 				FF9F22B32A28791700684EC1 /* EditProfileCell.swift in Sources */,
 				FF4D3C8F2A1F23A5000CAD35 /* IntroParagraph.swift in Sources */,
 				FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */,
 				FF9F22AF2A2877A800684EC1 /* EditProfileView.swift in Sources */,
 				FF9F22A32A28711D00684EC1 /* SettingView.swift in Sources */,
 				FF6D88402A3AF13100AC3230 /* MainListViewModel.swift in Sources */,
+				FF4F99452A40383700778DD4 /* UserManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

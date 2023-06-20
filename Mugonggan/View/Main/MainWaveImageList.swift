@@ -10,7 +10,8 @@ import FirebaseStorage
 import SDWebImageSwiftUI
 
 // FIXME: -앱재시동하면 유저정보가 날아가서 아이디가 보이지않음
-struct MulistView: View {
+struct MainWaveImageList: View {
+    
     
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
     @State private var gridColumn: Double = 3.0
@@ -21,9 +22,12 @@ struct MulistView: View {
     let haptics = UIImpactFeedbackGenerator(style: .medium)
     
     @State private var imageURLs:[URL] = []
+    
     @EnvironmentObject var viewModel: AuthViewModel
-    @EnvironmentObject var likeModel: LikeViewModel
+    
+    // @EnvironmentObject var likeModel: LikeViewModel
     @ObservedObject var mainListModel = MainListViewModel()
+    
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -66,14 +70,14 @@ struct MulistView: View {
                                             if isHeartFilled {
                                                 isFilled = true
                                                 if let imageUrl = matchingImageUrl {
-                                                    LikeViewModel(imageUrl,isFiiled: isFilled)
-                                                    print("보낸다 url \(imageUrl)")
+                                                    // LikeViewModel(imageUrl,isFiiled: isFilled)
+                                                    print("좋아요 보낸다 url \(imageUrl)")
                                                 }
                                             } else {
                                                 isFilled = false
                                                 if let imageUrl = matchingImageUrl {
-                                                    LikeViewModel(imageUrl,isFiiled: isFilled)
-                                                    print("보낸다 url \(imageUrl)")
+                                                    // LikeViewModel(imageUrl,isFiiled: isFilled)
+                                                    print("안좋아요 보낸다 url \(imageUrl)")
                                                 }
                                             }
                                           
@@ -126,10 +130,12 @@ struct MulistView: View {
                     .onAppear {
                         findMatchImageUrls()
                         gridSwitch()
+                        mainListModel.getLikeDocument()
+                       
                     }
                 }//: VSTACK
                 .padding(.horizontal, 10)
-                .navigationBarItems(trailing: NavigationLink(destination: UserHomeView(userHomeModel: UserHomeViewModel())){
+                .navigationBarItems(trailing: NavigationLink(destination: WaveSettingView(viewModel.currentUser ?? MOCK_USER)){
                     Text("\(viewModel.currentUser?.name ?? "")님 방가방가")
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(Color.black)
@@ -138,11 +144,11 @@ struct MulistView: View {
             // .background(MotionAnimationView())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } //: NAVAIGATION VIEW
-        .onAppear{
-            // mainListModel = MainListViewModel()
-            mainListModel.callAllChannel()
-            print("call")
-        }
+        // .onAppear{
+        //     // mainListModel = MainListViewModel()
+        //     mainListModel.callAllChannel()
+        //     print("call")
+        // }
     }
      
     
@@ -159,6 +165,7 @@ struct MulistView: View {
      */
     // MARK: -FOLDER IAMGE ALL
     func findMatchImageUrls() {
+        
         
         // guard let uid = viewModel.userSession?.uid else {return}
         // let imgRef = storageRef.child("\(FOLDER_CHANNEL_IMAGES)/")
@@ -198,7 +205,7 @@ struct MulistView: View {
 
 struct MulistView_Previews: PreviewProvider {
     static var previews: some View {
-        MulistView()
-            .environmentObject(AuthViewModel())
+        MainWaveImageList()
+            // .environmentObject(AuthViewModel())
     }
 }

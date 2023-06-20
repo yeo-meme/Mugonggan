@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import FirebaseStorage
 
-struct UserHomeView: View {
+struct WaveSettingView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -17,7 +17,7 @@ struct UserHomeView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     // !!!: ObservableObject 프로토콜을 준수하는 객체에 사용 : SwiftUI에서 상태 변경을 감지하고 해당 변경을 알리는 데 사용되는 프로토콜로 뷰를 자동 업데이트한다
-    @ObservedObject var userHomeModel : UserHomeViewModel
+    @ObservedObject var waveSettingViewModel : WaveSettingViewModel
     
     @State private var selectedImage: UIImage?
     @State private var uploadBtn: Image?
@@ -32,8 +32,14 @@ struct UserHomeView: View {
     
     @State private var imageURLs:[URL] = []
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
+    // init(_ user: UserInfo) {
+    //     self.viewModel = EditProfileViewModel(user)
+    // }
     
     
+    init(_ user: UserInfo) {
+        self.waveSettingViewModel = WaveSettingViewModel(user)
+    }
     
     var body: some View {
        
@@ -133,7 +139,6 @@ struct UserHomeView: View {
 
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        UserHomeView(userHomeModel: UserHomeViewModel())
-            .environmentObject(AuthViewModel())
+        WaveSettingView(AuthViewModel.shared.currentUser ?? MOCK_USER)
     }
 }

@@ -10,13 +10,20 @@ import Combine
 
 
 // MARK: - DETAIL VIEW CALL MODEL
-class UserHomeViewModel: ObservableObject {
-    @Published var userHome = [Channel]()
-   
+class WaveSettingViewModel: ObservableObject {
     
-    init(userHome: [Channel] = [Channel]()) {
-        self.userHome = userHome
+    @Published var user: UserInfo
+    
+    @Published var userHome = [Channel]()
+
+    
+    init(_ user: UserInfo) {
+        self.user = user
     }
+    
+    // init(userHome: [Channel] = [Channel]()) {
+    //     self.userHome = userHome
+    // }
 
     func getDetailPhoto() {
         let uid =

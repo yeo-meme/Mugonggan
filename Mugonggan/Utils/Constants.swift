@@ -12,6 +12,7 @@ let COLLECTION_MESSAGES = Firestore.firestore().collection("messages")
 let COLLECTION_CHANNELS = Firestore.firestore().collection("channels")
 let COLLECTION_CHANNELS_ZIP = Firestore.firestore().collection("channels_zip")
 let COLLECTION_GROUP_CHANNELS_ZIP = Firestore.firestore().collectionGroup("channels_zip")
+let COLLECTION_GROUP_CHANNELS_SUB_LIKE = Firestore.firestore().collection("SUB").document("LIKEWHO")
 
 
 
