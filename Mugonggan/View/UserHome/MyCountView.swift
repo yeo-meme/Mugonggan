@@ -9,18 +9,29 @@ import SwiftUI
 
 struct MyCountView: View {
     
-    @EnvironmentObject private var viewModel: AuthViewModel
-    @StateObject private var countViewModel: CountViewModel
+    // @EnvironmentObject private var viewModel: AuthViewModel
+    // @ObservedObject private var countViewModel: CountViewModel
+    
+    // init(_ user: UserInfo) {
+    //     self.viewModel = EditProfileViewModel(user)
+    // }
+    
+    
+    // init(_ user: UserInfo) {
+    //     self.countViewModel = CountViewModel(user)
+    // }
     
     // init(countViewModel: CountViewModel) {
     //     _countViewModel = StateObject(wrappedValue: countViewModel)
     // }
     
     // ???: - wrappedValue 랑 변수선언 궁금해
-    init() {
-        let viewModel = AuthViewModel()
-        self._countViewModel = StateObject(wrappedValue: CountViewModel(authViewModel: viewModel))
-    }
+    // init() {
+    //     let viewModel = AuthViewModel()
+    //     self._countViewModel = StateObject(wrappedValue: CountViewModel(authViewModel: viewModel))
+    // }
+    
+    
     
     var body: some View {
         VStack(spacing: 0){
@@ -91,8 +102,8 @@ struct MyCountView: View {
                                             .foregroundColor(Color.white)
                                             .overlay(
                                                 VStack{
-                                                    Text("\(countViewModel.totalLikes)")
-                                                        .font(.system(size: 15, weight: .semibold))
+                                                    // Text("\(countViewModel.totalLikes)")
+                                                        // .font(.system(size: 15, weight: .semibold))
                                                 }
                                             )
                                             .background(Circle().foregroundColor(Color.white))
@@ -123,8 +134,8 @@ struct MyCountView: View {
                                             .foregroundColor(Color.white)
                                             .overlay(
                                                 VStack{
-                                                    Text("\(countViewModel.totalBookmark)")
-                                                        .font(.system(size: 15, weight: .semibold))
+                                                    // Text("\(countViewModel.totalBookmark)")
+                                                    //     .font(.system(size: 15, weight: .semibold))
                                                 }
                                             )
                                             .background(Circle().foregroundColor(Color.white))
@@ -154,8 +165,8 @@ struct MyCountView: View {
                                             .foregroundColor(Color.white)
                                             .overlay(
                                                 VStack{
-                                                    Text("\(countViewModel.totalComments)")
-                                                        .font(.system(size: 15, weight: .semibold))
+                                                    // Text("\(countViewModel.totalComments)")
+                                                    //     .font(.system(size: 15, weight: .semibold))
                                                 }
                                             )
                                             .background(Circle().foregroundColor(Color.white))
@@ -179,16 +190,15 @@ struct MyCountView: View {
         }
         // MARK: -View Model
         .onAppear{
-            countViewModel.fetchUser()
+            // countViewModel.fetchUser()
         }
     }
 }
-
-struct MyCountView_Previews: PreviewProvider {
-    static var previews: some View {
-        // !!!: 잔깐만..여기서 nil을 던지자너
-        // let countViewModel = CountViewModel(userSession: nil)
-        return MyCountView()
-            .environmentObject(AuthViewModel())
-    }
-}
+// 
+// struct MyCountView_Previews: PreviewProvider {
+//     static var previews: some View {
+//         // !!!: 잔깐만..여기서 nil을 던지자너
+//         // let countViewModel = CountViewModel(userSession: nil)
+//         return MyCountView(AuthViewModel.shared.currentUser)
+//     }
+// }

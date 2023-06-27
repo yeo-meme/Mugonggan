@@ -31,9 +31,16 @@ class AuthViewModel: NSObject, ObservableObject {
         // fetchUser()
     }
     
+ 
     
     func fetchUser() {
-        guard let uid = userSession?.uid else { return }
+        var uid = ""
+        do {
+            uid = userSession?.uid ?? ""
+            print("AuthViewModel:LOGIN 성공시 petch User: \(uid)")
+        } catch {
+            print(error.localizedDescription)
+        }
         
         COLLECTION_USERS.document(uid).getDocument { snapshot, error in
             if let (errorMessage) = error?.localizedDescription {
@@ -45,7 +52,7 @@ class AuthViewModel: NSObject, ObservableObject {
             guard let user = try? snapshot?.data(as: UserInfo.self) else { return }
             self.currentUser = user
             
-            print("currentUser:\(self.currentUser) / userSession: \(self.userSession)")
+            print("AuthViewModel:LOGIN 패치 성공 여부 : \(self.currentUser)")
         }
     }
     
@@ -62,7 +69,7 @@ class AuthViewModel: NSObject, ObservableObject {
             guard let user = result?.user else { return }
             self.userSession = user
             guard let uid = self.userSession?.uid else {return}
-            print("login userSession : \(uid)")
+            print("AuthViewModel: login userSession : \(uid)")
             
             self.fetchUser()
         }

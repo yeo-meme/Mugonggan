@@ -69,8 +69,8 @@ struct WaveSettingView: View {
                                 Spacer()
                             }
                             .padding(.leading, 10)
-                            MyCountView()
-                                .environmentObject(viewModel)
+                            // MyCountView(viewModel.currentUser ?? MOCK_USER)
+                                // .environmentObject(viewModel)
                             // MyCountView(countViewModel: CountViewModel(userSession: viewModel.userSession))
                             //     .environmentObject(viewModel)
                         }

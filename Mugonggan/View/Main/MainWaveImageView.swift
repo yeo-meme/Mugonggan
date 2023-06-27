@@ -10,7 +10,7 @@ import FirebaseStorage
 import SDWebImageSwiftUI
 
 // FIXME: -앱재시동하면 유저정보가 날아가서 아이디가 보이지않음
-struct MainWaveImageList: View {
+struct MainWaveImageView: View {
     
     
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
@@ -24,10 +24,16 @@ struct MainWaveImageList: View {
     @State private var imageURLs:[URL] = []
     
     @EnvironmentObject var viewModel: AuthViewModel
+    // @ObservedObject var viewModel: AuthViewModel
+    // @ObservedObject var waveModel: WaveSettingViewModel
     
     // @EnvironmentObject var likeModel: LikeViewModel
-    @ObservedObject var mainListModel = MainListViewModel()
+    @ObservedObject var mainListModel:MainListViewModel
     
+    
+    init(_ user: UserInfo) {
+        self.mainListModel = MainListViewModel(user)
+    }
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -128,9 +134,9 @@ struct MainWaveImageList: View {
                         }
                     } //: GRID
                     .onAppear {
-                        findMatchImageUrls()
-                        gridSwitch()
-                        mainListModel.getLikeDocument()
+                        // findMatchImageUrls()
+                        // gridSwitch()
+                        // self.mainListModel.getLikeDocument()
                        
                     }
                 }//: VSTACK
@@ -203,9 +209,9 @@ struct MainWaveImageList: View {
 
 
 
-struct MulistView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainWaveImageList()
-            // .environmentObject(AuthViewModel())
-    }
-}
+// struct MulistView_Previews: PreviewProvider {
+//     static var previews: some View {
+//         MainWaveImageView(viewModel.currentUser ?? MOCK_USER)
+//             // .environmentObject(AuthViewModel())
+//     }
+// }

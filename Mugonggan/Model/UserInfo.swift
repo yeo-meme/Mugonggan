@@ -17,10 +17,10 @@ struct UserInfo: Identifiable, Decodable {
     //    var status: Status
 }
 
-let MOCK_USER = UserInfo(id: "000000",
-                         email: "test@gmail.com",
-                         name: "Username",
-                         password: "000000",
-                         uid: "111111111",
-                         profileImageUrl: "Profile Url")
+let MOCK_USER = UserInfo(id: "default:000000",
+                         email: "default:test@gmail.com",
+                         name: "default:Username",
+                         password: "default:000000",
+                         uid: "default:111111111",
+                         profileImageUrl: "default:Profile Url")
 

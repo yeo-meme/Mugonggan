@@ -8,6 +8,8 @@
 import SwiftUI
 
 // MARK: - MAIN VIEW MODEL
+// Detail View 호출시 해당 도큐먼트를 selectedUrl로 찾는다
+
 class ChannelViewModel: ObservableObject {
     
     @Published var channels = [Channel]()
@@ -81,6 +83,8 @@ class ChannelViewModel: ObservableObject {
         
     }
     
+    
+    //error Channel 데이터를 변환할 수 없습니다.
    // MARK: - CHANNEL INFO GET 채널모델 저장 and User콜렉션 호출을 위한 함수 호출
     func fetchDetail() {
         guard let doc = selectedDoc else {return}

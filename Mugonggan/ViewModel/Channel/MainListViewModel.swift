@@ -12,12 +12,18 @@ import FirebaseFirestore
 class MainListViewModel: ObservableObject {
     
     // ???: let 변수선언과 Published 선언의 차이점을 잘모르겠네
-    @Published var channel : [ Channel] = []
+    @Published var channel = [Channel]()
+    @Published var likewho = [LikeWho]()
     @Published var errorMessage = ""
     @Published var showErrorAlert = false
+    @Published var user: UserInfo
     
-    init() {
+  
+    //
+    init(_ user: UserInfo) {
+        self.user = user
         // fetch()
+        doc()
     }
     
     // func getAllWave() {
@@ -38,17 +44,38 @@ class MainListViewModel: ObservableObject {
     // }
     
     
+    //Document get test
+    func doc() {
+        
+        let userId = user.uid
+        
+        print("문서만불러오기 id: \(userId)")
+        
+        COLLECTION_CHANNELS_ZIP.document("c2b1W8znOdgP2J00irTD").getDocument { document, error in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    print("Document data: \(dataDescription)")
+                } else {
+                    print("Document does not exist")
+                }
+        }
+    }
+    
     
     func getLikeDocument() {
         
-        let userId = AuthViewModel.shared.currentUser
+        // let userId = AuthViewModel.shared.currentUser
         
-        guard let userId = AuthViewModel.shared.currentUser?.uid else { return}
+        // guard let userId = AuthViewModel.shared.currentUser?.uid else { return}
         
-        let docRef = COLLECTION_CHANNELS.document(userId).collection("SUB")
+        let uid = user.uid
+        print("MainListViewModel/ get LikeViewModel : \(uid)")
+        
+        let query = COLLECTION_CHANNELS
+            .document(uid).collection("SUB")
         
        
-        docRef.getDocuments{ snapshot, error in
+        query.getDocuments{ snapshot, error in
             if let errorMessage = error?.localizedDescription {
                 self.showErrorAlert = true
                 self.errorMessage = errorMessage
@@ -56,45 +83,35 @@ class MainListViewModel: ObservableObject {
             }
             
             guard let documents = snapshot?.documents else { return }
-            self.channel = documents.compactMap({ try? $0.data(as: Channel.self)})
+            
+            self.likewho = documents.compactMap({ try? $0.data(as: LikeWho.self)})
         }
-        print("likewho \(channel)")
-        // docRef.getDocument { (document, error) in
-        //         if let likewhoArray = document.data()?["likewho"] as? [String] {
-        //
-        //             print("like who: \(likewhoArray)")
-        //             // let likewho = LikeWho(likewho: likewhoArray)
-        //         } else {
-        //             print("likewho 값이 존재하지 않거나 유효하지 않습니다.")
-        //     }
-        // }
-        
-        
+        print("MainListViewModel/ likewho \(likewho)")
+
     }
+   
+    
+    
+    // 콜렉션 도큐먼트 call test
     func fetch() {
-        guard let currentUserId = AuthViewModel.shared.currentUser?.uid else {return}
-        
-        print("main fetch USer : \(currentUserId)")
-        
-        COLLECTION_CHANNELS_ZIP.getDocuments() { (snapshot, error) in
+
+        print("user in : \(user.uid)")
+        COLLECTION_CHANNELS_ZIP.getDocuments { snapshot, error in
             if let errorMessage = error?.localizedDescription {
                 self.showErrorAlert = true
                 self.errorMessage = errorMessage
                 return
             }
             
+            guard let documents = snapshot?.documents else { return }
             
-            for document in snapshot!.documents {
-                // print("\(document.documentID) => \(channel)")
-                // 데이터를 모델에 저장하는 로직을 추가
-                // self.channels.append(channel)
-                
-            }
+            print("도큐먼트 그대로: \(documents)")
             
-            guard let doc = snapshot?.documents else { return }
-            self.channel = doc.compactMap({ try? $0.data(as: Channel.self) })
-            print("모두 다 불러와 \(self.channel)")
+            self.channel = documents
+                .compactMap({ try? $0.data(as: Channel.self) })
+                // .filter({ $0.id != AuthViewModel.shared.currentUser?.id })
             
+            print("channel로 변환시 : \(self.channel)")
         }
     }
 }

@@ -101,26 +101,26 @@ struct LoginView: View {
                 
                 Spacer()
             }//: VStack
-            .sheet(isPresented: $showingSignUpView) {
-                SignUpView(isViewPresented: $isViewPresented).environment(\.managedObjectContext, self.managedObjectContext)
-                    .onDisappear{
-                        if isViewPresented {
-                            DispatchQueue.main.async {
-                                let newView = MainWaveImageList()
-                                let hostingVC = UIHostingController(rootView: newView)
-                                
-                                if let window = UIApplication.shared.windows.first {
-                                    
-                                    window.rootViewController = hostingVC
-                                    window.makeKeyAndVisible()
-                                }
-                            }
-                            print("isViewPresented true")
-                        } else {
-                            print("isViewPresented false")
-                        }
-                    }
-            }
+            // .sheet(isPresented: $showingSignUpView) {
+            //     SignUpView(isViewPresented: $isViewPresented).environment(\.managedObjectContext, self.managedObjectContext)
+            //         .onDisappear{
+            //             if isViewPresented {
+            //                 DispatchQueue.main.async {
+            //                     let newView = MainWaveImageView(viewModel.currentUser!)
+            //                     let hostingVC = UIHostingController(rootView: newView)
+            //
+            //                     if let window = UIApplication.shared.windows.first {
+            //
+            //                         window.rootViewController = hostingVC
+            //                         window.makeKeyAndVisible()
+            //                     }
+            //                 }
+            //                 print("isViewPresented true")
+            //             } else {
+            //                 print("isViewPresented false")
+            //             }
+            //         }
+            // }
         }
     }//: BODY VIEW
     
@@ -156,6 +156,5 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .environmentObject(AuthViewModel())
     }
 }
