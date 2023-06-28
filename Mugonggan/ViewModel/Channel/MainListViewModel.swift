@@ -12,18 +12,20 @@ import FirebaseFirestore
 class MainListViewModel: ObservableObject {
     
     // ???: let 변수선언과 Published 선언의 차이점을 잘모르겠네
-    @Published var channel = [Channel]()
+    @Published var channel = [ChannelZip]()
     @Published var likewho = [LikeWho]()
     @Published var errorMessage = ""
     @Published var showErrorAlert = false
     @Published var user: UserInfo
     
-  
+    
+    // TODO:
+    //1. 로드시 channel의 모든데이터 불러오기
     //
     init(_ user: UserInfo) {
         self.user = user
-        // fetch()
-        doc()
+        GetCollectionChannelZip()
+        // GetDocumentTest()
     }
     
     // func getAllWave() {
@@ -45,27 +47,27 @@ class MainListViewModel: ObservableObject {
     
     
     //Document get test
-    func doc() {
+    func GetDocumentTest() {
         
         let userId = user.uid
         
         print("문서만불러오기 id: \(userId)")
         
         COLLECTION_CHANNELS_ZIP.document("c2b1W8znOdgP2J00irTD").getDocument { document, error in
-                if let document = document, document.exists {
-                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                    print("Document data: \(dataDescription)")
-                } else {
-                    print("Document does not exist")
-                }
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+            } else {
+                print("Document does not exist")
+            }
         }
     }
     
     
+    //SUB 데이터출력 테스트
     func getLikeDocument() {
         
         // let userId = AuthViewModel.shared.currentUser
-        
         // guard let userId = AuthViewModel.shared.currentUser?.uid else { return}
         
         let uid = user.uid
@@ -74,7 +76,7 @@ class MainListViewModel: ObservableObject {
         let query = COLLECTION_CHANNELS
             .document(uid).collection("SUB")
         
-       
+        
         query.getDocuments{ snapshot, error in
             if let errorMessage = error?.localizedDescription {
                 self.showErrorAlert = true
@@ -87,14 +89,14 @@ class MainListViewModel: ObservableObject {
             self.likewho = documents.compactMap({ try? $0.data(as: LikeWho.self)})
         }
         print("MainListViewModel/ likewho \(likewho)")
-
+        
     }
-   
+    
     
     
     // 콜렉션 도큐먼트 call test
-    func fetch() {
-
+    func GetCollectionChannelZip() {
+        
         print("user in : \(user.uid)")
         COLLECTION_CHANNELS_ZIP.getDocuments { snapshot, error in
             if let errorMessage = error?.localizedDescription {
@@ -104,14 +106,12 @@ class MainListViewModel: ObservableObject {
             }
             
             guard let documents = snapshot?.documents else { return }
+            let channelTest = documents
+                .compactMap({ try? $0.data(as: ChannelZip.self) })
+           
             
-            print("도큐먼트 그대로: \(documents)")
-            
-            self.channel = documents
-                .compactMap({ try? $0.data(as: Channel.self) })
-                // .filter({ $0.id != AuthViewModel.shared.currentUser?.id })
-            
-            print("channel로 변환시 : \(self.channel)")
+            self.channel = channelTest
+            print("변환해 \(self.channel)")
         }
     }
 }

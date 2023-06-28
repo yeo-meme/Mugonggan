@@ -115,9 +115,9 @@ class AuthViewModel: NSObject, ObservableObject {
         guard let uid = currentUser?.uid else { return }
         guard let email = currentUser?.email else { return }
         guard let name = currentUser?.name else { return }
-        let likeCount = "2"
-        let bookmarkCount = "3"
-        let commentCount = "0"
+        let likeCount = 2
+        let bookmarkCount = 3
+        let commentCount = 0
         let currentTime = Timestamp()
         // let likewho = [LikeWho(likewho: "")]
         
