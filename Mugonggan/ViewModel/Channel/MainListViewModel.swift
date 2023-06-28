@@ -84,11 +84,24 @@ class MainListViewModel: ObservableObject {
                 return
             }
             
-            guard let documents = snapshot?.documents else { return }
             
-            self.likewho = documents.compactMap({ try? $0.data(as: LikeWho.self)})
+            guard let documents = snapshot?.documents else { return }
+            print("변환전 like data : \(documents)")
+            
+            for document in documents {
+                print("변환전 내용: \(document.data())")
+            }
+            
+            do {
+                let likeWhoSnap = documents.compactMap({ try? $0.data(as: LikeWho.self)})
+                self.likewho = likeWhoSnap
+                print("MainListViewModel/ likewho \(self.likewho)")
+            } catch {
+                print("error like who: \(error)")
+            }
+            
         }
-        print("MainListViewModel/ likewho \(likewho)")
+        
         
     }
     
@@ -108,7 +121,7 @@ class MainListViewModel: ObservableObject {
             guard let documents = snapshot?.documents else { return }
             let channelTest = documents
                 .compactMap({ try? $0.data(as: ChannelZip.self) })
-           
+            
             
             self.channel = channelTest
             print("변환해 \(self.channel)")
