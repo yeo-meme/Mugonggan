@@ -84,7 +84,6 @@ class MainListViewModel: ObservableObject {
                 return
             }
             
-            
             guard let documents = snapshot?.documents else { return }
             print("변환전 like data : \(documents)")
             
@@ -93,6 +92,7 @@ class MainListViewModel: ObservableObject {
             }
             
             do {
+                //변환에러는 나지 않는데
                 let likeWhoSnap = documents.compactMap({ try? $0.data(as: LikeWho.self)})
                 self.likewho = likeWhoSnap
                 print("MainListViewModel/ likewho \(self.likewho)")
