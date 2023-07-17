@@ -22,7 +22,8 @@ struct ContentView: View {
     var body: some View {
         Group {
             if (viewModel.userSession != nil) {
-                MainWaveImageView(viewModel.currentUser ?? MOCK_USER)
+                // MainWaveImageView(viewModel.currentUser ?? MOCK_USER)
+                MainWaveImageView()
             } else{
                 LoginView()
             }

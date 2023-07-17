@@ -28,13 +28,13 @@ struct MainWaveImageView: View {
     // @ObservedObject var waveModel: WaveSettingViewModel
     
     // @EnvironmentObject var likeModel: LikeViewModel
-    @ObservedObject var mainListModel:MainListViewModel
+    // @ObservedObject var mainListModel:MainListViewModel
     
     
-    init(_ user: UserInfo) {
-        self.mainListModel = MainListViewModel(user)
-        self.mainListModel.getLikeDocument()
-    }
+    // init(_ user: UserInfo) {
+    //     self.mainListModel = MainListViewModel(user)
+    //     self.mainListModel.getLikeDocument()
+    // }
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)

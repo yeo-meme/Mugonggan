@@ -20,8 +20,9 @@ struct MugongganApp: App {
     
     let persistenceController = PersistenceController.shared
     
-    @StateObject private var userData = UserData()
-    @State private var showingSignUpView = false
+    // @StateObject private var userData = UserData()
+    
+    // @State private var showingSignUpView = false
     
     init() {
         FirebaseApp.configure()
@@ -32,7 +33,7 @@ struct MugongganApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(userData)
+                // .environmentObject(userData)
                 .environmentObject(AuthViewModel.shared)
         }
         
