@@ -24,6 +24,7 @@ struct MainWaveImageView: View {
     @State private var imageURLs:[URL] = []
     
     @EnvironmentObject var viewModel: AuthViewModel
+    
     // @ObservedObject var viewModel: AuthViewModel
     // @ObservedObject var waveModel: WaveSettingViewModel
     
@@ -51,62 +52,62 @@ struct MainWaveImageView: View {
                         Text("로그아웃")
                     }
                     // MARK: - DETAILVIEW
-                    // NavigationLink(
-                    //     destination: MuDetailView(selectedImage: selectedImage) , label: {
-                    //         ZStack{
-                    //             WebImage(url:selectedImage)
-                    //                 .resizable()
-                    //                 .scaledToFill()
-                    //                 .clipShape(Circle())
-                    //                 .frame(width: 330, height: 330)
-                    //                 .overlay(Circle().stroke(Color.red, lineWidth: 8))
-                    //             VStack {
-                    //                 Spacer()
-                    //                 HStack {
-                    //                     Spacer()
-                    //                     // MARK: - LIKE BTN
-                    //                     var matchingImageUrl: String? = ""
-                    //                     Button(action: {
-                    //                         isHeartFilled.toggle()
-                    //
-                    //                         if let matchImageUrl = selectedImage?.absoluteString {
-                    //                             self.imageUrl = matchImageUrl
-                    //                             matchingImageUrl = matchImageUrl
-                    //                         }
-                    //
-                    //                         if isHeartFilled {
-                    //                             isFilled = true
-                    //                             if let imageUrl = matchingImageUrl {
-                    //                                 // LikeViewModel(imageUrl,isFiiled: isFilled)
-                    //                                 print("좋아요 보낸다 url \(imageUrl)")
-                    //                             }
-                    //                         } else {
-                    //                             isFilled = false
-                    //                             if let imageUrl = matchingImageUrl {
-                    //                                 // LikeViewModel(imageUrl,isFiiled: isFilled)
-                    //                                 print("안좋아요 보낸다 url \(imageUrl)")
-                    //                             }
-                    //                         }
-                    //
-                    //                     }, label: {
-                    //                         Image(systemName: isHeartFilled ? "heart.fill" : "heart")
-                    //                             .resizable()
-                    //                             .frame(width: 30,height: 30)
-                    //                         .foregroundColor(.red)
-                    //                         .padding(8)
-                    //                         .padding(.trailing, 80)
-                    //                         .padding(.bottom, 30)
-                    //                     })
-                    //                 }
-                    //             }
-                    //         }
-                    //         // MARK: - 사진이 바뀔때 하트 초기화하기
-                    //         .onChange(of: selectedImage) {
-                    //             newValue in
-                    //                 isHeartFilled = false
-                    //                 isFilled = false
-                    //         }
-                    //     })
+                    NavigationLink(
+                        destination: MuDetailView(selectedImage: selectedImage) , label: {
+                            ZStack{
+                                WebImage(url:selectedImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 330, height: 330)
+                                    .overlay(Circle().stroke(Color.red, lineWidth: 8))
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        // MARK: - LIKE BTN
+                                        var matchingImageUrl: String? = ""
+                                        Button(action: {
+                                            isHeartFilled.toggle()
+                    
+                                            if let matchImageUrl = selectedImage?.absoluteString {
+                                                self.imageUrl = matchImageUrl
+                                                matchingImageUrl = matchImageUrl
+                                            }
+                    
+                                            if isHeartFilled {
+                                                isFilled = true
+                                                if let imageUrl = matchingImageUrl {
+                                                    // LikeViewModel(imageUrl,isFiiled: isFilled)
+                                                    print("좋아요 보낸다 url \(imageUrl)")
+                                                }
+                                            } else {
+                                                isFilled = false
+                                                if let imageUrl = matchingImageUrl {
+                                                    // LikeViewModel(imageUrl,isFiiled: isFilled)
+                                                    print("안좋아요 보낸다 url \(imageUrl)")
+                                                }
+                                            }
+                    
+                                        }, label: {
+                                            Image(systemName: isHeartFilled ? "heart.fill" : "heart")
+                                                .resizable()
+                                                .frame(width: 30,height: 30)
+                                            .foregroundColor(.red)
+                                            .padding(8)
+                                            .padding(.trailing, 80)
+                                            .padding(.bottom, 30)
+                                        })
+                                    }
+                                }
+                            }
+                            // MARK: - 사진이 바뀔때 하트 초기화하기
+                            .onChange(of: selectedImage) {
+                                newValue in
+                                    isHeartFilled = false
+                                    isFilled = false
+                            }
+                        })
                    
                     
                     // MARK: - SLIDER
@@ -209,9 +210,9 @@ struct MainWaveImageView: View {
 
 
 
-// struct MulistView_Previews: PreviewProvider {
-//     static var previews: some View {
-//         MainWaveImageView(viewModel.currentUser ?? MOCK_USER)
-//             // .environmentObject(AuthViewModel())
-//     }
-// }
+struct MulistView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainWaveImageView()
+            // .environmentObject(AuthViewModel())
+    }
+}
