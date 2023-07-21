@@ -14,7 +14,7 @@ struct LoginView: View {
     
     @EnvironmentObject var viewModel: AuthViewModel
     
-    @EnvironmentObject private var userData: UserData
+    // @EnvironmentObject private var userData: UserData
     
     @State private var email:String = ""
     @State private var password:String = ""
@@ -79,8 +79,10 @@ struct LoginView: View {
                                 Text("로그인")
                             }
                             .frame(width: 100, height: 70)
+                         
+                            
                             Button(action: {
-                                userData.isLoggedIn = false
+                                // userData.isLoggedIn = false
                                 self.showingSignUpView.toggle()
                                 
                             }) {
@@ -101,26 +103,26 @@ struct LoginView: View {
                 
                 Spacer()
             }//: VStack
-            // .sheet(isPresented: $showingSignUpView) {
-            //     SignUpView(isViewPresented: $isViewPresented).environment(\.managedObjectContext, self.managedObjectContext)
-            //         .onDisappear{
-            //             if isViewPresented {
-            //                 DispatchQueue.main.async {
-            //                     let newView = MainWaveImageView(viewModel.currentUser!)
-            //                     let hostingVC = UIHostingController(rootView: newView)
-            //
-            //                     if let window = UIApplication.shared.windows.first {
-            //
-            //                         window.rootViewController = hostingVC
-            //                         window.makeKeyAndVisible()
-            //                     }
-            //                 }
-            //                 print("isViewPresented true")
-            //             } else {
-            //                 print("isViewPresented false")
-            //             }
-            //         }
-            // }
+            .sheet(isPresented: $showingSignUpView) {
+                SignUpView(isViewPresented: $isViewPresented).environment(\.managedObjectContext, self.managedObjectContext)
+                    // .onDisappear{
+                    //     if isViewPresented {
+                    //         DispatchQueue.main.async {
+                    //             let newView = MainWaveImageView(viewModel.currentUser!)
+                    //             let hostingVC = UIHostingController(rootView: newView)
+                    //
+                    //             if let window = UIApplication.shared.windows.first {
+                    //
+                    //                 window.rootViewController = hostingVC
+                    //                 window.makeKeyAndVisible()
+                    //             }
+                    //         }
+                    //         print("isViewPresented true")
+                    //     } else {
+                    //         print("isViewPresented false")
+                    //     }
+                    // }
+            }
         }
     }//: BODY VIEW
     

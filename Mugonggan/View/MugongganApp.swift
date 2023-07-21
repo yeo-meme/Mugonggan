@@ -11,9 +11,9 @@ import FirebaseCore
 import FirebaseFirestore
 
 
-class UserData: ObservableObject {
-    @Published var isLoggedIn: Bool = false
-}
+// class UserData: ObservableObject {
+//     @Published var isLoggedIn: Bool = false
+// }
 
 @main
 struct MugongganApp: App {

@@ -18,7 +18,7 @@ struct SignUpView: View {
     //View 컨텍스트에서 제공되는 환경 속성입니다. 이 속성은 현재 뷰가 표시되는 방식과 관련된 정보를 제공
     // 프로퍼티 래퍼는 구조체에서 사용될 때만 사용할 수 있습니다
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject private var userData: UserData
+    // @EnvironmentObject private var userData: UserData
     
     @Binding var isViewPresented :Bool
     

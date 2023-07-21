@@ -24,9 +24,9 @@ struct ChannelImageListView: View {
     @State private var imageURLs:[URL] = []
     
     @EnvironmentObject var viewModel: AuthViewModel
-    
-    @ObservedObject var channelViewModel = ChannelListViewModel()
     @ObservedObject var likeViewModel = LikeCountViewModel()
+    @ObservedObject var channelViewModel = ChannelListViewModel()
+   
     
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
@@ -75,13 +75,13 @@ struct ChannelImageListView: View {
                                             if isHeartFilled {
                                                 isFilled = true
                                                 if let imageUrl = matchingImageUrl {
-                                                    likeViewModel.getChannel(imageUrl,true)
+                                                    likeViewModel.getChannel(imageUrl,true,viewModel.currentUser)
                                                 }
                                             } else {
                                                 isFilled = false
                                                 if let imageUrl = matchingImageUrl {
                                                     
-                                                    likeViewModel.getChannel(imageUrl,false)
+                                                    likeViewModel.getChannel(imageUrl,false,viewModel.currentUser)
                                                     print("안좋아요 보낸다 url \(imageUrl)")
                                                 }
                                             }

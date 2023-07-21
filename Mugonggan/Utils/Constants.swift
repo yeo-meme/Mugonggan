@@ -26,6 +26,7 @@ let KEY_CHANNEL_IMAGE_URL = "channelImageUrl"
 
 let KEY_LIKE_COUNT = "likeCount"
 let KEY_COMMENT_COUNT = "commentCount"
+let KEY_LIKE_WHO = "likewho"
 
 let FOLDER_PROFILE_IMAGES = "profile_images"
 let FOLDER_CHANNEL_IMAGES = "channel_images"
