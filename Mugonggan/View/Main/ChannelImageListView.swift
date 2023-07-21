@@ -10,7 +10,7 @@ import FirebaseStorage
 import SDWebImageSwiftUI
 
 // FIXME: -앱재시동하면 유저정보가 날아가서 아이디가 보이지않음
-struct MainWaveImageView: View {
+struct ChannelImageListView: View {
     
     
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
@@ -25,17 +25,9 @@ struct MainWaveImageView: View {
     
     @EnvironmentObject var viewModel: AuthViewModel
     
-    // @ObservedObject var viewModel: AuthViewModel
-    // @ObservedObject var waveModel: WaveSettingViewModel
+    @ObservedObject var channelViewModel = ChannelListViewModel()
+    @ObservedObject var likeViewModel = LikeCountViewModel()
     
-    // @EnvironmentObject var likeModel: LikeViewModel
-    // @ObservedObject var mainListModel:MainListViewModel
-    
-    
-    // init(_ user: UserInfo) {
-    //     self.mainListModel = MainListViewModel(user)
-    //     self.mainListModel.getLikeDocument()
-    // }
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -43,6 +35,11 @@ struct MainWaveImageView: View {
     @State private var isHeartFilled = false
     @State private var isFilled = false
     @State private var imageUrl: String?
+    
+    // init(_ imageUrl: String,_ isFilled: Bool) {
+    //     self.likeViewModel = LikeCountViewModel(imageUrl, isFiiled: isFilled)
+    //    }
+   
     
     var body: some View {
         NavigationView {
@@ -78,13 +75,13 @@ struct MainWaveImageView: View {
                                             if isHeartFilled {
                                                 isFilled = true
                                                 if let imageUrl = matchingImageUrl {
-                                                    // LikeViewModel(imageUrl,isFiiled: isFilled)
-                                                    print("좋아요 보낸다 url \(imageUrl)")
+                                                    likeViewModel.getChannel(imageUrl,true)
                                                 }
                                             } else {
                                                 isFilled = false
                                                 if let imageUrl = matchingImageUrl {
-                                                    // LikeViewModel(imageUrl,isFiiled: isFilled)
+                                                    
+                                                    likeViewModel.getChannel(imageUrl,false)
                                                     print("안좋아요 보낸다 url \(imageUrl)")
                                                 }
                                             }
@@ -199,7 +196,7 @@ struct MainWaveImageView: View {
                             imageURLs.append(url)
                         }
                         selectedImage = imageURLs[0]
-                        print("첫번째 디테일 이미지 셀렉티드 url: \(selectedImage)")
+                        print("Channel LIst VIewModel: 첫번째 디테일 이미지 셀렉티드 url: \(selectedImage)")
                     }
                 }
             }
@@ -209,10 +206,10 @@ struct MainWaveImageView: View {
 
 
 
-
-struct MulistView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainWaveImageView()
-            // .environmentObject(AuthViewModel())
-    }
-}
+// 
+// struct MulistView_Previews: PreviewProvider {
+//     static var previews: some View {
+//         MainWaveImageView()
+//             // .environmentObject(AuthViewModel())
+//     }
+// }

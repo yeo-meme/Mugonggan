@@ -18,10 +18,8 @@ struct Channel: Identifiable, Decodable {
     let name: String
     let uid: String
     let timestamp : Timestamp
-    let likeWho : LikeWho
 }
 
-let likeWho = LikeWho(likewho: [])
 
 let MOCK_CHANNEL = Channel(id: "documentID",
                         bookmarkCount: 0,
@@ -31,7 +29,6 @@ let MOCK_CHANNEL = Channel(id: "documentID",
                       email: "test@gmail.com",
                       name: "usernickName",
                       uid: "Auth-register-uid",
-                      timestamp: Timestamp(),
-                        likeWho: likeWho
+                      timestamp: Timestamp()
 )
 

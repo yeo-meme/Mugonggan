@@ -9,7 +9,6 @@ import SwiftUI
 
 struct UploadChannelPhotoView: View {
   
-   
     
     @State private var imagePickerPresented : Bool = false
     @State private var selectedImage: UIImage?

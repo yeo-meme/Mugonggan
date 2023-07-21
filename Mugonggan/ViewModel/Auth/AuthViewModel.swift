@@ -19,6 +19,8 @@ class AuthViewModel: NSObject, ObservableObject {
     @Published var errorMessage = ""
     @Published var showErrorAlert = false
     
+    @Published var sessionId = ""
+    
     private var tempCurrentUser: Firebase.User?
     var tempCurrentUsername = ""
     
@@ -28,7 +30,9 @@ class AuthViewModel: NSObject, ObservableObject {
     override init() {
         super.init()
         userSession = Auth.auth().currentUser
-        // fetchUser()
+        sessionId = UserDefaults.standard.string(forKey: "User") ?? ""
+        print("session Id : \(sessionId)")
+ 
     }
     
  
@@ -38,6 +42,10 @@ class AuthViewModel: NSObject, ObservableObject {
         do {
             uid = userSession?.uid ?? ""
             print("AuthViewModel:LOGIN 성공시 petch User: \(uid)")
+            print("UserDefaults.standard : \(UserDefaults.standard)")
+          
+            UserDefaults.standard.set(uid, forKey: "User")
+            
         } catch {
             print(error.localizedDescription)
         }
@@ -115,21 +123,19 @@ class AuthViewModel: NSObject, ObservableObject {
         guard let uid = currentUser?.uid else { return }
         guard let email = currentUser?.email else { return }
         guard let name = currentUser?.name else { return }
+      
         let likeCount = 2
         let bookmarkCount = 3
         let commentCount = 0
         let currentTime = Timestamp()
-        // let likewho = [LikeWho(likewho: "")]
+        let likewho = [String]()
         
         // let folder = "hey/somthing"
         // print("폴더 \(folder)")
         
         // MARK: - 사용자별  CHANNEL 분류 콜렉션
         let collection_dc_add = COLLECTION_CHANNELS.document(uid)
-        
-        let subWhoLikeCollection = collection_dc_add.collection("SUB").document("likewho")
-        
-        
+     
         // MARK: - CHANNEL IMAGE UPLOAD STORAGE
         ImageUploader.uploadImage(image: image, folderName: FOLDER_CHANNEL_IMAGES,uid: uid) { imageUrl in
             
@@ -141,17 +147,13 @@ class AuthViewModel: NSObject, ObservableObject {
                 "likeCount":likeCount,
                 "bookmarkCount":bookmarkCount,
                 "commentCount":commentCount,
-                "timestamp": currentTime
-                // "likewho" : likewho
+                "timestamp": currentTime,
+                "likewho" : likewho
             ]
-            
-            let subData : [String: Any] = [
-                "likewho": ""
-            ]
-            
+       
       
-            // MARK: - ALL CHANNEL ZIP COLLECTION ZIP ADD
-            COLLECTION_CHANNELS_ZIP.addDocument(data: data) {error in
+            // MARK: - ALL CHANNEL COLLECTION ZIP ADD
+            COLLECTION_CHANNELS.addDocument(data: data) {error in
                 if let errorMessage = error?.localizedDescription {
                     self.showErrorAlert = true
                     self.errorMessage = errorMessage
@@ -161,25 +163,7 @@ class AuthViewModel: NSObject, ObservableObject {
                 
                 
             }
-            
-            collection_dc_add.setData(data){ error in
-                if let errorMessage = error?.localizedDescription {
-                    self.showErrorAlert = true
-                    self.errorMessage = errorMessage
-                    completion(false)
-                    return
-                }
-            }
-            
-            //test collection_dc_add
-            subWhoLikeCollection.setData(subData) { error in
-                if let errorMessage = error?.localizedDescription {
-                    self.showErrorAlert = true
-                    self.errorMessage = errorMessage
-                    completion(false)
-                    return
-                }
-            }
+         
             
             self.currentUser?.profileImageUrl = imageUrl
             self.userSession = Auth.auth().currentUser
@@ -194,6 +178,8 @@ class AuthViewModel: NSObject, ObservableObject {
         self.currentUser = nil
         self.userSession = nil
         self.tempCurrentUser = nil
+        UserDefaults.standard.removeObject(forKey: "User")
+        self.sessionId = ""
         try? Auth.auth().signOut()
     }
     

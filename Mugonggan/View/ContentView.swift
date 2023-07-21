@@ -9,21 +9,18 @@ import SwiftUI
 import CoreData
 import FirebaseCore
 import FirebaseFirestore
+import Foundation
 
 
 struct ContentView: View {
-    // @Environment(\.managedObjectContext) private var viewContext
-    // @StateObject private var userData = UserData()
-    // @State private var showingSignUpView = false
+
     @EnvironmentObject var viewModel: AuthViewModel
-    
     
     
     var body: some View {
         Group {
             if (viewModel.userSession != nil) {
-                // MainWaveImageView(viewModel.currentUser ?? MOCK_USER)
-                MainWaveImageView()
+                ChannelImageListView()
             } else{
                 LoginView()
             }

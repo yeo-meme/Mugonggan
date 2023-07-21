@@ -11,15 +11,19 @@ import Kingfisher
 
 struct MyUploadImageView: View {
     
-    @EnvironmentObject var viewModel: AuthViewModel
+    // @EnvironmentObject var viewModel: AuthViewModel
+    @ObservedObject var viewModel : ChannelUploadViewModel
+    
+    // @Published var showErrorAlert = false
+    // @Published let erroMessage = ""
     
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
-    
     
     @State private var imageURLs:[URL] = []
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
     
     var body: some View {
+       
         LazyVGrid(columns: columns) {
             ForEach(imageURLs, id: \.self) { imageName in
                 KFImage(imageName)
@@ -30,44 +34,59 @@ struct MyUploadImageView: View {
             }
         }
         .onAppear{
-            fetchImageUrls()
         }
         .padding()
     }
     
     
     // MARK: - FETCH URL
-    func fetchImageUrls() {
-        guard let uid = viewModel.currentUser?.uid else {
-            return
-        }
- 
-        COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{( querySnapshot, error) in
-            if let error = error {
-                print("Failed to get documents: \(error.localizedDescription)")
-                return
-            }
-
-            guard let documents = querySnapshot?.documents else {
-                print("No documents found")
-                     return
-            }
-
-            for document in documents {
-                let data = document.data()
-                if let channelUrl = data[KEY_CHANNEL_IMAGE_URL] as? String {
-                    if let url = URL(string: channelUrl) {
-                        imageURLs.append(url)
-                        print("Profile URL: \(channelUrl)")
-                    }
-                }
-            }
-        }
-    }
+    // func fetchImageUrls() {
+    //     guard let uid = viewModel.currentUser?.uid else {
+    //         return
+    //     }
+    //     
+    //     COLLECTION_CHANNELS.document(uid).getDocument{
+    //         snapshot, error in
+    //         if let (erroMessage) =
+    //             error?.localizedDescription {
+    //             self.showErrorAlert = true
+    //             self.erroMessage = erroMessage
+    //             return
+    //         }
+    //         
+    //         guard let channel = try? snapshot?.data(as:Channel.self) else {return}
+    //         
+    //         print("channel:"+ channel)
+    //     }
+    //     
+    //     
+    //     //
+    //     // COLLECTION_CHANNELS.document(uid).collection("SUB").getDocuments{( querySnapshot, error) in
+    //     //     if let error = error {
+    //     //         print("Failed to get documents: \(error.localizedDescription)")
+    //     //         return
+    //     //     }
+    //     //
+    //     //     guard let documents = querySnapshot?.documents else {
+    //     //         print("No documents found")
+    //     //              return
+    //     //     }
+    //     //
+    //     //     for document in documents {
+    //     //         let data = document.data()
+    //     //         if let channelUrl = data[KEY_CHANNEL_IMAGE_URL] as? String {
+    //     //             if let url = URL(string: channelUrl) {
+    //     //                 imageURLs.append(url)
+    //     //                 print("Profile URL: \(channelUrl)")
+    //     //             }
+    //     //         }
+    //     //     }
+    //     // }
+    // }
 }
 
 struct MyUploadImageView_Previews: PreviewProvider {
     static var previews: some View {
-        MyUploadImageView()
+        MyUploadImageView(viewModel: ChannelUploadViewModel())
     }
 }

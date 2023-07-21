@@ -23,46 +23,46 @@ class ChannelViewModel: ObservableObject {
     
     init(selectedImage: URL?) {
         self.selectedImage = selectedImage?.absoluteString
-        findMatchDoc()
+        // findMatchDoc()
     }
     
     // MARK: - SELECTEDURL로 일치 채널콜렉션 찾기
-    func findMatchDoc() {
-        COLLECTION_CHANNELS_ZIP.getDocuments{ [weak self ](snapshot, error) in
-            
-            guard let documents = snapshot?.documents else {
-                print("검색 결과가 없습니다.")
-                return
-            }
-         
-            if let selectedImage = self?.selectedImage {
-                let selectedDoc = documents.first { document in
-                    let data = document.data()
-                    if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String,
-                       fieldValue == selectedImage {
-                        return true
-                    }
-                    return false
-                }
-                self?.selectedDoc = selectedDoc?.documentID
-                print("이미지 주소같은 채널 ID get : \(selectedDoc)")
-            }
-            // ???: 반복 호출이 많아서 구문을 바꿨더니 호출 수가 급 줄었다 이유가 뭔지 찾아야한다
-            // TODO: for문대신 documents.first 사용하기 : DONE
-            // for document in documents {
-            //     let data = document.data()
-            //     print("채널 콜렉션 모두 get´ \(data)")
-            //
-            //
-            //     if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String {
-            //         if let url = URL(string: fieldValue), url.absoluteString == self.selectedImage {
-            //             self.selectedDoc = document.documentID
-            //         }
-            //     }
-            // }
-            self?.fetchDetail()
-        }
-    }
+    // func findMatchDoc() {
+    //     COLLECTION_CHANNELS_ZIP.getDocuments{ [weak self ](snapshot, error) in
+    //
+    //         guard let documents = snapshot?.documents else {
+    //             print("검색 결과가 없습니다.")
+    //             return
+    //         }
+    //
+    //         if let selectedImage = self?.selectedImage {
+    //             let selectedDoc = documents.first { document in
+    //                 let data = document.data()
+    //                 if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String,
+    //                    fieldValue == selectedImage {
+    //                     return true
+    //                 }
+    //                 return false
+    //             }
+    //             self?.selectedDoc = selectedDoc?.documentID
+    //             print("이미지 주소같은 채널 ID get : \(selectedDoc)")
+    //         }
+    //         // ???: 반복 호출이 많아서 구문을 바꿨더니 호출 수가 급 줄었다 이유가 뭔지 찾아야한다
+    //         // TODO: for문대신 documents.first 사용하기 : DONE
+    //         // for document in documents {
+    //         //     let data = document.data()
+    //         //     print("채널 콜렉션 모두 get´ \(data)")
+    //         //
+    //         //
+    //         //     if let fieldValue = data[KEY_CHANNEL_IMAGE_URL] as? String {
+    //         //         if let url = URL(string: fieldValue), url.absoluteString == self.selectedImage {
+    //         //             self.selectedDoc = document.documentID
+    //         //         }
+    //         //     }
+    //         // }
+    //         self?.fetchDetail()
+    //     }
+    // }
     
     // MARK: - 채널정보와 일치하는 USER콜렉션 get
     func ownerFetch(uid: String) {

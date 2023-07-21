@@ -83,7 +83,8 @@ struct WaveSettingView: View {
                                 Spacer()
                             }
                             .padding(.leading, 10)
-                            MyUploadImageView()
+                            //view로 보여지는 이미지
+                            MyUploadImageView(viewModel: ChannelUploadViewModel())
                         }
                     }
                     .padding(.top, 20)
