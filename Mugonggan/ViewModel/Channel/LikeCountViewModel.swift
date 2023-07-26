@@ -24,7 +24,14 @@ class LikeCountViewModel: ObservableObject {
     var user: UserInfo?
     var likeUser: [String]?
     
+    func resetLikeUser() {
+        self.likeUser = []
+        self.channel = []
+    }
     
+    func addToLikeUser(_ name:String) {
+        self.likeUser?.append(name)
+    }
     
     // MARK: - LIKE UPDATE
     //who : 누가 좋아요를 눌렀는지
@@ -34,8 +41,8 @@ class LikeCountViewModel: ObservableObject {
             return
         }
         
+        resetLikeUser()
         self.user = userInfo
-        
         var presentUid = ""
         
         let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: imageUrl)
@@ -52,22 +59,19 @@ class LikeCountViewModel: ObservableObject {
             
             for document in doc {
                 let documentID = document.documentID
-                presentUid = documentID
-                
-                
+                presentUid = documentID // 업데이트도큐먼트아이디
                 print("document data :\(document.data())")// 채널콜렉션 이미지의 도큐먼트 ID
             }
             
             let temp = doc.compactMap{ try? $0.data(as: Channel.self) }
             self.channel.append(contentsOf: temp)
+          
+            //이미지정보
+            for uidArr in self.channel {
+                self.likeUser?.append(contentsOf: uidArr.likewho)
+            }
             
-            DispatchQueue.main.async { // 메인 스레드에서 실행되도록 변경
-                
-                //likwho uid 뽑아놓기
-                for fromLikeUser in self.channel {
-                    self.likeUser?.append(fromLikeUser.uid)
-                }
-                
+            DispatchQueue.main.async { [self] in // 메인 스레드에서 실행되도록 변경
                 if (isState) {
                     self.plusLikeCountUpdate(presentUid)
                 } else {
@@ -75,30 +79,32 @@ class LikeCountViewModel: ObservableObject {
                 }
             }
         }
+        
     }
     
     func miusUpdate(_ uid:String) {
         
+        //카운팅정보
         var operateCount=0
-        
         for item in self.channel {
             operateCount = item.likeCount
         }
         
         operateCount -= 1
         
-        //싫어요 아이디 삭제
+
         let userUid = self.user?.uid
-        likeUser?.removeAll { $0 == userUid }
+        // self.likeUser?.removeAll{ $0 == userUid }
+        
+        if let indexToRemove = likeUser?.firstIndex(where: { $0 == userUid}) {
+            likeUser?.remove(at: indexToRemove)
+        }
+        
         
         let data: [String: Any] = [
             KEY_LIKE_COUNT: operateCount,
-            KEY_LIKE_WHO: likeUser
+            KEY_LIKE_WHO: self.likeUser
         ]
-        
-        
-    
-        
         
         COLLECTION_CHANNELS.document(uid).updateData(data) { error in
             if let error = error {
@@ -107,6 +113,8 @@ class LikeCountViewModel: ObservableObject {
         }
     }
     
+    
+    //uid 채널이미지 주인
     func plusLikeCountUpdate(_ uid:String) {
         
         var operateCount=0
@@ -115,20 +123,9 @@ class LikeCountViewModel: ObservableObject {
             operateCount = item.likeCount
         }
         
-        //이름 , 프로필 사진 url , uid
-        
+        //사용자 : 이름 , 프로필 사진 url , uid
         guard let likeUserUid = self.user?.uid else {return}
-        
-        print("user iD : \(likeUserUid)")
-       
-        //옵셔널 배열이면 값이 들어가지않음
-        if self.likeUser == nil {
-            self.likeUser = []
-        }
-        
-        self.likeUser?.append(likeUserUid)
-        
-        print("like User \(self.likeUser)")
+        addToLikeUser(likeUserUid)
         
         
         operateCount += 1

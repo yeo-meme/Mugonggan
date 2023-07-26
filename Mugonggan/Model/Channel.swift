@@ -17,6 +17,7 @@ struct Channel: Identifiable, Decodable {
     let email: String
     let name: String
     let uid: String
+    let likewho : [String]
     let timestamp : Timestamp
 }
 
@@ -29,6 +30,7 @@ let MOCK_CHANNEL = Channel(id: "documentID",
                       email: "test@gmail.com",
                       name: "usernickName",
                       uid: "Auth-register-uid",
+                      likewho: ["uid"],
                       timestamp: Timestamp()
 )
 
