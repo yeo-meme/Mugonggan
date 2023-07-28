@@ -26,7 +26,6 @@
 		FF694E8F2A20898400D6B6B4 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */; };
 		FF694E932A209B3E00D6B6B4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF694E922A209B3E00D6B6B4 /* UserInfo.swift */; };
 		FF6D88402A3AF13100AC3230 /* ChannelListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D883F2A3AF13100AC3230 /* ChannelListViewModel.swift */; };
-		FF6D88422A3B035300AC3230 /* LikeWho.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6D88412A3B035300AC3230 /* LikeWho.swift */; };
 		FF72F08B2A15C659004EDDB0 /* MugongganApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */; };
 		FF72F08D2A15C659004EDDB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72F08C2A15C659004EDDB0 /* ContentView.swift */; };
 		FF72F08F2A15C65A004EDDB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF72F08E2A15C65A004EDDB0 /* Assets.xcassets */; };
@@ -43,7 +42,6 @@
 		FF72F11F2A1670B8004EDDB0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F11E2A1670B8004EDDB0 /* FirebaseFirestoreSwift */; };
 		FF72F1212A1670B8004EDDB0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1202A1670B8004EDDB0 /* FirebaseMessaging */; };
 		FF72F1232A1670B8004EDDB0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FF72F1222A1670B8004EDDB0 /* FirebaseStorage */; };
-		FF949B4C2A28D53E00CDDACA /* WaveSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF949B4B2A28D53E00CDDACA /* WaveSettingViewModel.swift */; };
 		FF949B502A28D5E300CDDACA /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF949B4F2A28D5E300CDDACA /* Channel.swift */; };
 		FF9F22A32A28711D00684EC1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A22A28711D00684EC1 /* SettingView.swift */; };
 		FF9F22A52A28713D00684EC1 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */; };
@@ -92,7 +90,6 @@
 		FF694E8E2A20898400D6B6B4 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		FF694E922A209B3E00D6B6B4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		FF6D883F2A3AF13100AC3230 /* ChannelListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListViewModel.swift; sourceTree = "<group>"; };
-		FF6D88412A3B035300AC3230 /* LikeWho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeWho.swift; sourceTree = "<group>"; };
 		FF72F0872A15C659004EDDB0 /* Mugonggan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mugonggan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF72F08A2A15C659004EDDB0 /* MugongganApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugongganApp.swift; sourceTree = "<group>"; };
 		FF72F08C2A15C659004EDDB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,7 +99,6 @@
 		FF72F0962A15C65A004EDDB0 /* Mugonggan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mugonggan.xcdatamodel; sourceTree = "<group>"; };
 		FF72F09E2A15F770004EDDB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		FF72F0A52A16670A004EDDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FF949B4B2A28D53E00CDDACA /* WaveSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveSettingViewModel.swift; sourceTree = "<group>"; };
 		FF949B4F2A28D5E300CDDACA /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		FF9F22A22A28711D00684EC1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		FF9F22A42A28713D00684EC1 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
@@ -309,7 +305,6 @@
 		FF949B4A2A28D52700CDDACA /* UserHome */ = {
 			isa = PBXGroup;
 			children = (
-				FF949B4B2A28D53E00CDDACA /* WaveSettingViewModel.swift */,
 				FF63CAA52A36FF8B00DD3B69 /* CountViewModel.swift */,
 			);
 			path = UserHome;
@@ -389,7 +384,6 @@
 				FF694E922A209B3E00D6B6B4 /* UserInfo.swift */,
 				FF949B4F2A28D5E300CDDACA /* Channel.swift */,
 				FFD9921D2A2A4B840055359C /* Owner.swift */,
-				FF6D88412A3B035300AC3230 /* LikeWho.swift */,
 				FF4F99412A4037E600778DD4 /* Wave.swift */,
 				FF4F994A2A411AB500778DD4 /* User.swift */,
 				FFCF4A552A4C04CD007093C0 /* ChannelZip.swift */,
@@ -517,7 +511,6 @@
 				FFC64D282A259CCB00B9C39E /* ProfilePhotoSelectorView.swift in Sources */,
 				FFF6E2922A28E48A0058ECD3 /* CoverImageView.swift in Sources */,
 				FFD992202A2A58070055359C /* MotionAnimationView.swift in Sources */,
-				FF6D88422A3B035300AC3230 /* LikeWho.swift in Sources */,
 				FFE6F1EB2A298BB7004C1981 /* Color.swift in Sources */,
 				FF4D3C892A1F224F000CAD35 /* UploadChannelPhotoView.swift in Sources */,
 				FFBD423F2A1C8D4C0077E020 /* LoginView.swift in Sources */,
@@ -532,7 +525,6 @@
 				FF4D3C912A1F2EE9000CAD35 /* CapsuleButton.swift in Sources */,
 				FF4F99482A4113E400778DD4 /* AuthManager.swift in Sources */,
 				FF949B502A28D5E300CDDACA /* Channel.swift in Sources */,
-				FF949B4C2A28D53E00CDDACA /* WaveSettingViewModel.swift in Sources */,
 				FF4EFC152A25B50A00F8F82F /* Extensions.swift in Sources */,
 				FFBD42432A1D0CD10077E020 /* WaveSettingView.swift in Sources */,
 				FFBD42412A1CFCF80077E020 /* MuDetailView.swift in Sources */,

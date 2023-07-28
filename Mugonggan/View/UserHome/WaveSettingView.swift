@@ -17,14 +17,13 @@ struct WaveSettingView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     // !!!: ObservableObject 프로토콜을 준수하는 객체에 사용 : SwiftUI에서 상태 변경을 감지하고 해당 변경을 알리는 데 사용되는 프로토콜로 뷰를 자동 업데이트한다
-    @ObservedObject var waveSettingViewModel : WaveSettingViewModel
-    
     @State private var selectedImage: UIImage?
     @State private var uploadBtn: Image?
     @State private var pickedImage: Image? = Image(systemName: "photo.artframe")
     @State private var openPhotoView = false
     @State private var userName = ""
 
+    @State private var userInfo:UserInfo?
     
     let images: [String] = ["image1","image2","image3","image4","image5"]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
@@ -38,7 +37,8 @@ struct WaveSettingView: View {
     
     
     init(_ user: UserInfo) {
-        self.waveSettingViewModel = WaveSettingViewModel(user)
+        self.userInfo = user
+        // self.waveSettingViewModel = WaveSettingViewModel(user)
     }
     
     var body: some View {

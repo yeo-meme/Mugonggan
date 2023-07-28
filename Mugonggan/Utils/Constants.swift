@@ -32,3 +32,8 @@ let FOLDER_PROFILE_IMAGES = "profile_images"
 let FOLDER_CHANNEL_IMAGES = "channel_images"
 
 let IMAGEURL = "gs://mugonggan-817e7.appspot.com/"
+
+
+let LIKE = "like"
+let UN_LIKE = "unlike"
+let LIKE_STATE = "likestate"
