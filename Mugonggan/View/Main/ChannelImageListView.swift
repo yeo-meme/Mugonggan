@@ -47,100 +47,110 @@ struct ChannelImageListView: View {
             NavigationView {
                 ScrollView(.vertical, showsIndicators: false) {
                         VStack(alignment: .center, spacing: 30){
-                            Button(action: {viewModel.signOut()}) {
-                                Text("로그아웃")
-                            }
-                            // MARK: - DETAILVIEW
-                            NavigationLink(
-                                destination: MuDetailView(selectedImage: selectedImage) , label: {
-                                    ZStack{
-                                        WebImage(url:selectedImage)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .clipShape(Circle())
-                                            .frame(width: 330, height: 330)
-                                            .overlay(Circle().stroke(Color.red, lineWidth: 8))
-                                        VStack {
-                                            Spacer()
-                                            HStack {
-                                                Spacer()
-                                                // MARK: - LIKE BTN
-                                                var matchingImageUrl: String? = ""
-                                                Button(action: {
-                                                    isHeartFilled.toggle()
-                                                    
-                                                    if let matchImageUrl = selectedImage?.absoluteString {
-                                                        self.imageUrl = matchImageUrl
-                                                        matchingImageUrl = matchImageUrl
-                                                    }
-                                                    
-                                                    if isHeartFilled {
-                                                        isFilled = true
-                                                        if let imageUrl = matchingImageUrl {
-                                                            likeModel.initGetChannel(imageUrl,LIKE,viewModel.currentUser)
-                                                        }
-                                                    } else {
-                                                        isFilled = false
-                                                        if let imageUrl = matchingImageUrl {
-                                                            likeModel.initGetChannel(imageUrl,UN_LIKE,viewModel.currentUser)
-                                                            print("안좋아요 보낸다 url \(imageUrl)")
-                                                        }
-                                                    }
-                                                    
-                                                }, label: {
-                                                    Image(systemName: likeModel.isFilled ? "heart.fill" : "heart")
-                                                        .resizable()
-                                                        .frame(width: 30,height: 30)
-                                                        .foregroundColor(.red)
-                                                        .padding(8)
-                                                        .padding(.trailing, 80)
-                                                        .padding(.bottom, 30)
-                                                })
-                                                
-                                            }
-                                        }
-                                    }
-                                    // MARK: - 사진이 바뀔때 하트 초기화하기
-                                    .onChange(of: selectedImage) {
-                                        newValue in
-                                        isHeartFilled = false
-                                        isFilled = false
-                                    }
-                                    
-                                })
-                            
-                            
-                            // MARK: - SLIDER
-                            Slider(value: $gridColumn, in : 2...4, step: 1)
-                                .padding(.horizontal)
-                                .onChange(of: gridColumn, perform: { value in
-                                    gridSwitch()
-                                })
-                            
-                            // MARK: - GRID
-                            
-                                LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                                    ForEach(imageURLs, id: \.self) {
-                                        imageURL in
-                                        WebImage(url: imageURL)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                        //                                    .frame(width: imageSize  , height: imageSize)
-                                            .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color.white, lineWidth: 1))
-                                        // MARK: - IMAGE CLICK EVENT
-                                            .onTapGesture {
-                                                selectedImage = imageURL
-                                                haptics.impactOccurred()
-                                            }
-                                        //                            }
-                                    }
-                                } //: GRID
-                                .onAppear {
-                                    likeModel.findMatchImageUrls()
-                                    // findMatchImageUrls()
-                                    gridSwitch()
+                            if !likeModel.isLoading{
+                                Text("로딩중")
+                                Button(action: {viewModel.signOut()}) {
+                                    Text("로그아웃")
                                 }
+                            } else {
+                                VStack{
+                                    Button(action: {viewModel.signOut()}) {
+                                        Text("로그아웃")
+                                    }
+                                    // MARK: - DETAILVIEW
+                                    NavigationLink(
+                                        destination: MuDetailView(selectedImage: selectedImage) , label: {
+                                            ZStack{
+                                                WebImage(url:selectedImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .clipShape(Circle())
+                                                    .frame(width: 330, height: 330)
+                                                    .overlay(Circle().stroke(Color.red, lineWidth: 8))
+                                                VStack {
+                                                    Spacer()
+                                                    HStack {
+                                                        Spacer()
+                                                        // MARK: - LIKE BTN
+                                                        var matchingImageUrl: String? = ""
+                                                        Button(action: {
+                                                            isHeartFilled.toggle()
+                                                            
+                                                            if let matchImageUrl = selectedImage?.absoluteString {
+                                                                self.imageUrl = matchImageUrl
+                                                                matchingImageUrl = matchImageUrl
+                                                            }
+                                                            
+                                                            if isHeartFilled {
+                                                                isFilled = true
+                                                                if let imageUrl = matchingImageUrl {
+                                                                    likeModel.initGetChannel(imageUrl,LIKE,viewModel.currentUser)
+                                                                }
+                                                            } else {
+                                                                isFilled = false
+                                                                if let imageUrl = matchingImageUrl {
+                                                                    likeModel.initGetChannel(imageUrl,UN_LIKE,viewModel.currentUser)
+                                                                    print("안좋아요 보낸다 url \(imageUrl)")
+                                                                }
+                                                            }
+                                                            
+                                                        }, label: {
+                                                            Image(systemName: likeModel.isFilled ? "heart.fill" : "heart")
+                                                                .resizable()
+                                                                .frame(width: 30,height: 30)
+                                                                .foregroundColor(.red)
+                                                                .padding(8)
+                                                                .padding(.trailing, 80)
+                                                                .padding(.bottom, 30)
+                                                        })
+                                                        
+                                                    }
+                                                }
+                                            }
+                                            // MARK: - 사진이 바뀔때 하트 초기화하기
+                                            .onChange(of: selectedImage) {
+                                                newValue in
+                                                isHeartFilled = false
+                                                isFilled = false
+                                            }
+                                            
+                                        })
+                                    
+                                    
+                                    // MARK: - SLIDER
+                                    Slider(value: $gridColumn, in : 2...4, step: 1)
+                                        .padding(.horizontal)
+                                        .onChange(of: gridColumn, perform: { value in
+                                            gridSwitch()
+                                        })
+                                    
+                                    // MARK: - GRID
+                                    LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
+                                            ForEach(imageURLs, id: \.self) {
+                                                imageURL in
+                                                WebImage(url: imageURL)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                //                                    .frame(width: imageSize  , height: imageSize)
+                                                    .clipShape(Circle())
+                                                    .overlay(Circle().stroke(Color.white, lineWidth: 1))
+                                                // MARK: - IMAGE CLICK EVENT
+                                                    .onTapGesture {
+                                                        selectedImage = imageURL
+                                                        haptics.impactOccurred()
+                                                    }
+                                                //                            }
+                                            }
+                                        } //: GRID
+                                        .onAppear {
+                                            likeModel.findMatchImageUrls()
+                                            // findMatchImageUrls()
+                                            gridSwitch()
+                                        }
+                                }
+                            }
+                  
+                        
                             // }//: ELSE LOADING..................
                             
                         }//: VSTACK
@@ -158,7 +168,7 @@ struct ChannelImageListView: View {
                 // likeModel.initGetChannel(self.imageUrl? ?? "", LIKE_STATE, viewModel.currentUser)
             }
             
-        } //: NAVAIGATION VIEW
+        } //: BODYVIEW
      
 
     // MARK: - GRID SWITCH

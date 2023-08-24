@@ -31,7 +31,7 @@ class ChannelListViewModel: ObservableObject {
     init() {
         guard let currentId = AuthViewModel.shared.currentUser else { return }
         self.user = currentId
-        // GetCollectionChannel()
+        GetCollectionChannel()
     }
     
     // var channelImageUid : String {
@@ -76,43 +76,43 @@ class ChannelListViewModel: ObservableObject {
     
     
     //SUB 데이터출력 테스트
-    func getLikeDocument() {
-        
-        guard let uid = user?.uid else {
-            return
-        }
-        print("MainListViewModel/ get LikeViewModel : \(uid)")
-        
-        let query = COLLECTION_CHANNELS
-            .document(uid).collection("SUB")
-        
-        
-        query.getDocuments{ snapshot, error in
-            if let errorMessage = error?.localizedDescription {
-                self.showErrorAlert = true
-                self.errorMessage = errorMessage
-                return
-            }
-            
-            guard let documents = snapshot?.documents else { return }
-            
-            print("변환전 like data : \(documents)")
-            
-            for document in documents {
-                print("변환전 내용: \(document.data())")
-            }
-            
-            do {
-                //변환에러는 나지 않는데
-                // let likeWhoSnap = documents.compactMap({ try? $0.data(as: LikeWho.self)})
-                // self.likewho = likeWhoSnap
-                // print("MainListViewModel/ likewho \(self.likewho)")
-            } catch {
-                print("error like who: \(error)")
-            }
-            
-        }
-    }
+    // func getLikeDocument() {
+    //
+    //     guard let uid = user?.uid else {
+    //         return
+    //     }
+    //     print("MainListViewModel/ get LikeViewModel : \(uid)")
+    //
+    //     let query = COLLECTION_CHANNELS
+    //         .document(uid).collection("SUB")
+    //
+    //
+    //     query.getDocuments{ snapshot, error in
+    //         if let errorMessage = error?.localizedDescription {
+    //             self.showErrorAlert = true
+    //             self.errorMessage = errorMessage
+    //             return
+    //         }
+    //
+    //         guard let documents = snapshot?.documents else { return }
+    //
+    //         print("변환전 like data : \(documents)")
+    //
+    //         for document in documents {
+    //             print("변환전 내용: \(document.data())")
+    //         }
+    //
+    //         do {
+    //             //변환에러는 나지 않는데
+    //             // let likeWhoSnap = documents.compactMap({ try? $0.data(as: LikeWho.self)})
+    //             // self.likewho = likeWhoSnap
+    //             // print("MainListViewModel/ likewho \(self.likewho)")
+    //         } catch {
+    //             print("error like who: \(error)")
+    //         }
+    //
+    //     }
+    // }
     
     
     

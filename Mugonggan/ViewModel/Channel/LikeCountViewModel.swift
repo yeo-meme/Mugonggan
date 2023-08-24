@@ -86,7 +86,7 @@ class LikeCountViewModel: ObservableObject {
         
         print("likeState : isFilled State : \(isFilled)")
         
-        self.isLoading = false
+        self.isLoading = true
         // if let isId = likeUser?.firstIndex(where: { $0 == presentUser}) {
         //     self.isFilled = false
         //     print("likeState false : \(self.isFilled)")
@@ -97,7 +97,7 @@ class LikeCountViewModel: ObservableObject {
         // }
     }
     
-    //채널 데이터 목록
+    //좋아요 표시를 위한 채널정보
     
     func initGet(_ selectedUrl: String) {
         print("initGet : likeModel initGet selectedImg : \(selectedUrl)")
@@ -138,7 +138,7 @@ class LikeCountViewModel: ObservableObject {
     
     func doAsyncWork(completion: @escaping () -> Void) {
         
-        isLoading = true
+        // isLoading = true
         
         let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
         
@@ -175,6 +175,8 @@ class LikeCountViewModel: ObservableObject {
     
     
     func updateInitSelect() {
+        
+        print("셀릭티드 이미지 스트링   : \(initialImgUrl)")
         var initSelectedImg = ""
         if let matchImageUrl = selectedImage?.absoluteString {
             initSelectedImg = matchImageUrl
@@ -182,7 +184,7 @@ class LikeCountViewModel: ObservableObject {
         
         initialImgUrl = initSelectedImg
         
-        print("셀릭티드 이미지 스트링 변환후  : \(initialImgUrl)")
+        
         
         //init Channel Collection CALL!!!
         //filled heated state setting!!!
