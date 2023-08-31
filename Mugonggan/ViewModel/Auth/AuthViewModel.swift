@@ -24,7 +24,6 @@ class AuthViewModel: NSObject, ObservableObject {
     private var tempCurrentUser: Firebase.User?
     var tempCurrentUsername = ""
     
-    
     static let shared = AuthViewModel()
     
     override init() {
@@ -32,7 +31,6 @@ class AuthViewModel: NSObject, ObservableObject {
         userSession = Auth.auth().currentUser
         sessionId = UserDefaults.standard.string(forKey: "User") ?? ""
         print("session Id : \(sessionId)")
- 
     }
     
  
@@ -151,7 +149,6 @@ class AuthViewModel: NSObject, ObservableObject {
                 "likewho" : likewho
             ]
        
-      
             // MARK: - ALL CHANNEL COLLECTION ZIP ADD
             COLLECTION_CHANNELS.addDocument(data: data) {error in
                 if let errorMessage = error?.localizedDescription {

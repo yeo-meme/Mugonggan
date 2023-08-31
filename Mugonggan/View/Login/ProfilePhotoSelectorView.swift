@@ -52,11 +52,8 @@ struct ProfilePhotoSelectorView: View {
                 isIndicatorAnimating = true
                 viewModel.uploadProfileImage(selectedImage!) { success in
                     if success {
-                        
                     } else {
-                        
                     }
-                         
                 }
             }
             )

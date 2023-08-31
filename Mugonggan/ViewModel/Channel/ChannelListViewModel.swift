@@ -131,7 +131,6 @@ class ChannelListViewModel: ObservableObject {
             let channelTemp = documents
                 .compactMap({ try? $0.data(as: Channel.self) })
             
-            
             self.channel = channelTemp
             // self.channel = channelTest
             print("Channel LIst VIewModel: 변환해 \(self.channel)")
@@ -257,4 +256,6 @@ class ChannelListViewModel: ObservableObject {
     //     //     }
     //     // }
     // }
+    
+
 }

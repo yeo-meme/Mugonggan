@@ -24,8 +24,13 @@ class LikeCountViewModel: ObservableObject {
     @Published var isFilled:Bool = false
     @Published var isLoading: Bool = false
     
-    @Published private var selectedImage: URL? = nil
-    @Published private var imageURLs:[URL] = []
+    // @Published private var selectedImage: URL? = nil
+    @Published private var selectedImage: URL? = URL(string: "https://i.pinimg.com/564x/3e/8f/c2/3e8fc2c53b081c2e30797e63ea49540a.jpg")
+    
+    
+    
+    
+    @Published var imageURLs:[URL] = []
     @Published private var initialImgUrl = ""
     
     var user: UserInfo?
@@ -34,7 +39,14 @@ class LikeCountViewModel: ObservableObject {
     
     init() {
         // fetchPresentUser()
-        findMatchImageUrls()
+        // findMatchImageUrls()
+        
+        // GetCollectionChannel()
+        
+        // self.updateInitSelect()
+        
+        //test
+        // temCallImageStorage()
     }
     
     var preUserId: String {
@@ -70,7 +82,7 @@ class LikeCountViewModel: ObservableObject {
         }
         print("likeState: 전역 현사용자 : \(presentUser)")
         print("likeState :  \(likeUser)")
-       
+        
         if let array = likeUser {
             let set = Set(array)
             for item in set {
@@ -98,11 +110,9 @@ class LikeCountViewModel: ObservableObject {
     }
     
     //좋아요 표시를 위한 채널정보
-    
     func initGet(_ selectedUrl: String) {
         print("initGet : likeModel initGet selectedImg : \(selectedUrl)")
         
-       
         resetLikeUser()
         var presentUid = ""
         
@@ -127,6 +137,7 @@ class LikeCountViewModel: ObservableObject {
             let temp = doc.compactMap{ try? $0.data(as: Channel.self) }
             self.channel.append(contentsOf: temp)
             
+            //좋아요 한 유저
             for uidArr  in self.channel {
                 self.likeUser?.append(contentsOf: uidArr.likewho)
             }
@@ -136,39 +147,78 @@ class LikeCountViewModel: ObservableObject {
         }
     }
     
+    
+    // func temCallImageStorage() {
+    //     let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
+    //     ref.listAll { (result, error) in
+    //         if let error = error {
+    //             print("Failed to fetch image URLs: \(error.localizedDescription)")
+    //             return
+    //         }
+    //         if let items = result?.items {
+    //             for item in items {
+    //                 item.downloadURL { url, error in
+    //                     if let error = error {
+    //                         print("Failed to fetch download URL: \(error.localizedDescription)")
+    //                         return
+    //                     }
+    //
+    //                     if let url = url {
+    //                         self.imageURLs.append(url)
+    //                         self.selectedImage = self.imageURLs[0]
+    //                         print("ViewModel: 첫번째 디테일 이미지 셀렉티드 url: \(self.selectedImage)")
+    //                         print("List ≈:\(self.imageURLs)")
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         // 이미지 URL을 가져온 후에 completion 클로저를 호출하여 함수 종료
+    //     }
+    // }
+    
+    
     func doAsyncWork(completion: @escaping () -> Void) {
         
-        // isLoading = true
+        var tempURLs: [URL] = [] // 임시 배열 사용
         
         let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
-        
         ref.listAll { (result, error) in
             if let error = error {
                 print("Failed to fetch image URLs: \(error.localizedDescription)")
                 return
             }
             
+            
+            // 작업을 직렬로 실행하는 DispatchQueue 생성
+            let serialQueue = DispatchQueue(label: "serialQueue")
+            
+            
+            
             if let items = result?.items {
-                for item in items {
-                    item.downloadURL { url, error in
-                        if let error = error {
-                            print("Failed to fetch download URL: \(error.localizedDescription)")
-                            return
+                    for item in items {
+                        item.downloadURL { url, error in
+                            if let error = error {
+                                print("Failed to fetch download URL: \(error.localizedDescription)")
+                                return
+                            }
+                
+                
+                
+                            if let url = url {
+                                tempURLs.append(url)
+                                self.selectedImage = tempURLs[0]
+                                print("=======Like List Like ViewModel: 첫번째 디테일 이미지 셀렉티드 url: \(self.selectedImage)")
+                                print("=======Like List Like ViewModel:\(tempURLs)")
+                                self.imageURLs = tempURLs
+                                print("=======Like List Like imageURLs:\(self.imageURLs)")
+                            }
                         }
-                        if let url = url {
-                            self.imageURLs.append(url)
-                        }
-                        
-                        self.selectedImage = self.imageURLs[0]
-                        print("Channel List ViewModel: 첫번째 디테일 이미지 셀렉티드 url: \(self.selectedImage)")
                     }
                 }
-            }
-            
-            // 이미지 URL을 가져온 후에 completion 클로저를 호출하여 함수 종료
-            DispatchQueue.main.async {
-                completion()
                 
+                // 이미지 URL을 가져온 후에 completion 클로저를 호출하여 함수 종료
+                DispatchQueue.main.async {
+                completion()
             }
         }
     }
@@ -176,20 +226,28 @@ class LikeCountViewModel: ObservableObject {
     
     func updateInitSelect() {
         
-        print("셀릭티드 이미지 스트링   : \(initialImgUrl)")
+        // print("셀릭티드 이미지 스트링   : \(initialImgUrl)")
         var initSelectedImg = ""
-        if let matchImageUrl = selectedImage?.absoluteString {
-            initSelectedImg = matchImageUrl
+        // if let matchImageUrl = selectedImage?.absoluteString {
+        //     initSelectedImg = matchImageUrl
+        //     print("matchImageUrl   : \(matchImageUrl)")
+        // }
+        //
+        if let matchImageUrl = self.selectedImage {
+            initSelectedImg = matchImageUrl.absoluteString
+            print("Image URL: \(initSelectedImg)")
+        } else {
+            print("Selected image is nil")
         }
         
         initialImgUrl = initSelectedImg
         
-        
-        
         //init Channel Collection CALL!!!
         //filled heated state setting!!!
+        //좋아요 불러오기
         initGet(initialImgUrl)
     }
+    
     /**
      storage : FOLDER_CHANNEL_IMAGES ALL
      */
@@ -202,6 +260,28 @@ class LikeCountViewModel: ObservableObject {
         }
     } //: findMatchImageUrls
     
+    
+    // Cannel All 도큐먼트 call
+    func GetCollectionChannel() {
+        
+        COLLECTION_CHANNELS.getDocuments { snapshot, error in
+            if let errorMessage = error?.localizedDescription {
+                self.showErrorAlert = true
+                self.errorMessage = errorMessage
+                return
+            }
+            
+            guard let documents = snapshot?.documents else { return }
+            
+            let channelTemp = documents
+                .compactMap({ try? $0.data(as: Channel.self) })
+            
+            
+            self.channel = channelTemp
+            // self.channel = channelTest
+            print("Channel LIst VIewModel: 변환해 \(self.channel)")
+        }
+    }
     
     
     // MARK: - LIKE UPDATE
@@ -236,7 +316,7 @@ class LikeCountViewModel: ObservableObject {
             
             let temp = doc.compactMap{ try? $0.data(as: Channel.self) }
             self.channel.append(contentsOf: temp)
-          
+            
             //이미지정보
             for uidArr in self.channel {
                 self.likeUser?.append(contentsOf: uidArr.likewho)
@@ -282,7 +362,7 @@ class LikeCountViewModel: ObservableObject {
         
         operateCount -= 1
         
-
+        
         let userUid = self.user?.uid
         // self.likeUser?.removeAll{ $0 == userUid }
         

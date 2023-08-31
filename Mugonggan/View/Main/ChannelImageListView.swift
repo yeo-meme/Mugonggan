@@ -32,31 +32,33 @@ struct ChannelImageListView: View {
     @State private var isHeartFilled = false
     @State private var isFilled = false
     @State private var imageUrl: String?
-    
     @State private var initialImgUrl = ""
     
     
-    
+    @State private var show = false
     // init(_ imageUrl: String,_ isFilled: Bool) {
     //     self.likeViewModel = LikeCountViewModel(imageUrl, isFiiled: isFilled)
     //    }
-   
+    
+    init() {
+        likeModel.findMatchImageUrls()
+    }
+    
     
     var body: some View {
-   
             NavigationView {
                 ScrollView(.vertical, showsIndicators: false) {
-                        VStack(alignment: .center, spacing: 30){
-                            if !likeModel.isLoading{
-                                Text("로딩중")
-                                Button(action: {viewModel.signOut()}) {
-                                    Text("로그아웃")
-                                }
-                            } else {
-                                VStack{
-                                    Button(action: {viewModel.signOut()}) {
-                                        Text("로그아웃")
-                                    }
+                    VStack(alignment: .center, spacing: 30){
+                        Text("로딩중")
+                        Button(action: {viewModel.signOut()}) {
+                            Text("로그아웃")
+                        }
+                        VStack{
+                            VStack{
+                                if show {
+                                    // Button(action: {viewModel.signOut()}) {
+                                    //     Text("로그아웃")
+                                    // }
                                     // MARK: - DETAILVIEW
                                     NavigationLink(
                                         destination: MuDetailView(selectedImage: selectedImage) , label: {
@@ -113,7 +115,6 @@ struct ChannelImageListView: View {
                                                 isHeartFilled = false
                                                 isFilled = false
                                             }
-                                            
                                         })
                                     
                                     
@@ -123,54 +124,61 @@ struct ChannelImageListView: View {
                                         .onChange(of: gridColumn, perform: { value in
                                             gridSwitch()
                                         })
-                                    
                                     // MARK: - GRID
                                     LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                                            ForEach(imageURLs, id: \.self) {
-                                                imageURL in
-                                                WebImage(url: imageURL)
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                //                                    .frame(width: imageSize  , height: imageSize)
-                                                    .clipShape(Circle())
-                                                    .overlay(Circle().stroke(Color.white, lineWidth: 1))
-                                                // MARK: - IMAGE CLICK EVENT
-                                                    .onTapGesture {
-                                                        selectedImage = imageURL
-                                                        haptics.impactOccurred()
-                                                    }
-                                                //                            }
-                                            }
-                                        } //: GRID
-                                        .onAppear {
-                                            likeModel.findMatchImageUrls()
-                                            // findMatchImageUrls()
-                                            gridSwitch()
+                                        ForEach(imageURLs, id: \.self) {
+                                            imageURL in
+                                            WebImage(url: imageURL)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: imageSize  , height: imageSize)
+                                                .clipShape(Circle())
+                                                .overlay(Circle().stroke(Color.white, lineWidth: 1))
+                                            // MARK: - IMAGE CLICK EVENT
+                                                .onTapGesture {
+                                                    selectedImage = imageURL
+                                                    haptics.impactOccurred()
+                                                }
+                                            //                            }
                                         }
+                                    } //: GRID
                                 }
+                            }//: SHOW
+                            .onAppear {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    // 2초 후에 showText 값을 변경하여 Text를 표시
+                                    show = true
+                                }
+                                print("onAppear 이미지 URL : \(imageURLs)")
+                                // likeModel.findMatchImageUrls()
+                                
+                                // likeModel.temCallImageStorage()
+                                // findMatchImageUrls()
+                                gridSwitch()
                             }
-                  
-                        
-                            // }//: ELSE LOADING..................
-                            
                         }//: VSTACK
-                        .padding(.horizontal, 10)
-                        .navigationBarItems(trailing: NavigationLink(destination: WaveSettingView(viewModel.currentUser ?? MOCK_USER)){
-                            Text("\(viewModel.currentUser?.name ?? "")님 방가방가")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(Color.black)
-                        })
+                    }//: VSTACK
+                    .padding(.horizontal, 10)
+                    .navigationBarItems(trailing: NavigationLink(destination: WaveSettingView(viewModel.currentUser ?? MOCK_USER)){
+                        Text("\(viewModel.currentUser?.name ?? "")님 방가방가")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(Color.black)
+                    })
+                    .onReceive(likeModel.$imageURLs) { updatedImageURLs in
+                                    self.imageURLs = updatedImageURLs
+                                }
                 }//: SCROLL
                 // .background(MotionAnimationView())
+          
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 // likeModel.initGet(viewModel.currentUser, selectedImage)
                 // likeModel.initGetChannel(self.imageUrl? ?? "", LIKE_STATE, viewModel.currentUser)
-            }
-            
-        } //: BODYVIEW
-     
-
+        }
+    } //: BODYVIEW
+    
+    
+    
     // MARK: - GRID SWITCH
     func gridSwitch() {
         withAnimation(.easeIn) {
@@ -184,7 +192,7 @@ struct ChannelImageListView: View {
     //         
     //         ref.listAll { (result, error) in
     //             if let error = error {
-    //                 print("Failed to fetch image URLs: \(error.localizedDescription)")
+    //                 print("Failed to fetch image URLs:‘ \(error.localizedDescription)")
     //                 return
     //             }
     //             
@@ -248,3 +256,4 @@ struct ChannelImageListView: View {
 //             // .environmentObject(AuthViewModel())
 //     }
 // }
+
