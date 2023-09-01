@@ -26,6 +26,9 @@ struct LoginView: View {
     @State private var showingSignUpView: Bool = false
     @State private var isViewPresented = false
     
+    @State private var textFieldValue: String = ""
+    
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -74,6 +77,8 @@ struct LoginView: View {
                         HStack(){
                             Button(action: {
                                 viewModel.login(withEmail: email, password: password)
+                                UserDefaults.standard.set(password, forKey: "password")
+                                UserDefaults.standard.set(email, forKey: "email")
                             })
                             {
                                 Text("로그인")
@@ -105,54 +110,17 @@ struct LoginView: View {
             }//: VStack
             .sheet(isPresented: $showingSignUpView) {
                 SignUpView(isViewPresented: $isViewPresented).environment(\.managedObjectContext, self.managedObjectContext)
-                    // .onDisappear{
-                    //     if isViewPresented {
-                    //         DispatchQueue.main.async {
-                    //             let newView = MainWaveImageView(viewModel.currentUser!)
-                    //             let hostingVC = UIHostingController(rootView: newView)
-                    //
-                    //             if let window = UIApplication.shared.windows.first {
-                    //
-                    //                 window.rootViewController = hostingVC
-                    //                 window.makeKeyAndVisible()
-                    //             }
-                    //         }
-                    //         print("isViewPresented true")
-                    //     } else {
-                    //         print("isViewPresented false")
-                    //     }
-                    // }
+            }
+            .onAppear{
+                if let savedUserID = UserDefaults.standard.string(forKey: "email") {
+                    email = savedUserID
+                }
+                if let savedPassword = UserDefaults.standard.string(forKey: "password") {
+                    password = savedPassword
+                }
             }
         }
     }//: BODY VIEW
-    
-    
-    // func login() {
-    //     
-    //     let success = true
-    //     Auth.auth().signIn(withEmail: email ,password: password) { result, error in
-    //         if let error = error {
-    //             print("로그인 실패")
-    //         } else {
-    //             self.isLoggedIn.toggle()
-    //             if isLoggedIn {
-    //                 DispatchQueue.main.async {
-    //                     let newView = MulistView().environmentObject(viewModel)
-    //                     let hostingVC = UIHostingController(rootView: newView)
-    //                     
-    //                     if let window = UIApplication.shared.windows.first {
-    //                         window.rootViewController = hostingVC
-    //                         window.makeKeyAndVisible()
-    //                     }
-    //                 }
-    //                 print("isLoggedIn true")
-    //             } else {
-    //                 print("isLoggedIn false")
-    //             }
-    //             
-    //         }
-    //     }
-    // }
 }//:VIEW
 
 struct LoginView_Previews: PreviewProvider {

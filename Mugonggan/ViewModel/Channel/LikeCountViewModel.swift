@@ -84,14 +84,11 @@ class LikeCountViewModel: ObservableObject {
     
     
     
-    
     //좋아요 표시를 위한 채널정보
-    func initGet() {
-        
-        
+    func RenewChannelCollection() {
         resetLikeUser()
-        // var presentUid = ""
         print("initialImgUrl 좋아요 표시를 위한 채널 정보 : \(initialImgUrl)")
+        
         let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: initialImgUrl)
         
         query.getDocuments{ (snapshot, error) in
@@ -121,6 +118,7 @@ class LikeCountViewModel: ObservableObject {
             }
             
             print("initGet :좋아요 한 사람 목록 : \(self.likeUserArr)")
+            
             self.heartInitState()
         }
     }
@@ -223,11 +221,11 @@ class LikeCountViewModel: ObservableObject {
         //init Channel Collection CALL!!!
         //filled heated state setting!!!
         //좋아요 불러오기
-        initGet()
+        RenewChannelCollection()
     }
     
     
-    //좋아요 일치 사용자가 있는지 : 하트뷰 표시
+    //좋아요 일치 사용자가 있는지 : 하트뷰 표시 : 버튼활성호
     func heartInitState(){
         guard let presentUser = AuthViewModel.shared.currentUser?.uid else {
             return
@@ -279,15 +277,19 @@ class LikeCountViewModel: ObservableObject {
     
     func initGetChannel(_ imageUrl: String,_ likeState:String,_ user: UserInfo?) {
         
+        RenewChannelCollection()
+        
         switch likeState {
         case LIKE :
             // plusLikeCountUpdate(presentUid)
             print("LIKE")
+            isFilled = true
             break
             
         case UN_LIKE:
             miusUpdate()
             print("UN_LIKE")
+            isFilled = false
             break
             
             // case LIKE_STATE:
@@ -405,7 +407,7 @@ class LikeCountViewModel: ObservableObject {
             
             
             print("좋아요Arr removeAll : \(preUserId), arr : \(likeUserArr)" )
-            likeUserArr?.removeAll(where: { $0 == preUserId })
+            likeUserArr?.removeAll(where: { $0 == "메메" })
             print("좋아요Arr 삭제후 removeAll : \(likeUserArr)" )
             
             if let likeUserArr = likeUserArr {
