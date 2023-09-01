@@ -26,15 +26,14 @@ class LikeCountViewModel: ObservableObject {
     
     // @Published private var selectedImage: URL? = nil
     @Published var selectedImage: URL? = URL(string: "https://i.pinimg.com/564x/3e/8f/c2/3e8fc2c53b081c2e30797e63ea49540a.jpg")
-    
-    
+    @Published var presentChannelUid:String?
     
     
     @Published var imageURLs:[URL] = []
     @Published private var initialImgUrl = ""
     
     var user: UserInfo?
-    var likeUser: [String]?
+    var likeUserArr: [String]?
     
     
     init() {
@@ -54,12 +53,12 @@ class LikeCountViewModel: ObservableObject {
     }
     
     func resetLikeUser() {
-        self.likeUser = []
+        self.likeUserArr = []
         self.channel = []
     }
     
     func addToLikeUser(_ name:String) {
-        self.likeUser?.append(name)
+        self.likeUserArr?.append(name)
     }
     
     
@@ -84,18 +83,16 @@ class LikeCountViewModel: ObservableObject {
     }
     
     
-   
+    
     
     //좋아요 표시를 위한 채널정보
-    func initGet(_ selectedUrl: String) {
-      
-        print("initGet : likeModel initGet selectedImg : \(selectedUrl)")
+    func initGet() {
+        
         
         resetLikeUser()
-        
-        var presentUid = ""
-        
-        let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: selectedUrl)
+        // var presentUid = ""
+        print("initialImgUrl 좋아요 표시를 위한 채널 정보 : \(initialImgUrl)")
+        let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: initialImgUrl)
         
         query.getDocuments{ (snapshot, error) in
             if let errorMessage = error?.localizedDescription {
@@ -108,8 +105,10 @@ class LikeCountViewModel: ObservableObject {
             guard let doc = snapshot?.documents else {return}
             for document in doc {
                 let documentId = document.documentID
-                presentUid = documentId
+                // presentUid = documentId
+                self.presentChannelUid = documentId
                 print("initGet :도큐먼트 데이터 :\(document.data())")
+                print("initGet :현재 채널 아아디  :\(self.presentChannelUid)")
             }
             
             
@@ -118,11 +117,11 @@ class LikeCountViewModel: ObservableObject {
             
             //좋아요 한 유저
             for uidArr  in self.channel {
-                self.likeUser?.append(contentsOf: uidArr.likewho)
+                self.likeUserArr?.append(contentsOf: uidArr.likewho)
             }
             
-            print("initGet :좋아요 한 사람 목록 : \(self.likeUser)")
-            self.likeState()
+            print("initGet :좋아요 한 사람 목록 : \(self.likeUserArr)")
+            self.heartInitState()
         }
     }
     
@@ -211,33 +210,32 @@ class LikeCountViewModel: ObservableObject {
     
     
     func updateInitSelect() {
-        var initSelectedImg = ""
-      
+        // var initSelectedImg = ""
+        
         if let matchImageUrl = self.selectedImage {
-            initSelectedImg = matchImageUrl.absoluteString
-            print("Image URL: \(initSelectedImg)")
+            self.initialImgUrl = matchImageUrl.absoluteString
+            print("Image URL: \(self.initialImgUrl)")
         } else {
             print("Selected image is nil")
         }
         
-        initialImgUrl = initSelectedImg
         
         //init Channel Collection CALL!!!
         //filled heated state setting!!!
         //좋아요 불러오기
-        initGet(initialImgUrl)
+        initGet()
     }
     
     
     //좋아요 일치 사용자가 있는지 : 하트뷰 표시
-    func likeState(){
+    func heartInitState(){
         guard let presentUser = AuthViewModel.shared.currentUser?.uid else {
             return
         }
         print("likeState: 전역 현사용자 : \(presentUser)")
-        print("likeState :  \(likeUser)")
+        print("likeState :  \(likeUserArr)") //옵셔널 출력
         
-        if let array = likeUser {
+        if let array = likeUserArr {
             let set = Set(array) //중복제거
             for item in set {
                 if item == presentUser {
@@ -279,125 +277,191 @@ class LikeCountViewModel: ObservableObject {
     }
     
     
-    // MARK: - LIKE UPDATE
-    //who : 누가 좋아요를 눌렀는지
-    func initGetChannel(_ imageUrl: String,_ isState:String,_ user : UserInfo?) {
+    func initGetChannel(_ imageUrl: String,_ likeState:String,_ user: UserInfo?) {
         
-        guard let userInfo = user else {
-            return
-        }
-        
-        resetLikeUser()
-        self.user = userInfo
-        var presentUid = ""
-        
-        let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: imageUrl)
-        
-        print("누가좋아요를 눌렀는가 ")
-        // query.getDocuments { (snapshot, error) in
-        //     if let errorMessage = error?.localizedDescription {
-        //         self.showErrorAlert = true
-        //         self.errorMessage = errorMessage
-        //         print("error Msg : \(errorMessage)")
-        //         return
-        //     }
-        //
-        //     guard let doc = snapshot?.documents else {return}
-        //
-        //     for document in doc {
-        //         let documentID = document.documentID
-        //         presentUid = documentID // 업데이트도큐먼트아이디
-        //         print("document data :\(document.data())")// 채널콜렉션 이미지의 도큐먼트 ID
-        //     }
-        //
-        //     let temp = doc.compactMap{ try? $0.data(as: Channel.self) }
-        //     self.channel.append(contentsOf: temp)
-        //
-        //     //이미지정보
-        //     for uidArr in self.channel {
-        //         self.likeUser?.append(contentsOf: uidArr.likewho)
-        //     }
-        //
-        //     DispatchQueue.main.async { [self] in // 메인 스레드에서 실행되도록 변경
-        //
-        //         switch isState {
-        //         case LIKE :
-        //             plusLikeCountUpdate(presentUid)
-        //             print("LIKE")
-        //             break
-        //
-        //         case UN_LIKE:
-        //             miusUpdate(presentUid)
-        //             print("UN_LIKE")
-        //             break
-        //
-        //         case LIKE_STATE:
-        //             likeState()
-        //             break
-        //         default:
-        //             print("isState is empty")
-        //         }
-        //
-        //     }
-        // }
-        
-    }
-    
-    func miusUpdate(_ uid:String) {
-        
-        //카운팅정보
-        var operateCount=0
-        for item in self.channel {
-            operateCount = item.likeCount
-        }
-        
-        operateCount -= 1
-        
-        
-        let userUid = self.user?.uid
-        // self.likeUser?.removeAll{ $0 == userUid }
-        
-        if let indexToRemove = likeUser?.firstIndex(where: { $0 == userUid}) {
-            likeUser?.remove(at: indexToRemove)
+        switch likeState {
+        case LIKE :
+            // plusLikeCountUpdate(presentUid)
+            print("LIKE")
+            break
+            
+        case UN_LIKE:
+            miusUpdate()
+            print("UN_LIKE")
+            break
+            
+            // case LIKE_STATE:
+            //     likeState()
+            //     break
+        default:
+            print("isState is empty")
+            
+            // }
+            // let group = DispatchGroup()
+            // group.enter()
+            //
+            // doAsyncLikeBtn(imageUrl, isState, user){
+            //     //비동기 작업 완료시 그룹을 leave
+            //     group.leave()
+            // }
+            //
+            // //비동기 작업의 완료를 기다림
+            // group.wait()
+            //
+            // // 비동기 작업이 완료 된 후 에 separationLikeState 호출
+            // separationLikeState()
         }
         
         
-        let data: [String: Any] = [
-            KEY_LIKE_COUNT: operateCount,
-            KEY_LIKE_WHO: self.likeUser
-        ]
         
-        COLLECTION_CHANNELS.document(uid).updateData(data) { error in
-            if let error = error {
-                print("도큐먼트 업데이트 에러: \(error.localizedDescription)")
+        // MARK: - LIKE UPDATE
+        //who : 누가 좋아요를 눌렀는지
+        func doAsyncLikeBtn(_ imageUrl: String,_ isState:String,_ user : UserInfo?) {
+            
+            guard let userInfo = user else {
+                return
+            }
+            
+            resetLikeUser()
+            self.user = userInfo
+            var presentChannelUid = ""
+            
+            let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: imageUrl)
+            
+            print("누가좋아요를 눌렀는가:\(channel)")
+            query.getDocuments { (snapshot, error) in
+                if let errorMessage = error?.localizedDescription {
+                    self.showErrorAlert = true
+                    self.errorMessage = errorMessage
+                    print("error Msg : \(errorMessage)")
+                    return
+                }
+                
+                guard let doc = snapshot?.documents else {return}
+                
+                for document in doc {
+                    let documentID = document.documentID
+                    presentChannelUid = documentID // 업데이트도큐먼트아이디
+                    print("document data :\(document.data())")// 채널콜렉션 이미지의 도큐먼트 ID
+                }
+                
+                let temp = doc.compactMap{ try? $0.data(as: Channel.self) }
+                self.channel.append(contentsOf: temp)
+                
+                //이미지정보
+                for uidArr in self.channel {
+                    self.likeUserArr?.append(contentsOf: uidArr.likewho)
+                }
             }
         }
-    }
-    
-    
-    //uid 채널이미지 주인
-    func plusLikeCountUpdate(_ uid:String) {
         
-        var operateCount=0
         
-        for item in self.channel {
-            operateCount = item.likeCount
+        
+        func separationLikeState() {
+            
+            print("hi separationLikeState")
+            //     switch likeState {
+            //     case LIKE :
+            //         plusLikeCountUpdate(presentUid)
+            //         print("LIKE")
+            //         break
+            //
+            //     case UN_LIKE:
+            //         miusUpdate(presentUid)
+            //         print("UN_LIKE")
+            //         break
+            //
+            //     case LIKE_STATE:
+            //         likeState()
+            //         break
+            //     default:
+            //         print("isState is empty")
+            //
+            // }
         }
         
-        //사용자 : 이름 , 프로필 사진 url , uid
-        guard let likeUserUid = self.user?.uid else {return}
-        addToLikeUser(likeUserUid)
+        func miusUpdate() {
+            
+            //카운팅정보
+            var operateCount=0
+            
+            print("좋아요 했을때 채널 : \(self.channel)" )
+            for item in self.channel {
+                operateCount = item.likeCount
+                print("좋아요 했을때 likeCount 잘 담겨있니? : \(operateCount)" )
+            }
+            
+            operateCount -= 1
+            
+            
+            let userUid = self.user?.uid
+            // self.likeUser?.removeAll{ $0 == userUid }
+           
+            print("좋아요Arr 지우기전 : \(likeUserArr), user : \(userUid)" )
+            if let indexToRemove = likeUserArr?.firstIndex(where: { $0 == preUserId}) {
+                likeUserArr?.remove(at: indexToRemove)
+                print("좋아요Arr 삭제 후  : \(likeUserArr)" )
+            }
+            
+            
+            print("좋아요Arr removeAll : \(preUserId), arr : \(likeUserArr)" )
+            likeUserArr?.removeAll(where: { $0 == preUserId })
+            print("좋아요Arr 삭제후 removeAll : \(likeUserArr)" )
+            
+            if let likeUserArr = likeUserArr {
+                print("좋아요 했을때 라이크 유저 잘 담겨있니? : \(likeUserArr)" )
+                let data: [String: Any] = [
+                    KEY_LIKE_COUNT: operateCount,
+                    KEY_LIKE_WHO: likeUserArr
+                ]
+                
+                
+                if let presentChannelUid = presentChannelUid {
+                    print("presentChannelUid : \(presentChannelUid)" )
+                    COLLECTION_CHANNELS.document(presentChannelUid).updateData(data) { error in
+                        if let error = error {
+                            print("도큐먼트 업데이트 에러: \(error.localizedDescription)")
+                        } else {
+                            print("업데이트 성공!!!")
+                        }
+                    }
+                } else {
+                    print("좋아요 한 현 사용자가 없습니다 ")
+                }
+                
+            } else {
+                print("좋아요 Array nil")
+            }
+     
+            
+            
+        }
         
         
-        operateCount += 1
-        let data: [String: Any] = [
-            "likeCount": operateCount,
-            KEY_LIKE_WHO: self.likeUser
-        ]
-        
-        COLLECTION_CHANNELS.document(uid).updateData(data) { error in
-            if let error = error {
-                print("업데이트 실패: \(error.localizedDescription)")
+        //uid 채널이미지 주인
+        func plusLikeCountUpdate(_ uid:String) {
+            
+            var operateCount=0
+            
+            for item in self.channel {
+                operateCount = item.likeCount
+            }
+            
+            //사용자 : 이름 , 프로필 사진 url , uid
+            guard let likeUserUid = self.user?.uid else {return}
+            addToLikeUser(likeUserUid)
+            
+            
+            operateCount += 1
+            let data: [String: Any] = [
+                "likeCount": operateCount,
+                KEY_LIKE_WHO: self.likeUserArr
+            ]
+            
+            COLLECTION_CHANNELS.document(uid).updateData(data) { error in
+                if let error = error {
+                    print("업데이트 실패: \(error.localizedDescription)")
+                }
             }
         }
     }

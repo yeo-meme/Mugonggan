@@ -55,9 +55,6 @@ struct ChannelImageListView: View {
                         VStack{
                             VStack{
                                 if show {
-                                    // Button(action: {viewModel.signOut()}) {
-                                    //     Text("로그아웃")
-                                    // }
                                     // MARK: - DETAILVIEW
                                     NavigationLink(
                                         destination: MuDetailView(selectedImage: selectedImage) , label: {
@@ -172,6 +169,8 @@ struct ChannelImageListView: View {
                                     self.imageURLs = updatedImageURLs
                         self.selectedImage = updateSelectedImage
                     }
+                    
+        
                 }//: SCROLL
                 // .background(MotionAnimationView())
           
