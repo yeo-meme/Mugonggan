@@ -11,7 +11,6 @@ import SDWebImageSwiftUI
 
 // FIXME: -앱재시동하면 유저정보가 날아가서 아이디가 보이지않음
 struct ChannelImageListView: View {
-    
     @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
     @State private var gridColumn: Double = 3.0
     @State private var selectedImage: URL? = nil
@@ -63,51 +62,56 @@ struct ChannelImageListView: View {
                                     NavigationLink(
                                         destination: MuDetailView(selectedImage: selectedImage) , label: {
                                             ZStack{
-                                                WebImage(url:selectedImage)
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .clipShape(Circle())
-                                                    .frame(width: 330, height: 330)
-                                                    .overlay(Circle().stroke(Color.red, lineWidth: 8))
-                                                VStack {
-                                                    Spacer()
-                                                    HStack {
+                                                if let pocusImgUrl = selectedImage {
+                                                    WebImage(url:selectedImage)
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .clipShape(Circle())
+                                                        .frame(width: 330, height: 330)
+                                                        .overlay(Circle().stroke(Color.red, lineWidth: 8))
+                                                    VStack {
                                                         Spacer()
-                                                        // MARK: - LIKE BTN
-                                                        var matchingImageUrl: String? = ""
-                                                        Button(action: {
-                                                            isHeartFilled.toggle()
-                                                            
-                                                            if let matchImageUrl = selectedImage?.absoluteString {
-                                                                self.imageUrl = matchImageUrl
-                                                                matchingImageUrl = matchImageUrl
-                                                            }
-                                                            
-                                                            if isHeartFilled {
-                                                                isFilled = true
-                                                                if let imageUrl = matchingImageUrl {
-                                                                    likeModel.initGetChannel(imageUrl,LIKE,viewModel.currentUser)
+                                                        HStack {
+                                                            Spacer()
+                                                            // MARK: - LIKE BTN
+                                                            var matchingImageUrl: String? = ""
+                                                            Button(action: {
+                                                                isHeartFilled.toggle()
+                                                                
+                                                                if let matchImageUrl = selectedImage?.absoluteString {
+                                                                    self.imageUrl = matchImageUrl
+                                                                    matchingImageUrl = matchImageUrl
                                                                 }
-                                                            } else {
-                                                                isFilled = false
-                                                                if let imageUrl = matchingImageUrl {
-                                                                    likeModel.initGetChannel(imageUrl,UN_LIKE,viewModel.currentUser)
-                                                                    print("안좋아요 보낸다 url \(imageUrl)")
+                                                                
+                                                                if isHeartFilled {
+                                                                    isFilled = true
+                                                                    if let imageUrl = matchingImageUrl {
+                                                                        likeModel.initGetChannel(imageUrl,LIKE,viewModel.currentUser)
+                                                                    }
+                                                                } else {
+                                                                    isFilled = false
+                                                                    if let imageUrl = matchingImageUrl {
+                                                                        likeModel.initGetChannel(imageUrl,UN_LIKE,viewModel.currentUser)
+                                                                        print("안좋아요 보낸다 url \(imageUrl)")
+                                                                    }
                                                                 }
-                                                            }
+                                                                
+                                                            }, label: {
+                                                                Image(systemName: likeModel.isFilled ? "heart.fill" : "heart")
+                                                                    .resizable()
+                                                                    .frame(width: 30,height: 30)
+                                                                    .foregroundColor(.red)
+                                                                    .padding(8)
+                                                                    .padding(.trailing, 80)
+                                                                    .padding(.bottom, 30)
+                                                            })
                                                             
-                                                        }, label: {
-                                                            Image(systemName: likeModel.isFilled ? "heart.fill" : "heart")
-                                                                .resizable()
-                                                                .frame(width: 30,height: 30)
-                                                                .foregroundColor(.red)
-                                                                .padding(8)
-                                                                .padding(.trailing, 80)
-                                                                .padding(.bottom, 30)
-                                                        })
-                                                        
+                                                        }
                                                     }
+                                                } else {
+                                                    Text("No image Available")
                                                 }
+                                             
                                             }
                                             // MARK: - 사진이 바뀔때 하트 초기화하기
                                             .onChange(of: selectedImage) {
@@ -164,9 +168,10 @@ struct ChannelImageListView: View {
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(Color.black)
                     })
-                    .onReceive(likeModel.$imageURLs) { updatedImageURLs in
+                    .onReceive(likeModel.$imageURLs.combineLatest(likeModel.$selectedImage)) { updatedImageURLs, updateSelectedImage in
                                     self.imageURLs = updatedImageURLs
-                                }
+                        self.selectedImage = updateSelectedImage
+                    }
                 }//: SCROLL
                 // .background(MotionAnimationView())
           
