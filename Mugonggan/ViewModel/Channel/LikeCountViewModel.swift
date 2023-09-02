@@ -83,33 +83,19 @@ class LikeCountViewModel: ObservableObject {
     }
     
     
-    
-    //좋아요 표시를 위한 채널정보
-    func RenewChannelCollection(_ imgUrl: String, completion: @escaping () -> ()) {
-        print("DispatchQueue 순서 : RenewChannelCollection 1")
-        
+    func detailViewLoad(_ imgUrl:String) {
+        print("그림 바꾸기 들어오는 URL: \(imgUrl)")
         self.resetLikeUser()
-        print("initialImgUrl 좋아요 표시를 위한 채널 정보 : \(self.initialImgUrl)")
-        print("initialImgUrl 좋아요 파라미터로 받은값 : \(imgUrl)")
         
-        let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: imgUrl)
-        
-        
-        let group: DispatchGroup = DispatchGroup()
-        group.enter()
-        
+        let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL,isEqualTo: imgUrl)
         query.getDocuments { snapshot, error in
             guard let doc = snapshot?.documents else {
-                group.leave()
                 return
             }
             for document in doc {
                 let documentId = document.documentID
-                // presentUid = documentId
                 self.presentChannelUid = documentId
                 print("DispatchQueue 순서 : 2")
-                print("initGet :도큐먼트 데이터 :\(document.data())")
-                print("initGet :현재 채널 아아디  :\(self.presentChannelUid)")
             }
             
             
@@ -121,44 +107,58 @@ class LikeCountViewModel: ObservableObject {
                 self.likeUserArr?.append(contentsOf: uidArr.likewho)
             }
             
-            print("initGet :좋아요 한 사람 목록 : \(self.likeUserArr)")
             
+            //view 상태값 변경해주어야
+            if let url = URL(string: imgUrl) {
+                self.selectedImage = url
+            }
+            
+            
+            //view changing
             self.heartInitViewState()
+        }
+    }
+    
+    //좋아요 표시를 위한 채널정보
+    func renewChannelCollection(_ imgUrl: String, completion: @escaping () -> ()) {
+        print("DispatchQueue 순서 : RenewChannelCollection 1")
+        
+        
+        self.resetLikeUser()
+        let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: imgUrl)
+        
+        let group: DispatchGroup = DispatchGroup()
+        group.enter()
+        
+        query.getDocuments { snapshot, error in
+            guard let doc = snapshot?.documents else {
+                group.leave()
+                return
+            }
+            for document in doc {
+                let documentId = document.documentID
+                self.presentChannelUid = documentId
+                print("DispatchQueue 순서 : 2")
+            }
             
+            
+            let temp = doc.compactMap{ try? $0.data(as: Channel.self) }
+            self.channel.append(contentsOf: temp)
+            
+            //좋아요 한 유저
+            for uidArr  in self.channel {
+                self.likeUserArr?.append(contentsOf: uidArr.likewho)
+            }
+            
+            
+            //view changing
+            self.heartInitViewState()
             
             completion()
             group.leave()
         }
     }
-    
-    
-    // func temCallImageStorage() {
-    //     let ref = Storage.storage().reference(withPath: "/\(FOLDER_CHANNEL_IMAGES)")
-    //     ref.listAll { (result, error) in
-    //         if let error = error {
-    //             print("Failed to fetch image URLs: \(error.localizedDescription)")
-    //             return
-    //         }
-    //         if let items = result?.items {
-    //             for item in items {
-    //                 item.downloadURL { url, error in
-    //                     if let error = error {
-    //                         print("Failed to fetch download URL: \(error.localizedDescription)")
-    //                         return
-    //                     }
-    //
-    //                     if let url = url {
-    //                         self.imageURLs.append(url)
-    //                         self.selectedImage = self.imageURLs[0]
-    //                         print("ViewModel: 첫번째 디테일 이미지 셀렉티드 url: \(self.selectedImage)")
-    //                         print("List ≈:\(self.imageURLs)")
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         // 이미지 URL을 가져온 후에 completion 클로저를 호출하여 함수 종료
-    //     }
-    // }
+  
     
     
     func doAsyncWork(completion: @escaping () -> Void) {
@@ -191,26 +191,16 @@ class LikeCountViewModel: ObservableObject {
                         
                         if let url = url {
                             tempURLs.append(url)
-                            
-                            print("=======Like List Like ViewModel:\(tempURLs)")
                             self.imageURLs = tempURLs
-                            print("=======Like List Like imageURLs:\(self.imageURLs)")
                         }
                     }
                 }
                 group.notify(queue: .main) {
                     self.selectedImage = tempURLs[0]
-                    print("=======Like List Like ViewModel: 첫번째 디테일 이미지 셀렉티드 url: \(self.selectedImage)")
-                    // self.selectedImage = tempURLs.first //첫 번째 이미지 선택
                     self.imageUrl = tempURLs as? String
                     completion() //비동기 작업 완료후 completion 클로저 호출
                 }
             }
-            
-            // 이미지 URL을 가져온 후에 completion 클로저를 호출하여 함수 종료
-            // DispatchQueue.main.async {
-            // completion()
-            // }
         }
     }
     
@@ -220,7 +210,7 @@ class LikeCountViewModel: ObservableObject {
         
         if let matchImageUrl = self.selectedImage {
             self.initialImgUrl = matchImageUrl.absoluteString
-            print("Image URL: \(self.initialImgUrl)")
+            print("선택한 사진값 : \(matchImageUrl)")
         } else {
             print("Selected image is nil")
         }
@@ -229,7 +219,7 @@ class LikeCountViewModel: ObservableObject {
         //init Channel Collection CALL!!!
         //filled heated state setting!!!
         //좋아요 불러오기
-        RenewChannelCollection(self.initialImgUrl) { }
+        renewChannelCollection(self.initialImgUrl) { }
     }
     
     
@@ -239,8 +229,6 @@ class LikeCountViewModel: ObservableObject {
         guard let presentUser = AuthViewModel.shared.currentUser?.uid else {
             return
         }
-        print("likeState: 전역 현사용자 : \(presentUser)")
-        print("like상태 likeUserArr :  \(likeUserArr)") //옵셔널 출력
         
         if let array = likeUserArr {
             let set = Set(array) //중복제거
@@ -289,7 +277,7 @@ class LikeCountViewModel: ObservableObject {
         
         
         //imageUrl 현재 이미지 URL
-        RenewChannelCollection(imageUrl){
+        renewChannelCollection(imageUrl){
             switch likeState {
             case LIKE :
                 self.plusLikeCountUpdate()
@@ -329,7 +317,6 @@ class LikeCountViewModel: ObservableObject {
         
         let query = COLLECTION_CHANNELS.whereField(KEY_CHANNEL_IMAGE_URL, isEqualTo: imageUrl)
         
-        print("누가좋아요를 눌렀는가:\(channel)")
         query.getDocuments { (snapshot, error) in
             if let errorMessage = error?.localizedDescription {
                 self.showErrorAlert = true
@@ -444,18 +431,14 @@ class LikeCountViewModel: ObservableObject {
         print("plus Update() 2")
         var operateCount=0
         
-        print("plus 했을때 채널 : \(self.channel)" )
         for item in self.channel {
             operateCount = item.likeCount
-            print("plus 했을때 likeCount 잘 담겨있니? : \(operateCount)" )
         }
         
         //사용자 : 이름 , 프로필 사진 url , uid
         // guard let likeUserUid = preUserId else {return}
         self.likeUserArr?.append(preUserId)
-        print("plus 했을때 추가할 현재 사용자 : \(preUserId)" )
         
-        print("plus 유저 Arr  : \(self.likeUserArr)" )
         
         operateCount += 1
         if let likeUserArr = self.likeUserArr {
@@ -465,7 +448,6 @@ class LikeCountViewModel: ObservableObject {
             ]
             
             if let presentChannelUid = presentChannelUid {
-                print("좋아요 presentChannelUid : \(presentChannelUid)" )
                 COLLECTION_CHANNELS.document(presentChannelUid).updateData(data) { error in
                     if let error = error {
                         print("업데이트 실패: \(error.localizedDescription)")
